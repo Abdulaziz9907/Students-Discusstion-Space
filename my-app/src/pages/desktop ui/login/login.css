@@ -1,0 +1,72 @@
+body{
+background-color: #008540;
+display: flex;
+justify-content: left;
+color: white;
+
+
+}
+#Welcome{
+
+position: fixed;
+right: 100px;
+}
+
+
+p > strong > a{
+    color: white;
+}
+
+#comp1{
+
+    right: 2px;
+    top: 265px;
+    width: 300px;
+    
+
+}
+
+#vec1{
+    right: 2px;
+    top: 265px;
+    width: 500px;
+}
+
+#vec2{
+    right: 2px;
+    top: 0px;
+    width: 240px;
+}
+
+#vec3{
+    right: 500px;
+    top: 180px;
+    width: 300px;
+}
+
+#vec4{
+    right: 200px;
+    top: 0px;
+    width: 170px;
+}
+
+#vec5{
+    right: 2px;
+    top: 265px;
+    width: 300px;
+}
+
+#vec6{
+    right: 2px;
+    top: 90px;
+    width: 100px;
+}
+
+
+
+.logImage{
+
+    position: fixed;
+    height: auto
+
+}

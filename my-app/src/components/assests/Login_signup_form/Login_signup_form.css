@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.box {
+    background-color: black;
+    width: 400px; 
+    height: 100vh; 
+    margin: 0 auto; 
+    position: relative; 
+    border-top-right-radius: 40px ;
+    border-bottom-right-radius: 40px ;
+}
+.div > h2{
+
+justify-content: right;
+flex-wrap: wrap;
+
+}
