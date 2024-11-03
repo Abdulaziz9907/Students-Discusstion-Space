@@ -6,67 +6,71 @@ color: white;
 
 
 }
-#Welcome{
 
-position: fixed;
-right: 100px;
+#Welcome {
+    position: fixed;
+    right: 28vw; 
+    top: 3vh;
+    bottom: 0;
+    z-index: 50;
+    font-size: 70px; 
+    line-height: 0.9; 
+    font-weight: bold; 
+    text-align: left; 
+    
 }
 
-
-p > strong > a{
+p > strong > a {
     color: white;
 }
 
-#comp1{
+#comp1 {
+    right: 0vw; 
+    top: 35vh; 
+    width: 30vw;
+    height: auto; 
+}
 
-    right: 2px;
-    top: 265px;
-    width: 300px;
+#vec1 {
+    right: 0vw;
+    top: 37vh;
+    max-width: 60%;
+}
+
+#vec2 {
     
-
+    right: 0vw;
+    top: 0;
+    max-width: 25%;
 }
 
-#vec1{
-    right: 2px;
-    top: 265px;
-    width: 500px;
+#vec3 {
+    right: 47vw;
+    top: 19vh;
+    max-width: 25%;
 }
 
-#vec2{
-    right: 2px;
-    top: 0px;
-    width: 240px;
+#vec4 {
+    right: 20vw;
+    top: 0;
 }
 
-#vec3{
-    right: 500px;
-    top: 180px;
-    width: 300px;
+#vec5 {
+    right: 35vw;
+    top: 66vh;
 }
 
-#vec4{
-    right: 200px;
-    top: 0px;
-    width: 170px;
+#vec6 {
+    right: 0vw;
+    top: 10vh;
+    max-width: 12%;
 }
 
-#vec5{
-    right: 2px;
-    top: 265px;
-    width: 300px;
-}
-
-#vec6{
-    right: 2px;
-    top: 90px;
-    width: 100px;
-}
-
-
-
-.logImage{
-
+.logImage {
     position: fixed;
-    height: auto
-
+    height: auto;
+    max-width: 100%;
+    width: auto;
 }
+
+

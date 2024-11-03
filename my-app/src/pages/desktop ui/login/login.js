@@ -12,8 +12,8 @@ function Login() {
   return (
     <div >
       
-      <h2 id='Welcome'>Welcome to 
-      Students Discussion Space</h2>
+      <p id='Welcome'>Welcome to <br></br>
+      <strong> Students<br></br> Discussion<br></br> Space</strong></p>
       
       <img src={logo1} alt="comp1" id='vec1' className='logImage'/>
       <img src={logo2} alt="comp1" id='vec2' className='logImage'/>
