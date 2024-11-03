@@ -9,13 +9,12 @@ color: white;
 
 #Welcome {
     position: fixed;
-    right: 28vw; 
+    right: 21vw; 
     top: 3vh;
     bottom: 0;
     z-index: 50;
     font-size: 70px; 
     line-height: 0.9; 
-    font-weight: bold; 
     text-align: left; 
     
 }

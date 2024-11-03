@@ -1,28 +1,30 @@
 import React from 'react'
 import "./Login_signup_form.css"
 
+
 const Login_signup_form = () => {
   return (
-    <div className='box'>
+    <div className='LS_box'>
+
+
+      <div id='login_text'>
+      <p id='text1'>Login</p>
+      <p id='text2'>Enter your account details</p>
+      </div>
 
     <form action=''>
       
-      <h1>Login</h1>
-      <h5>Enter your account details</h5>
-      
-
       <div className='input-box'>
-        <input type="text" placeholder="Username" required />
+        <label id='user_pass_labels'>Username*</label>
+        <input type="text" required />
         </div>
-
         <div className='input-box'>
-        <input type="password" placeholder="Password" required />
+        <label id='user_pass_labels'>Password*</label> 
+        <input type="password" required />
         </div>
-      
-
 
       <button type='submit'>Login</button>
-      <p>Don't have an account? <strong><a href="https://example.com">SignUp</a></strong></p>
+      <p id='signup_btn'>Don't have an account? <strong><a href="https://example.com"><u>SignUp</u></a></strong></p>
       </form>
       
 
