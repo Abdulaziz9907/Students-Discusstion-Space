@@ -2,7 +2,7 @@ import React from 'react'
 import "./Navbar.css"
 import logo1 from './elements/Home.png';
 import logo2 from './elements/User.png';
-import logo3 from './elements/Log out.png';
+import logo3 from './elements/Logout.png';
 
 
 
@@ -10,17 +10,20 @@ const Navbar = () => {
   return (
     <div className='navbar'>
 
-      <div>
-      <p id='text1'>Students Discussion Space</p>
-</div>
-<div>
-      <img src={logo1} alt="home" id='home' className='logImage'/>
-</div>
-      <img src={logo2} alt="account" id='user' className='logImage'/>
-<div>
+<span id="site_name">Students Discussion Space</span>
 
-      <img src={logo3} alt="logout" id='logout' className='logImage'/>
-</div>
+<button class="navButtons">
+    <img src={logo1} alt="home" id="home" class="logImageNav" />
+    <span class="navText">Home</span>
+  </button>
+  <button class="navButtons">
+    <img src={logo2} alt="account" id="user" class="logImageNav" />
+    <span class="navText">Account</span>
+  </button>
+  <button class="navButtons">
+    <img src={logo3} alt="logout" id="logout" class="logImageNav" />
+    <span class="navText">Signout</span>
+  </button>
 
       
 
