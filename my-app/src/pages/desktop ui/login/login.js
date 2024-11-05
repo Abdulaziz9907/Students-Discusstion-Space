@@ -1,5 +1,6 @@
 import './login.css';
 import Login_signup_form from '../../../components/assests/Login_signup_form/Login_signup_form';
+import Navbar from '../../../components/assests/Navbar/Navbar';
 import logo1 from './elements/Vector1.png';
 import logo2 from './elements/Vector2.png';
 import logo3 from './elements/Vector3.png';
@@ -11,7 +12,9 @@ import logo from './elements/Component 1.png';
 function Login() {
   return (
     <div >
-      
+
+      <Navbar/>
+
       <p id='Welcome'>Welcome to <br></br>
       <strong> Students<br></br> Discussion<br></br> Space</strong></p>
       
@@ -22,6 +25,7 @@ function Login() {
       <img src={logo5} alt="comp1" id='vec5' className='logImage'/>
       <img src={logo6} alt="comp1" id='vec6' className='logImage'/>
       <img src={logo} alt="comp1" id='comp1' className='logImage'/>
+      
       <Login_signup_form/>
 
       
