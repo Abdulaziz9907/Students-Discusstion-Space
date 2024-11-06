@@ -1,15 +1,24 @@
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Poppins';
-position: relative;
 
+
+#LF_text1,
+#LF_text2,
+#LF_user_pass_labels,
+#LF_login_btn,
+#LF_signup_btn,
+#LF_signup_btn a,
+.LF_box,
+.LF_form,
+.LF_input-box,
+.LF_input-box input {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+  position: relative;
 }
 
 
-
-.LS_box {
+.LF_box {
 background-color: black;
 width: 35vw; 
 height: 100vh; 
@@ -18,7 +27,7 @@ position: relative;
 border-top-right-radius: 40px ;
 border-bottom-right-radius: 40px ;
 padding: 6.5rem;
-
+transition: all 0.3s ease-in-out;  
 }
 
 
@@ -26,7 +35,7 @@ padding: 6.5rem;
 
 
 
-#text1 {
+#LF_text1 {
 display: flex;
 flex-direction: column;
 gap: 1.5rem;
@@ -36,7 +45,7 @@ font-weight: bold;
 
 }
 
-#text2 {
+#LF_text2 {
 display: flex;
 flex-direction: column;
 margin-top: 1rem;
@@ -45,22 +54,28 @@ font-weight: 400;
 }
 
 
-form {
+.LF_form {
 display: flex;
 flex-direction: column;
 gap: 0rem;
 margin-top: 3rem;
 }
-#user_pass_labels{
+#LF_user_pass_labels{
 font-size: 13px;
 }
 
-.input-box {
+.LF_input-box {
 position: relative;
 margin-bottom: 0.5rem;
+ 
 }
 
-.input-box input {
+.LF_input-box input:focus {
+    border-color: #008540; 
+    outline: none; 
+  }
+
+.LF_input-box input {
 width: 100%;
 padding: 1rem;
 border: 1.5px solid white;
@@ -70,10 +85,11 @@ color: white;
 font-size: 1rem;
 height: 3rem;
 width: 24vw;
+transition: all 0.3s ease-in-out;  
 }
 
 
-#loginBtn {
+#LF_login_btn {
 background-color: #008540;
 color: white;
 padding: 1rem;
@@ -94,14 +110,14 @@ font-weight: 600;
 transition: all 0.3s ease-in-out;
 }
 
-#loginBtn:hover {
+#LF_login_btn:hover {
 background-color: white;
 color: black;
 box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
 transform: scale(1.00);
 }
 
-#signup_btn{
+#LF_signup_btn{
 
     font-size: 16px;
     position: relative;
@@ -110,7 +126,7 @@ transform: scale(1.00);
     
     }
 
-#signup_btn a {
+#LF_signup_btn a {
 color: white;
 text-decoration: none;
 font-weight: bold;
@@ -121,7 +137,7 @@ position: relative;
 left: -5px;  
 }
 
-#signup_btn a:hover {
+#LF_signup_btn a:hover {
 background-color: #008540;  
 left: 2px;  
 box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);

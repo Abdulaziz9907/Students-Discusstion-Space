@@ -1,4 +1,4 @@
-body{
+.login_body{
 background-color: #008540;
 display: flex;
 justify-content: left;
@@ -7,23 +7,20 @@ color: white;
 
 }
 
-#Welcome {
+#loginWelcome {
     position: absolute;
-    right: -40rem; 
-    top: 3vh;
+    right: 30rem; 
+    top: -9vh;
     bottom: 0;
     z-index: 50;
-    font-size: 6rem; 
+    font-size: 7rem; 
     line-height: 0.9; 
     text-align: left; 
     
 }
 
-p > strong > a {
-    color: white;
-}
 
-#comp1 {
+#loginComp1 {
     
     right: 0vw; 
     position: fixed;
@@ -36,7 +33,7 @@ p > strong > a {
     object-fit: contain;
 }
 
-#vec1 {
+#loginVec1 {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -48,36 +45,42 @@ p > strong > a {
    
 }
 
-#vec2 {
+#loginVec2 {
     
     right: 0vw;
     top: 0;
     max-width: 25%;
 }
 
-#vec3 {
+#loginVec3 {
     right: 47vw;
     top: 19vh;
     max-width: 25%;
 }
 
-#vec4 {
+#loginVec4 {
     right: 20vw;
     top: 0;
 }
 
-#vec5 {
-    right: 35vw;
-    top: 66vh;
+#loginVec5 {
+    position: fixed;
+    bottom: 0;
+    right: 600px;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;  
+    object-fit: contain;   
 }
 
-#vec6 {
+#loginVec6 {
     right: 0vw;
     top: 10vh;
     max-width: 12%;
 }
 
-.logImage {
+.loginLogImage {
     position: fixed;
     height: auto;
     max-width: 100%;
