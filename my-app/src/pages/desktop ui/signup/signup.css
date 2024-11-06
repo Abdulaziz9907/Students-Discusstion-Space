@@ -1,0 +1,66 @@
+.signup_body{
+    background-color: #008540;
+    display: flex;
+    justify-content: left;
+    color: white;
+    justify-content: center;
+    
+    }
+    
+    
+   
+    
+    #signup_Vec1 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        max-width: 60%;
+        width: auto;
+        height: auto;
+        min-height: 200px;  
+        object-fit: contain;  
+       
+    }
+    
+    #signup_Vec2 {
+        
+        right: 0vw;
+        top: 0;
+        max-width: 25%;
+    }
+    
+    #signup_Vec3 {
+        right: 47vw;
+        top: 19vh;
+        max-width: 25%;
+    }
+    
+    #signup_Vec4 {
+        right: 20vw;
+        top: 0;
+    }
+    
+    #signup_Vec5 {
+        position: fixed;
+        bottom: 0;
+        right: 600px;
+        max-width: 60%;
+        width: auto;
+        height: auto;
+        min-height: 200px;  
+        object-fit: contain;   
+    }
+    
+    #signup_Vec6 {
+        right: 0vw;
+        top: 10vh;
+        max-width: 12%;
+    }
+    
+    .signup_LogImage {
+        position: fixed;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }
+    
