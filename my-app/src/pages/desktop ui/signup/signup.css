@@ -8,12 +8,10 @@
     }
     
     
-   
-    
     #signup_Vec1 {
         position: fixed;
         bottom: 0;
-        right: 0;
+        right: 80;
         max-width: 60%;
         width: auto;
         height: auto;
@@ -30,7 +28,7 @@
     }
     
     #signup_Vec3 {
-        right: 47vw;
+        right: 80vw;
         top: 19vh;
         max-width: 25%;
     }
