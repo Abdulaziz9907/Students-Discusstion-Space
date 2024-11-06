@@ -3,57 +3,56 @@
     width: 100vw; 
     height: 80px; 
     position: fixed; 
-    top: 0; 
-    left: 0; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     padding: 1rem; 
     z-index: 1000; 
     display: flex; 
     flex-direction: row;
-    justify-content: flex-start;
+    align-items: center;
 }
 
 #site_name {
     color: black;
     font-size: 25px; 
-    margin-right: 2; 
+    margin-right: 44px; 
     font-weight: 900;
     font-family: 'Roboto';
-    top: 7.5px;
+    bottom: 2px;
+    left: 16px;
 }
 
 .logImageNav {
     width: 20px; 
-    height: 20px;
-    margin-right: 8px; /* Add space between icon and text */
+    height: 20px ;
+    margin-right: 6px; 
     transition: filter 0.3s ease-in-out;
+    
 }
+
 
 .navText {
     color: black;
     transition: color 0.3s ease-in-out;
+    margin-right: 6px; 
 }
 
 .navButtons {
-    width: auto; /* Change from fixed width to auto */
-    min-width: 100px; /* Ensure minimum width to fit content */
-    padding: 0.5rem 1rem; /* Adjust padding to be more compact */
+    
+    padding: 5px 5px 5px 6px; 
     background-color: transparent;
     border: none;
-    border-radius: 8px;
+    border-radius: 22px;
     cursor: pointer;
-    margin-right: 30px;
+    margin-right: 11px;
     display: flex;           
     justify-content: center; 
     align-items: center;     
-    text-align: center;
+    
     transition: all 0.3s ease-in-out;
     position: relative;
-    
 }
 
-/* Hover effects */
 .navButtons:hover {
     background-color: black;
 }

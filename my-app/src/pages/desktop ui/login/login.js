@@ -1,6 +1,6 @@
 import './login.css';
 import Login_signup_form from '../../../components/assests/Login_signup_form/Login_signup_form';
-import Navbar from '../../../components/assests/Navbar/Navbar';
+
 import logo1 from './elements/Vector1.png';
 import logo2 from './elements/Vector2.png';
 import logo3 from './elements/Vector3.png';
@@ -13,8 +13,7 @@ function Login() {
   return (
     <div >
 
-      <Navbar/>
-
+      
       <p id='Welcome'>Welcome to <br></br>
       <strong> Students<br></br> Discussion<br></br> Space</strong></p>
       

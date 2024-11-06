@@ -24,7 +24,7 @@ const Login_signup_form = () => {
         <input type="password" required />
         </div>
 
-      <button type='submit' id='lgn_sbmt_btn'>Login</button>
+      <button type='submit' id='loginBtn'>Login</button>
       <p id='signup_btn'>Don't have an account? <strong><a href="https://example.com"><u>SignUp</u></a></strong></p>
       </form>
       

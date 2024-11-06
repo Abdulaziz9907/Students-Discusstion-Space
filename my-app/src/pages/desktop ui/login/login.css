@@ -8,12 +8,12 @@ color: white;
 }
 
 #Welcome {
-    position: fixed;
-    right: 21vw; 
+    position: absolute;
+    right: -40rem; 
     top: 3vh;
     bottom: 0;
     z-index: 50;
-    font-size: 70px; 
+    font-size: 6rem; 
     line-height: 0.9; 
     text-align: left; 
     
@@ -24,16 +24,28 @@ p > strong > a {
 }
 
 #comp1 {
+    
     right: 0vw; 
-    top: 35vh; 
-    width: 30vw;
-    height: auto; 
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;  
+    object-fit: contain;
 }
 
 #vec1 {
-    right: 0vw;
-    top: 37vh;
+    position: fixed;
+    bottom: 0;
+    right: 0;
     max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;  
+    object-fit: contain;  
+   
 }
 
 #vec2 {
@@ -71,5 +83,3 @@ p > strong > a {
     max-width: 100%;
     width: auto;
 }
-
-

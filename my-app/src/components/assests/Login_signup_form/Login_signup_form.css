@@ -1,123 +1,128 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins';
-    position: relative;
-    
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins';
+position: relative;
+
 }
 
 
 
 .LS_box {
-    background-color: black;
-    width: 450px; 
-    height: 100vh; 
-    margin: 0 auto; 
-    position: relative; 
-    border-top-right-radius: 40px ;
-    border-bottom-right-radius: 40px ;
-    padding: 6.5rem;
+background-color: black;
+width: 35vw; 
+height: 100vh; 
+margin: 0 auto; 
+position: relative; 
+border-top-right-radius: 40px ;
+border-bottom-right-radius: 40px ;
+padding: 6.5rem;
+
 }
+
+
+
 
 
 
 #text1 {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    font-size: 40px;
-    font-weight: bold;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+margin-top: 6rem;
+font-size: 3rem;
+font-weight: bold;
+
 }
 
 #text2 {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    font-size: 12px;
-    font-weight: 400;
+display: flex;
+flex-direction: column;
+margin-top: 1rem;
+font-size: 12px;
+font-weight: 400;
 }
 
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 0rem;
-    margin-top: 3rem;
+display: flex;
+flex-direction: column;
+gap: 0rem;
+margin-top: 3rem;
 }
 #user_pass_labels{
-    font-size: 13px;
+font-size: 13px;
+}
+
+.input-box {
+position: relative;
+margin-bottom: 0.5rem;
+}
+
+.input-box input {
+width: 100%;
+padding: 1rem;
+border: 1.5px solid white;
+border-radius: 8px;
+background: transparent;
+color: white;
+font-size: 1rem;
+height: 3rem;
+width: 24vw;
+}
+
+
+#loginBtn {
+background-color: #008540;
+color: white;
+padding: 1rem;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+cursor: pointer;
+margin-top: 1rem;
+height: 3rem;
+width: 24vw;
+
+display: flex;           
+justify-content: center; 
+align-items: center;     
+text-align: center;
+font-size: 15px;
+font-weight: 600;
+transition: all 0.3s ease-in-out;
+}
+
+#loginBtn:hover {
+background-color: white;
+color: black;
+box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+transform: scale(1.00);
 }
 
 #signup_btn{
 
-font-size: 13px;
-position: relative;
-right: -6vh;
-margin-top: 0.5rem;
-
-}
-
-.input-box {
+    font-size: 16px;
     position: relative;
-    margin-bottom: 0.5rem;
-}
-
-.input-box input {
-    width: 100%;
-    padding: 1rem;
-    border: 1.5px solid white;
-    border-radius: 8px;
-    background: transparent;
-    color: white;
-    font-size: 1rem;
-    height: 7vh;
-    width: 24vw;
-}
-
-
-#lgn_sbmt_btn {
-    background-color: #008540;
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    height: 6vh;
-    width: 24vw;
-
-    display: flex;           
-    justify-content: center; 
-    align-items: center;     
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-}
-
-#lgn_sbmt_btn:hover {
-    background-color: white;
-    color: black;
-    box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
-    transform: scale(1.00);
-}
+    right: -5rem;
+    margin-top: 0.5rem;
+    
+    }
 
 #signup_btn a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 2px 5px;  
-    border-radius: 15px;  
-    transition: all 0.3s ease-in-out;  
-    position: relative;  
-    left: -5px;  
+color: white;
+text-decoration: none;
+font-weight: bold;
+padding: 2px 5px;  
+border-radius: 15px;  
+transition: all 0.3s ease-in-out;  
+position: relative;  
+left: -5px;  
 }
 
 #signup_btn a:hover {
-    background-color: #008540;  
-    left: 2px;  
-    box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);
+background-color: #008540;  
+left: 2px;  
+box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);
 }

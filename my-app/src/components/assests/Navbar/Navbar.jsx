@@ -1,8 +1,8 @@
 import React from 'react'
 import "./Navbar.css"
-import logo1 from './elements/Home.png';
-import logo2 from './elements/User.png';
-import logo3 from './elements/Logout.png';
+import logo_h from './elements/Home.png';
+import logo_u from './elements/User.png';
+import logo_l from './elements/Logout.png';
 
 
 
@@ -12,16 +12,17 @@ const Navbar = () => {
 
 <span id="site_name">Students Discussion Space</span>
 
+
 <button class="navButtons">
-    <img src={logo1} alt="home" id="home" class="logImageNav" />
-    <span class="navText">Home</span>
+    <img src={logo_h} alt="home" id="home" class="logImageNav" />
+    <span class="navText" >Home</span>
   </button>
   <button class="navButtons">
-    <img src={logo2} alt="account" id="user" class="logImageNav" />
+    <img src={logo_u} alt="account" id="user" class="logImageNav" />
     <span class="navText">Account</span>
   </button>
   <button class="navButtons">
-    <img src={logo3} alt="logout" id="logout" class="logImageNav" />
+    <img src={logo_l} alt="logout" id="logout" class="logImageNav" />
     <span class="navText">Signout</span>
   </button>
 
