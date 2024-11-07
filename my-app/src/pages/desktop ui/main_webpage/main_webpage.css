@@ -1,0 +1,126 @@
+.main_webpage_body {
+    background-color: #008540;
+    min-height: 100vh; 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    position: relative;
+    justify-content: center;
+}
+
+
+#mw_items{
+
+display: flex;
+flex-direction: column;
+gap: 4rem;
+}
+
+#mw_text{
+    font-size: 55px;
+    font-weight: 900;
+    font-family: "Poppins";
+    display: flex;
+    justify-content: center; 
+    color: white; 
+    
+    }
+    
+
+    .mw_search-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px; /* Adjust based on desired width */
+        margin: 20px auto; /* Centers the search bar on the page */
+        top: -4vw;
+        right: 6vw;
+      }
+      
+      .mw_search-bar {
+        width: 45vw;
+        height: 35px;
+        padding: 10px 40px; /* Creates space for the icon */
+        border-radius: 20px; /* Rounded corners */
+        border: 1px solid #ccc; /* Border color */
+        outline: none;
+        font-size: 16px; /* Adjust font size */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+        
+      }
+      
+     
+
+      #mw_suggestions {
+        background-color: black;
+        min-height: 50vh; 
+        width: 80vw; 
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins';
+        position: fixed; 
+        bottom: 0; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        justify-content: center;
+      }
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Background shapes*/
+
+   
+    
+ 
+    
+    #mw_Vec3 {
+        right: 80vw;
+        top: 19vh;
+        max-width: 25%;
+    }
+    
+    #mw_Vec4 {
+        right: 85vw;
+        top: 0;
+    }
+    
+    #mw_Vec5 {
+        position: fixed;
+        bottom: 0;
+        left: 80vw;
+        max-width: 60%;
+        width: auto;
+        height: auto;
+        min-height: 200px;  
+        object-fit: contain;   
+    }
+    
+    #mw_Vec6 {
+        right: 0vw;
+        top: 10vh;
+        max-width: 12%;
+    }
+    
+    .mw_LogImage {
+        position: fixed;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }

@@ -10,6 +10,9 @@ import login_logo6 from './elements/Vector6.png';
 import login_logo from './elements/Component 1.png';
 
 function Login() {
+
+
+
   return (
 
     <div className='login_body'>
@@ -18,7 +21,6 @@ function Login() {
       
       <p id='loginWelcome'>Welcome to <br></br>
       <strong> Students<br></br> Discussion<br></br> Space</strong></p>
-      
       
       <img src={login_logo1} alt="comp1" id='loginVec1' className='loginLogImage'/>
       <img src={login_logo2} alt="comp1" id='loginVec2' className='loginLogImage'/>
