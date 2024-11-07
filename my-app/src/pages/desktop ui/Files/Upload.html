@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="Upload.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Students Discussion Space</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Account</a>
+                <a href="#">Signout</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="upload-section">
+            <h2>Upload file for: MATH208</h2>
+            <form id="uploadForm">
+                <label for="file-upload" id="upload-label">Upload your file*</label>
+                <div class="upload-box">
+                    <input type="file" id="file-upload" hidden>
+                    <div class="drag-area">
+                        <p>Select a file or drag and drop here</p>
+                        <small>JPG, PNG or PDF, file size no more than 10MB</small>
+                        <button type="button" class="select-btn" onclick="document.getElementById('file-upload').click()">Select file</button>
+                    </div>
+                </div>
+                <button type="submit" class="upload-btn">Upload</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="Upload.js"></script>
+</body>
+</html>

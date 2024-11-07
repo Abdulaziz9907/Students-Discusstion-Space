@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Page</title>
+    <link rel="stylesheet" href="Files.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Students Discussion Space</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Account</a>
+                <a href="#">Signout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="file-section">
+            <h2>MATH208</h2>
+            
+            <div class="upload-section">
+                <div class="file-count">2 file/s</div>
+                <button class="upload-btn">Upload</button>
+            </div>
+            
+            <div class="file-list">
+                <div class="file-item">
+                    <p>MATH208-T232-Final.pdf</p>
+                    <span>3 month/s ago</span>
+                    <div class="file-actions">
+                        <button class="download-btn">Download</button>
+                        <button class="copy-link-btn">Copy link</button>
+                    </div>
+                </div>
+                
+                <div class="file-item">
+                    <p>Major1_T222.pdf</p>
+                    <span>2 year/s ago</span>
+                    <div class="file-actions">
+                        <button class="download-btn">Download</button>
+                        <button class="copy-link-btn">Copy link</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="pagination">
+            <a href="#">1</a>
+        </div>
+        <!-- Popup container -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>File will download shortly</p>
+                <div class="check-icon">✔</div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="Files.js"></script>
+</body>
+</html>
