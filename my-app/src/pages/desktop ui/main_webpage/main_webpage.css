@@ -16,6 +16,7 @@
 display: flex;
 flex-direction: column;
 gap: 4rem;
+
 }
 
 #mw_text{
@@ -155,18 +156,6 @@ gap: 4rem;
         }
     
     
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*Background shapes*/

@@ -1,0 +1,50 @@
+/* Base button style */
+.delete-account-btn {
+    background-color: #B42318; /* Red */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.8s ease, height 2s ; /* Smooth animation */
+    outline: none;
+    display: inline-block;
+
+
+    width: 185px;
+    height: 45px;
+    transition: width 0.5s,height 0.5s ;
+  
+}
+
+/* Hover effect */
+.delete-account-btn:hover {
+    background-color: #6B0800; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* Expanded state */
+.delete-account-btn.expanded {
+    width: 185px; /* Adjust width for expansion */
+    height: 75px;
+    padding: 10px;
+    background-color: #6B0800; 
+    font-size: 16px;
+    text-align: center;
+    
+    
+}
+
+/* Delay text appearance */
+.delete-account-btn.expanded::after {
+    content: "This will permanently delete your account. Click to proceed";
+    display: block;
+    opacity: 0;
+    animation: fadeInText 0.5s 0.3s forwards; /* Delay text appearance */
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

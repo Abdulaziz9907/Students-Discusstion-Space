@@ -1,9 +1,13 @@
 import React from 'react'
 import "./Signup_form.css"
+import { useNavigate } from 'react-router-dom';
 
+
+
+;
 const Signup_form = () => {
 
-
+const navigate = useNavigate()
  
 
   return (
@@ -117,7 +121,7 @@ const Signup_form = () => {
         
 
         <button type='submit' id='SF_create_account_btn'>Create account</button>
-        <p id='SF_login_btn'>Already have an account? <strong><a href="https://example.com"><u>Login</u></a></strong></p>
+        <p id='SF_login_btn'>Already have an account? <strong><a onClick={() => navigate('/')}><u>Login</u></a></strong></p>
       </form>
 
     </div>
