@@ -180,14 +180,18 @@
 
     /* Full-screen login form for tablets */
     .login_body {
-        display: block;
+        display: flex;
         justify-content: center;
         align-items: center;
         place-content: center;
-        
+        flex-direction: row;
         
         
     }
+    #LF_box  #lf_logo {
+ 
+        visibility: visible;
+      }
 
     .login_items {
         
@@ -202,7 +206,7 @@
         width: 100%; /* Stretch to full width */
         max-width: 100%;
         padding: 4rem; /* Adjust for larger screens */
-        border-radius: 40px;
+        border-radius: 0px;
         
     }
 

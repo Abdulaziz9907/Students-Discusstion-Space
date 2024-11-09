@@ -53,12 +53,37 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: -14px;
+  top: 2px;
+  line-height: 32px;
   left: 30px;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 100;
   visibility: hidden;
 }
+
+
+#lf_logo{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: -3px;
+  line-height: 32px;
+  right:  30px;
+  font-size: 32px;
+  font-weight: 100;
+  visibility: hidden;
+  width: auto;
+  height: 200px;
+  
+}
+
+
+#LF_text3 > strong{
+  font-size: 35px;
+  font-weight: 900;
+
+}
+
 
 .LF_form {
   display: flex;
@@ -150,11 +175,25 @@
 
 @media screen and (max-width: 1110px) {
 
-#LF_text3 {
+#LF_text3{
  
   visibility: visible;
 }
 
 }
+@media screen and (max-width: 1024px) {
+
+  #lf_logo{
+   
+    visibility: visible;
+  }
+
+  .LF_box{
+  border-radius: 0px;
+  
+  }
+  
+  }
+  
 
 
