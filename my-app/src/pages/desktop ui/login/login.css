@@ -6,9 +6,10 @@
     color: white;
     position: relative;
     height: 100vh; /* Ensure the body takes full height */
-    min-height: 781px;
+ 
+    margin: 0 auto; /* Center the body on wider screens */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
-
 
 #loginWelcome {
     position: absolute;
@@ -36,18 +37,14 @@
     display: block; /* Default state for larger screens */
 }
 
-
-.login_items{
-
+.login_items {
     width: 30vw; /* Full width to ensure responsiveness */
-    max-width: 1200px; /* Max width for large screens */
-    min-width: 600px; /* Max width for large screens */
+    max-width: 600px; /* Max width for large screens */
+    min-width: 600px; /* Minimum width */
     display: grid;
     justify-content: left;
     left: 0;
 }
-
-
 
 #loginComp1 {
     right: 0vw;
@@ -99,9 +96,6 @@
     max-width: 100%;
     width: auto;
 }
-
-
-
 
 /* Media Queries for Responsiveness */
 
@@ -167,7 +161,6 @@
 @media screen and (min-width: 481px) and (max-width: 1024px) {
     /* Hide decorative elements */
     #loginWelcome,
-    #loginWelcome,
     #loginVec1,
     #loginComp1,
     #loginVec2,
@@ -185,29 +178,25 @@
         align-items: center;
         place-content: center;
         flex-direction: row;
-        
-        
     }
-    #LF_box  #lf_logo {
- 
+
+    #LF_box #lf_logo {
         visibility: visible;
-      }
+    }
 
     .login_items {
-        
         position: inherit;
         display: flex;
-        
-        
+        max-width: 600px; /* Ensure containers do not exceed 600px */
+        width: 100%; /* Stretch to full width */
     }
 
     .LF_box {
         background-color: black;
         width: 100%; /* Stretch to full width */
-        max-width: 100%;
+        max-width: 600px; /* Restrict maximum width */
         padding: 4rem; /* Adjust for larger screens */
         border-radius: 0px;
-        
     }
 
     #LF_text1 {
