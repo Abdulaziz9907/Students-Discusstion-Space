@@ -52,9 +52,9 @@ function Search_results() {
 
       
 
-      <div id='sr_results_container'>
+<div id='sr_results_container'>
 
-      <div id='sr_results'>
+  <div id='sr_results'>
 
       <div id='sr_result1'> 
       <span class="sr_result1-text">1-Math208</span>
@@ -84,22 +84,33 @@ function Search_results() {
 
         </div>
 
+        <div id='sr_result5'> 
 
-          
+        <span class="sr_result5-text">5-MATH101</span>
+        <button class="sr_result-button">View details</button>
+</div>
+
+
+
+    </div>
+
+
+
+
+        </div>
+
+        <div className='sr_results-footer'>
         <FooterNav
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+      </div>
 
 
 </div>
-      
-      
-    
-    </div>
 
-    </div>
+
   );
 }
 
