@@ -1,11 +1,11 @@
-body{
+/* body{
     background-color: #008540;
     display: flex;
     justify-content: left;
     color: white;
     
     
-    }
+    } */
     
     #Welcome {
         position: fixed;
@@ -80,14 +80,14 @@ body{
 
 
     
-body, html {
+/* body, html {
     height: 100%;
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     
-}
+} */
 
 
 

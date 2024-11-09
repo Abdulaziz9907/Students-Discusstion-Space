@@ -110,3 +110,21 @@ textarea {
   padding: 10px 0;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+
+@media (max-width: 600px) { 
+  .rating-box { 
+    width: 100vw; /* Full viewport width */ 
+    padding: 10px; /* Adjust padding for smaller screens */ } 
+    .navbar #site_name{
+      display: none;
+    }
+    .rating-section { 
+      flex-direction: column; /* Stack items vertically */ 
+      align-items: flex-start; /* Align items to the start */ } 
+      .rating-question { 
+        margin-bottom: 10px; /* Add margin to bottom for spacing */ } 
+      .stars { 
+        justify-content: flex-start; /* Align stars to the start */ } 
+.submit-button { 
+  width: 100%; /* Full width button */ }}
