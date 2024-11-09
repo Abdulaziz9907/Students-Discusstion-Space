@@ -3,12 +3,6 @@ import "./Login_form.css"
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-
-
-  
-
 const Login_form = () => {
 
 const navigate = useNavigate();
@@ -21,6 +15,8 @@ const navigate = useNavigate();
 
 
       <div id='LF_login_text'>
+      
+      <p id='LF_text3'>Students<br></br> Discussion Space</p>
       <p id='LF_text1'>Login</p>
       <p id='LF_text2'>Enter your account details</p>
       </div>
