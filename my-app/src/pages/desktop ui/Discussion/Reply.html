@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reply for Discussion</title>
+    <link rel="stylesheet" href="Reply.css">
+</head>
+<body>
+    <header>
+        <div class='navbar'>
+            <span id="site_name">Students Discussion Space</span>
+            <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Home.png" alt="home" id="home" class="logImageNav" />
+                <span class="navText" >Home</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/User.png" alt="account" id="user" class="logImageNav" />
+                <span class="navText">Account</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Logout.png" alt="logout" id="logout" class="logImageNav" />
+                <span class="navText">Signout</span>
+              </button>
+        </div>
+        <img src='../../desktop ui/login/elements/Vector3.png' alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector4.png' alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector6.png' alt="comp1" id='Dis_Vec6' class='DisImage'/>
+    </header>
+    
+    <main>
+        <div class='space'>
+        </div>
+        <section class="reply-section">
+            <h2>reply for discussion:</h2>
+            <div class="reply-box">
+                <label for="reply-text" id="reply-label">Write your reply*</label>
+                <textarea id="reply-text" placeholder="Write your reply here between 3-100 words"></textarea>
+                <button class="submit-btn">Reply</button>
+            </div>
+        </section>
+    </main>
+    
+    <script src="Reply.js"></script>
+</body>
+</html>

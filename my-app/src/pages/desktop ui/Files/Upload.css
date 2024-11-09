@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #008540;
+}
+
+header {
+    background-color: #fff;
+    color: #333;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 1.5em;
+}
+
+nav a {
+    color: #fff;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+main {
+    max-width: 1000px;
+    margin: 2em auto;
+    margin-top: 0em;
+}
+
+.upload-section {
+    color: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.upload-section h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+form {
+    background-color: #000;
+    padding: 2em;
+    border-radius: 8px;
+}
+
+#upload-label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #fff;
+}
+
+.upload-box {
+    border: 2px dashed #fff;
+    padding: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.drag-area p,
+.drag-area small {
+    margin-bottom: 0.5em;
+}
+
+.select-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5em 2em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.upload-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5em 2em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.error {
+    color: red !important;
+}
+button:hover,
+.select-btn:hover,
+.upload-btn:hover,
+.download-btn:hover,
+.copy-link-btn:hover {
+    background-color: #45a049; 
+    color: #fff; 
+    transition: background-color 0.3s ease; 
+}
+
+a:hover {
+    color: #4CAF50; 
+    text-decoration: underline; 
+    transition: color 0.3s ease; 
+}
+
+.file-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+.navbar {
+    background-color: white;
+    width: 100vw; 
+    height: 80px; 
+    position: fixed; 
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 1rem; 
+    z-index: 1000; 
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+#site_name {
+    color: black;
+    font-size: 25px; 
+    margin-right: 44px; 
+    font-weight: 900;
+    font-family: 'Roboto';
+    bottom: 2px;
+    left: 16px;
+}
+
+.logImageNav {
+    width: 20px; 
+    height: 20px ;
+    margin-right: 6px; 
+    transition: filter 0.3s ease-in-out;
+    
+}
+
+
+.navText {
+    color: black;
+    transition: color 0.3s ease-in-out;
+    margin-right: 6px; 
+}
+
+.navButtons {
+    padding: 5px 5px 5px 6px; 
+    background-color: transparent;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    margin-right: 11px;
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.navButtons:hover {
+    background-color: black;
+}
+
+.navButtons:hover .navText {
+    color: white;
+}
+
+.navButtons:hover .logImageNav {
+    filter: invert(1);
+}
+.space{
+    padding:32px;
+}
+
+#Dis_Vec3 {
+    right: 80vw;
+    top: 56vh;
+    max-width: 25%;
+}
+
+#Dis_Vec4 {
+    right: 93vw;
+    top: 15vh;
+}
+
+#Dis_Vec6 {
+    position: fixed;
+    top: 31vh;
+    left: 80vw;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;  
+    object-fit: contain;
+}
+
+.DisImage {
+    position: fixed;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    z-index: -1; 
+    pointer-events: none; 
+}
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 1em;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 0 1em;
+        font-size: 0.9em;
+    }
+    nav {
+        margin-top: 1em;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 0 1em;
+        font-size: 0.9em;
+    }
+    header h1 {
+        display: none;
+    }
+    .upload-section {
+        padding: 1.5em;
+    }
+
+    form {
+        padding: 1em;
+    }
+
+    .upload-box {
+        padding: 1em;
+    }
+
+    .drag-area p {
+        font-size: 0.9em;
+    }
+
+    .drag-area small {
+        font-size: 0.8em;
+    }
+
+    .select-btn {
+        width: auto; 
+        padding: 0.4em 0.8em; 
+        font-size: 0.8em; 
+    }
+    
+    .upload-btn {
+        width: 100%;
+        padding: 0.8em;
+        font-size: 1em;
+    }
+    #site_name {
+        display: none;
+    }
+    .navbar{
+        display: inline-block;
+        flex-direction: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .navButtons {
+        text-align: center;
+        display: inline-block;
+        margin: 0 1em;
+        font-size: 0.9em;
+    }
+}
+

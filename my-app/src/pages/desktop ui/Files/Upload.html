@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="Upload.css">
+</head>
+<body>
+    <header>
+        <div class='navbar'>
+            <span id="site_name">Students Discussion Space</span>
+            <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Home.png" alt="home" id="home" class="logImageNav" />
+                <span class="navText" >Home</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/User.png" alt="account" id="user" class="logImageNav" />
+                <span class="navText">Account</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Logout.png" alt="logout" id="logout" class="logImageNav" />
+                <span class="navText">Signout</span>
+              </button>
+        </div>
+        <img src='../../desktop ui/login/elements/Vector3.png' alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector4.png' alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector6.png' alt="comp1" id='Dis_Vec6' class='DisImage'/>
+    </header>
+    
+    <main>
+        <div class='space'>
+        </div>
+        <section class="upload-section">
+            <h2>Upload file for: MATH208</h2>
+            <form id="uploadForm">
+                <label for="file-upload" id="upload-label">Upload your file*</label>
+                <div class="upload-box">
+                    <input type="file" id="file-upload" hidden>
+                    <div class="drag-area">
+                        <p>Select a file or drag and drop here</p>
+                        <small>JPG, PNG or PDF, file size no more than 10MB</small>
+                        <button type="button" class="select-btn" onclick="document.getElementById('file-upload').click()">Select file</button>
+                    </div>
+                </div>
+                <button type="submit" class="upload-btn">Upload</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="Upload.js"></script>
+</body>
+</html>
