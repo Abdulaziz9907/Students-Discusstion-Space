@@ -1,4 +1,4 @@
-.main_webpage_body {
+.sr_body {
     background-color: #008540;
     min-height: 100vh; 
     width: 100%; 
@@ -11,15 +11,42 @@
 }
 
 
-#mw_items{
+#sr_items{
 
 display: flex;
 flex-direction: column;
 gap: 4rem;
-
 }
 
-#mw_text{
+
+
+
+.sr_search-container {
+    position: relative;
+    width: 100%;
+    display: grid;
+    margin: 20px auto; 
+    top: -90px;
+    
+    place-items: center
+;
+  }
+  
+  .sr_search-bar {
+    
+    height: 35px;
+    width: 40vw;
+    padding: 10px 40px; 
+    border-radius: 20px; 
+    border: 1px solid #ccc; 
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    place-self: center;    
+    
+  }
+
+#sr_text{
     font-size: 55px;
     font-weight: 900;
     font-family: "Poppins";
@@ -30,56 +57,40 @@ gap: 4rem;
     
     }
 
-
     
-
-    .mw_search-container {
-        position: relative;
-        width: 100%;
-        display: grid;
-        margin: 20px auto; 
-        top: -90px;
-        
-        place-items: center
-    ;
-      }
       
-      .mw_search-bar {
-        
-        height: 35px;
-        width: 40vw;
-        padding: 10px 40px; 
-        border-radius: 20px; 
-        border: 1px solid #ccc; 
-        outline: none;
-        font-size: 16px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-        place-self: center;    
-        
-      }
+      
       
      
 
-      #mw_suggestions_container {
-        background-color: black;
+
+
+
+      #sr_results_container {
+        background-color: transparent;
         min-height: 50vh; 
         width: 80vw; 
         margin: 0 auto; 
         border-top-right-radius: 60px;
         border-top-left-radius: 60px;
         padding: 0;
-        box-sizing: border-box;
         font-family: 'Poppins';
+        left: 50%; 
+        justify-content: center;
+        
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        box-sizing: border-box;
         position: fixed; 
         bottom: 0; 
-        left: 50%; 
         transform: translateX(-50%); 
-        justify-content: center;
         
       }
 
 
-    #mw_text2{
+    #sr_text2{
     font-size: 45px;
     font-weight: 900;
     font-family: "Poppins";
@@ -91,7 +102,7 @@ gap: 4rem;
     
     }  
 
-    #mw_suggestions{
+    #sr_results{
 
         
         margin-top: -3vh;
@@ -102,9 +113,9 @@ gap: 4rem;
     }
 
 
-    #mw_sgst1, #mw_sgst2, #mw_sgst3, #mw_sgst4 {
+    #sr_result1, #sr_result2, #sr_result3, #sr_result4 {
         position: relative;
-        bottom: 40px;
+        
         background-color: white;
         display: flex;
         justify-content: space-between; 
@@ -118,7 +129,7 @@ gap: 4rem;
     }
     
    
-    .mw_sgst1-text,.mw_sgst2-text,.mw_sgst3-text,.mw_sgst4-text {
+    .sr_result1-text,.sr_result2-text,.sr_result3-text,.sr_result4-text {
         margin-left: 0; 
         text-align: left; 
         padding-left: 30px;
@@ -126,7 +137,7 @@ gap: 4rem;
         font-size: 25px;
     }
 
-    .mw_sgst-button  {
+    .sr_result-button  {
         background-color: #008540;
         color: white;
         margin-right: 20px;
@@ -145,14 +156,16 @@ gap: 4rem;
         transition: all 0.3s ease-in-out;
         }
         
-        .mw_sgst-button:hover {
+        .sr_result-button:hover {
         background-color: black;
         color: white;
         box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
         transform: scale(1.00);
         }
     
-    
+
+
+
 
 
 /*Background shapes*/
@@ -161,18 +174,18 @@ gap: 4rem;
     
  
     
-    #mw_Vec3 {
+    #sr_Vec3 {
         right: 80vw;
         top: 19vh;
         max-width: 25%;
     }
     
-    #mw_Vec4 {
+    #sr_Vec4 {
         right: 85vw;
         top: 0;
     }
     
-    #mw_Vec5 {
+    #sr_Vec5 {
         position: fixed;
         bottom: 0;
         left: 80vw;
@@ -183,13 +196,13 @@ gap: 4rem;
         object-fit: contain;   
     }
     
-    #mw_Vec6 {
+    #sr_Vec6 {
         right: 0vw;
         top: 13vh;
         max-width: 12%;
     }
     
-    .mw_LogImage {
+    .sr_LogImage {
         position: fixed;
         height: auto;
         max-width: 100%;
