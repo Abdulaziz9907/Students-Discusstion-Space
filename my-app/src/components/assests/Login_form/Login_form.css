@@ -1,5 +1,4 @@
-
-
+/* General Styles */
 #LF_text1,
 #LF_text2,
 #LF_user_pass_labels,
@@ -17,129 +16,184 @@
   position: relative;
 }
 
-
 .LF_box {
-background-color: black;
-width: 35vw; 
-height: 100vh; 
-margin: 0 auto; 
-position: relative; 
-border-top-right-radius: 40px ;
-border-bottom-right-radius: 40px ;
-padding: 6.5rem;
-transition: all 0.3s ease-in-out;  
-z-index: 3;
+  background-color: black;
+  width: 35vw; /* Full width to ensure responsiveness */
+  max-width: 1200px; /* Max width for large screens */
+  min-width: 600px; /* min width for large screens */
+  min-height: 678px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  padding: 6.5rem;
+  transition: all 0.3s ease-in-out;
+  z-index: 3;
 }
 
-
-
-
-
-
 #LF_text1 {
-display: flex;
-flex-direction: column;
-gap: 1.5rem;
-margin-top: 6rem;
-font-size: 3rem;
-font-weight: bold;
-
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 6rem;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 #LF_text2 {
-display: flex;
-flex-direction: column;
-margin-top: 1rem;
-font-size: 12px;
-font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#LF_text3 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 2px;
+  line-height: 32px;
+  left: 30px;
+  font-size: 32px;
+  font-weight: 100;
+  visibility: hidden;
+}
+
+
+#lf_logo{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: -3px;
+  line-height: 32px;
+  right:  30px;
+  font-size: 32px;
+  font-weight: 100;
+  visibility: hidden;
+  width: auto;
+  height: 200px;
+  
+}
+
+
+#LF_text3 > strong{
+  font-size: 35px;
+  font-weight: 900;
+
 }
 
 
 .LF_form {
-display: flex;
-flex-direction: column;
-gap: 0rem;
-margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  margin-top: 3rem;
 }
-#LF_user_pass_labels{
-font-size: 13px;
+
+#LF_user_pass_labels {
+  font-size: 13px;
 }
 
 .LF_input-box {
-position: relative;
-margin-bottom: 0.5rem;
- 
+  position: relative;
+  margin-bottom: 0.5rem;
 }
 
 .LF_input-box input:focus {
-    border-color: #008540; 
-    outline: none; 
-  }
-
-.LF_input-box input {
-width: 100%;
-padding: 1rem;
-border: 1.5px solid white;
-border-radius: 8px;
-background: transparent;
-color: white;
-font-size: 1rem;
-height: 3rem;
-width: 24vw;
-transition: all 0.3s ease-in-out;  
+  border-color: #008540;
+  outline: none;
 }
 
+.LF_input-box input {
+  width: 100%;
+  padding: 1rem;
+  border: 1.5px solid white;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  height: 3rem;
+  transition: all 0.3s ease-in-out;
+}
 
 #LF_login_btn {
-background-color: #008540;
-color: white;
-padding: 1rem;
-border: none;
-border-radius: 8px;
-font-size: 1rem;
-cursor: pointer;
-margin-top: 1rem;
-height: 3rem;
-width: 24vw;
-
-display: flex;           
-justify-content: center; 
-align-items: center;     
-text-align: center;
-font-size: 15px;
-font-weight: 600;
-transition: all 0.3s ease-in-out;
+  background-color: #008540;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  width: 100%; /* Full width on smaller screens */
 }
 
 #LF_login_btn:hover {
-background-color: white;
-color: black;
-box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
-transform: scale(1.00);
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+  transform: scale(1.00);
 }
 
-#LF_signup_btn{
-
-    font-size: 16px;
-    position: relative;
-    right: -5rem;
-    margin-top: 0.5rem;
-    
-    }
+#LF_signup_btn {
+  font-size: 16px;
+  position: relative;
+  right: -5rem;
+  margin-top: 0.5rem;
+}
 
 #LF_signup_btn a {
-color: white;
-text-decoration: none;
-font-weight: bold;
-padding: 2px 5px;  
-border-radius: 15px;  
-transition: all 0.3s ease-in-out;  
-position: relative;  
-left: -5px;  
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  left: -5px;
 }
 
 #LF_signup_btn a:hover {
-background-color: #008540;  
-left: 2px;  
-box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);
+  background-color: #008540;
+  left: 2px;
+  box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);
 }
+
+/* Media Queries for Responsiveness */
+
+
+
+@media screen and (max-width: 1110px) {
+
+#LF_text3{
+ 
+  visibility: visible;
+}
+
+}
+@media screen and (max-width: 1024px) {
+
+  #lf_logo{
+   
+    visibility: visible;
+  }
+
+  .LF_box{
+  border-radius: 0px;
+  
+  }
+  
+  }
+  
+
+

@@ -1,53 +1,69 @@
-.login_body{
-background-color: #008540;
-display: flex;
-justify-content: left;
-color: white;
-
-
+/* General Styles */
+.login_body {
+    background-color: #008540;
+    display: flex;
+    justify-content: left;
+    color: white;
+    position: relative;
+    height: 100vh; /* Ensure the body takes full height */
+    min-height: 781px;
 }
 
 
 #loginWelcome {
     position: absolute;
-    right: 30rem; 
+    right: 30rem;
     top: -9vh;
-    bottom: 0;
     z-index: 2;
-    font-size: 7rem; 
-    line-height: 0.9; 
-    text-align: left; 
-    
+    font-size: 7rem;
+    line-height: 0.9;
+    text-align: left;
+    display: block; /* Default state for larger screens */
 }
+
+#loginComp1,
+#loginVec1,
+#loginVec2,
+#loginVec3,
+#loginVec4,
+#loginVec5,
+#loginVec6 {
+    position: fixed;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block; /* Default state for larger screens */
+}
+
+
+.login_items{
+
+    width: 30vw; /* Full width to ensure responsiveness */
+    max-width: 1200px; /* Max width for large screens */
+    min-width: 600px; /* Max width for large screens */
+    display: grid;
+    justify-content: left;
+    left: 0;
+}
+
 
 
 #loginComp1 {
-    
-    right: 0vw; 
-    position: fixed;
+    right: 0vw;
     bottom: 0;
-    right: 0;
     max-width: 60%;
-    width: auto;
-    height: auto;
-    min-height: 200px;  
-    object-fit: contain;
+    min-height: 200px;
 }
 
 #loginVec1 {
-    position: fixed;
     bottom: 0;
     right: 0;
     max-width: 60%;
-    width: auto;
-    height: auto;
-    min-height: 200px;  
-    object-fit: contain;  
-   
+    min-height: 200px;
 }
 
 #loginVec2 {
-    
     right: 0vw;
     top: 0;
     max-width: 25%;
@@ -69,10 +85,7 @@ color: white;
     bottom: 0;
     right: 600px;
     max-width: 60%;
-    width: auto;
-    height: auto;
-    min-height: 200px;  
-    object-fit: contain;   
+    min-height: 200px;
 }
 
 #loginVec6 {
@@ -83,7 +96,135 @@ color: white;
 
 .loginLogImage {
     position: fixed;
-    height: auto;
     max-width: 100%;
     width: auto;
+}
+
+
+
+
+/* Media Queries for Responsiveness */
+
+/* For Phones (portrait) */
+@media screen and (max-width: 480px) {
+    /* Hide background images for simpler view */
+    #loginWelcome,
+    #loginVec1,
+    #loginVec2,
+    #loginVec3,
+    #loginVec4,
+    #loginVec5,
+    #loginVec6 {
+        display: none;
+    }
+
+    /* Full-screen login form */
+    .login_body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 1rem;
+    }
+
+    .LF_box {
+        background-color: black;
+        width: 100%; /* Ensure full width on phones */
+        max-width: 100%;
+        padding: 2rem; /* Adjust padding for smaller screens */
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #LF_text1 {
+        font-size: 2.5rem; /* Adjust font size for smaller screens */
+        text-align: center;
+    }
+
+    #LF_text2 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .LF_input-box input {
+        width: 90%; /* Optimize input width */
+    }
+
+    #LF_login_btn {
+        width: 90%; /* Optimize button width */
+    }
+
+    #LF_signup_btn {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+/* For Tablets (landscape and portrait) */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+    /* Hide decorative elements */
+    #loginWelcome,
+    #loginWelcome,
+    #loginVec1,
+    #loginComp1,
+    #loginVec2,
+    #loginVec3,
+    #loginVec4,
+    #loginVec5,
+    #loginVec6 {
+        display: none;
+    }
+
+    /* Full-screen login form for tablets */
+    .login_body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        place-content: center;
+        flex-direction: row;
+        
+        
+    }
+    #LF_box  #lf_logo {
+ 
+        visibility: visible;
+      }
+
+    .login_items {
+        
+        position: inherit;
+        display: flex;
+        
+        
+    }
+
+    .LF_box {
+        background-color: black;
+        width: 100%; /* Stretch to full width */
+        max-width: 100%;
+        padding: 4rem; /* Adjust for larger screens */
+        border-radius: 0px;
+        
+    }
+
+    #LF_text1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    #LF_text2 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .LF_input-box input {
+        width: 80%;
+    }
+
+    #LF_login_btn {
+        width: 80%;
+    }
 }

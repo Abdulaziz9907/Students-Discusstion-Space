@@ -1,13 +1,7 @@
 import React from 'react'
 import "./Login_form.css"
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-
-
-  
+import lf_logo from './elements/Component 1.png';
 
 const Login_form = () => {
 
@@ -21,6 +15,10 @@ const navigate = useNavigate();
 
 
       <div id='LF_login_text'>
+      
+      <p id='LF_text3'>Welcome to <br></br>
+      <strong> Students<br></br> Discussion<br></br> Space</strong></p>
+      <img src={lf_logo} alt="comp1" id='lf_logo' />
       <p id='LF_text1'>Login</p>
       <p id='LF_text2'>Enter your account details</p>
       </div>
