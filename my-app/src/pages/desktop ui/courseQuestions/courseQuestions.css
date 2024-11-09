@@ -1,6 +1,7 @@
 /* Styles for the course questions page */
 .course-container {
     padding: 20px;
+    padding-top: 80px; /* Add space at the top */
     background-color: #008540; /* Green background */
     min-height: 100vh; /* Ensure full viewport height */
     box-sizing: border-box;
@@ -90,6 +91,7 @@
   @media (max-width: 768px) {
     .course-container {
       padding: 10px;
+      padding-top: 80px; /* Maintain space at the top */
     }
   
     .question-header {

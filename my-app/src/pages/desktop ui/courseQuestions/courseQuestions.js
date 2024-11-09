@@ -25,7 +25,7 @@ function CourseQuestions() {
     <div>
       <Navbar />
       <div className="course-container">
-        <h1>MATH208</h1>
+        <h1 className='course-name-courseQuestions-page'>MATH208</h1>
         <div className="question-header">
           <div className="question-count">{questions.length} Question/s</div>
           <button className="post-question-btn">Post question</button>

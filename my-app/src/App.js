@@ -9,6 +9,7 @@ import CourseRating from './pages/desktop ui/courseRating/courseRating';
 import AddRating from './pages/desktop ui/addRating/addRating';
 import Search_results from './pages/desktop ui/Search_results/Search_results';
 import CourseQuestions from './pages/desktop ui/courseQuestions/courseQuestions';
+import QuestionDetails from './pages/desktop ui/questionDetails/questionDetails';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/CourseRating" element={<CourseRating />} />
             <Route path="/AddRating" element={<AddRating />} />
             <Route path="/CourseQuestions" element={<CourseQuestions />} />
+            <Route path="/QuestionDetails" element={<QuestionDetails />} />
          </Routes>
       </BrowserRouter>         
   );
