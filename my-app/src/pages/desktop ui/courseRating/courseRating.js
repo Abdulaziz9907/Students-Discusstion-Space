@@ -1,15 +1,20 @@
+// courseRating.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import './courseRating.css';
 
-
 function CourseRating() {
   const [rating, setRating] = useState(0);
-
+  
   const handleRating = (newRating) => {
     setRating(newRating);
   };
 
+  
+
+
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -20,7 +25,7 @@ function CourseRating() {
         <div className="course-header">
           <p>Course difficulty rating:</p>
           <StarRating rating={rating} onClick={handleRating} />
-          <button className='add-rating-button'>Add Rating</button>
+          <button className='add-rating-button' onClick={() => navigate('/Main Webpage')}>Add Rating</button>
         </div>
         {/* Render reviews and pagination components here */}
         <Review author="Abdulaziz" timestamp="23 hours ago" content="One of the easiest math courses"/>
