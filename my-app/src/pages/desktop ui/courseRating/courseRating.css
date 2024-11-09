@@ -1,0 +1,137 @@
+body{
+    background-color: #008540;
+    display: flex;
+    justify-content: left;
+    color: white;
+    
+    
+    }
+    
+    #Welcome {
+        position: fixed;
+        right: 21vw; 
+        top: 3vh;
+        bottom: 0;
+        z-index: 50;
+        font-size: 70px; 
+        line-height: 0.9; 
+        text-align: left; 
+        
+    }
+    
+    p > strong > a {
+        color: white;
+    }
+    
+    #comp1 {
+        right: 0vw; 
+        top: 35vh; 
+        width: 30vw;
+        height: auto; 
+    }
+    
+    #vec1 {
+        right: 0vw;
+        top: 37vh;
+        max-width: 60%;
+    }
+    
+    #vec2 {
+        
+        right: 0vw;
+        top: 0;
+        max-width: 25%;
+    }
+    
+    #vec3 {
+        right: 47vw;
+        top: 19vh;
+        max-width: 25%;
+    }
+    
+    #vec4 {
+        right: 20vw;
+        top: 0;
+    }
+    
+    #vec5 {
+        right: 35vw;
+        top: 66vh;
+    }
+    
+    #vec6 {
+        right: 0vw;
+        top: 10vh;
+        max-width: 12%;
+    }
+    
+    .logImage {
+        position: fixed;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }
+
+.hello {
+
+    color:rgb(255, 0, 17)f;
+
+}
+
+
+    
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+.course-name{
+    color: white;
+    text-align: center;
+    
+}
+
+.course-header {
+    text-align: center; /* Center text within the course header */
+    background-color: #ffffff;
+    color: black;
+    width: 30vw;
+    border-radius: 10px;
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+}
+      
+      .rating-stars {
+        /* Styles for star ratings (adjust font size, color, etc.) */
+        font-size: 24px;
+        color: #f7d02c;
+      }
+      
+      button {
+        /* Styles for the "Add Rating" button */
+        background-color: #0d6119;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      .review{
+        background-color: #ffffff;
+        color: black;
+        border-radius: 10px;
+        width: 80vw;
+      }
+    
+    
