@@ -21,15 +21,14 @@ function main_webpage() {
       <p id='mw_text'>Discover Course Insights and Ratings</p>
      </div> 
 
-     </div>
+    
 
-<div class="mw_search-container">
-      <img src={mw_search} alt="search" id='mw_search-icon'/>
-      <input type="text" placeholder="Search" class="mw_search-bar"></input>
+     <div class="sr_search-container">
+      <input type="text" placeholder="search" class="sr_search-bar" ></input>
      
-
       </div>
-
+ </div>
+ 
       <img src={mw_logo3} alt="comp1" id='mw_Vec3' className='mw_LogImage'/>
       <img src={mw_logo4} alt="comp1" id='mw_Vec4' className='mw_LogImage'/>
       <img src={mw_logo5} alt="comp1" id='mw_Vec5' className='mw_LogImage'/>
