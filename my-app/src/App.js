@@ -11,6 +11,11 @@ import Search_results from './pages/desktop ui/Search_results/Search_results';
 import CourseQuestions from './pages/desktop ui/courseQuestions/courseQuestions';
 import QuestionDetails from './pages/desktop ui/questionDetails/questionDetails';
 import CourseDiscussions from './pages/desktop ui/courseDiscussions/courseDiscussions';
+import ReplyOnQuestion from './pages/desktop ui/replyOnQuestion/replyOnQuestion';
+import ReplyOnDiscussion from './pages/desktop ui/replyOnDiscussion/replyOnDiscussion';
+import PostQuestion from './pages/desktop ui/postQuestion/postQuestion';
+import PostDiscussion from './pages/desktop ui/postDiscussion/postDiscussion';
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -27,6 +32,10 @@ function App() {
             <Route path="/CourseQuestions" element={<CourseQuestions />} />
             <Route path="/QuestionDetails" element={<QuestionDetails />} />
             <Route path="/CourseDiscussions" element={<CourseDiscussions />} />
+            <Route path="/ReplyOnQuestion" element={<ReplyOnQuestion />} />
+            <Route path="/ReplyOnDiscussion" element={<ReplyOnDiscussion />} />
+            <Route path="/PostQuestion" element={<PostQuestion />} />
+            <Route path="/PostDiscussion" element={<PostDiscussion />} />
          </Routes>
       </BrowserRouter>         
   );
