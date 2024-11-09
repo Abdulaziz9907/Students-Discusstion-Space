@@ -1,3 +1,16 @@
+/* Wrapper specific to AddRating component */
+.add-rating-wrapper {
+  background-color: #008540; /* Green background */
+  color: white; /* White text color */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Add some padding */
+  
+}
+
 /* Container for the entire page content */
 .container {
   margin-top: 80px;
@@ -113,18 +126,26 @@ textarea {
 
 
 @media (max-width: 600px) { 
+
+  .add-rating-wrapper {
+    width: 100vw;
+    height: 100vw;
+    
+  }
+
+
   .rating-box { 
     width: 100vw; /* Full viewport width */ 
     padding: 10px; /* Adjust padding for smaller screens */ } 
-    .navbar #site_name{
-      display: none;
-    }
     .rating-section { 
-      flex-direction: column; /* Stack items vertically */ 
-      align-items: flex-start; /* Align items to the start */ } 
-      .rating-question { 
+      flex-direction: column; /* Stack items vertically */
+       align-items: flex-start; /* Align items to the start */ } 
+       .rating-question { 
         margin-bottom: 10px; /* Add margin to bottom for spacing */ } 
-      .stars { 
-        justify-content: flex-start; /* Align stars to the start */ } 
-.submit-button { 
-  width: 100%; /* Full width button */ }}
+        .stars { 
+          justify-content: flex-start; /* Align stars to the start */ } 
+          .submit-button {
+             width: 100%; /* Full width button */ }
+
+             
+          }

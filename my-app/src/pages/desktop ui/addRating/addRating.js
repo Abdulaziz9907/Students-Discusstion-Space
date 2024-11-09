@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Navbar from '../../../components/assests/Navbar/Navbar';
-
-
 import "./addRating.css";
 
 function AddRating({ courseName }) {
@@ -25,7 +23,7 @@ function AddRating({ courseName }) {
   };
 
   return (
-    <div>
+    <div className="add-rating-wrapper">
       <Navbar />
       <div className="container">
         <h2 className="course-title">Add rating for: {courseName}</h2>
