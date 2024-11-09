@@ -1,137 +1,108 @@
-  /* body{
-    background-color: #008540;
+/* Styles for the course rating page */
+.parent {
+    padding: 20px;
+    padding-top: 80px; /* Add space at the top */
+    background-color: #008540; /* Green background */
+    min-height: 100vh; /* Ensure full viewport height */
+    box-sizing: border-box;
     display: flex;
-    justify-content: left;
-    color: white;
-    
-    
-    }   */
-    
-    #Welcome {
-        position: fixed;
-        right: 21vw; 
-        top: 3vh;
-        bottom: 0;
-        z-index: 50;
-        font-size: 70px; 
-        line-height: 0.9; 
-        text-align: left; 
-        
-    }
-    
-    p > strong > a {
-        color: white;
-    }
-    
-    #comp1 {
-        right: 0vw; 
-        top: 35vh; 
-        width: 30vw;
-        height: auto; 
-    }
-    
-    #vec1 {
-        right: 0vw;
-        top: 37vh;
-        max-width: 60%;
-    }
-    
-    #vec2 {
-        
-        right: 0vw;
-        top: 0;
-        max-width: 25%;
-    }
-    
-    #vec3 {
-        right: 47vw;
-        top: 19vh;
-        max-width: 25%;
-    }
-    
-    #vec4 {
-        right: 20vw;
-        top: 0;
-    }
-    
-    #vec5 {
-        right: 35vw;
-        top: 66vh;
-    }
-    
-    #vec6 {
-        right: 0vw;
-        top: 10vh;
-        max-width: 12%;
-    }
-    
-    .logImage {
-        position: fixed;
-        height: auto;
-        max-width: 100%;
-        width: auto;
-    }
-
-.hello {
-
-    color:rgb(255, 0, 17)f;
-
-}
-
-
-    
- /* body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    
-}  */
-
-
-
-.course-name{
+    position: relative; /* Add relative positioning to contain absolutely positioned elements */
+  }
+  
+  .course-name {
     color: white;
     text-align: center;
-    
-}
-
-.course-header {
+    margin-bottom: 20px; /* Add space below the course name */
+    z-index: 1; /* Ensure content is above background images */
+  }
+  
+  .course-header {
     text-align: center; /* Center text within the course header */
     background-color: #ffffff;
     color: black;
-    width: 30vw;
+    width: 30vw; /* Maintain small width for the header */
     border-radius: 10px;
     align-self: center;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    text-align: center;
-}
-      
-      .rating-stars {
-        /* Styles for star ratings (adjust font size, color, etc.) */
-        font-size: 24px;
-        color: #f7d02c;
-      }
-      
-      button {
-        /* Styles for the "Add Rating" button */
-        background-color: #0d6119;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-      }
-      .review{
-        background-color: #ffffff;
-        color: black;
-        border-radius: 10px;
-        width: 80vw;
-      }
+    margin-bottom: 20px; /* Add space below the course header */
+    z-index: 1; /* Ensure content is above background images */
+  }
+  
+  .rating-stars {
+    display: flex;
+    gap: 5px; /* Space between stars */
+    cursor: pointer;
+  }
+  
+  .rating-stars .on {
+    color: #f7d02c; /* Gold color for selected stars */
+  }
+  
+  .rating-stars .off {
+    color: #ccc; /* Grey color for unselected stars */
+  }
+  
+  .add-rating-button {
+    /* Styles for the "Add Rating" button */
+    background-color: #0d6119;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px; /* Rounded corners */
+    z-index: 1; /* Ensure content is above background images */
+  }
+  
+  .review {
+    background-color: #ffffff;
+    color: black;
+    border-radius: 10px;
+    width: 80vw; /* Set width to 80vw */
+    margin-bottom: 20px; /* Add space between reviews */
+    z-index: 1; /* Ensure content is above background images */
+    padding: 20px; /* Add padding inside the review box */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+  }
+  
+  .review-meta {
+    font-size: 14px; /* Adjust font size */
+    color: #7f8c8d; /* Grey color for meta information */
+    margin-top: 10px; /* Space above meta information */
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .course-header {
+      width: 60vw; /* Adjust width for smaller screens but still smaller than other boxes */
+      max-width: 300px; /* Limit maximum width */
+    }
     
-    
+    .review {
+      width: 90vw; /* Adjust width for smaller screens */
+    }
+  
+    .add-rating-button {
+      padding: 8px 16px; /* Adjust padding for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .course-header {
+      width: 70vw; /* Adjust width for smaller screens but still smaller than other boxes */
+      max-width: 250px; /* Limit maximum width */
+    }
+  
+    .review {
+      width: 95vw; /* Adjust width for smaller screens */
+    }
+  
+    .add-rating-button {
+      padding: 6px 12px; /* Adjust padding for smaller screens */
+    }
+  }
+  
