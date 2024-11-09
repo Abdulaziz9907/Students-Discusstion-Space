@@ -1,9 +1,19 @@
 import React from 'react'
 import "./Login_form.css"
+import { useNavigate } from 'react-router-dom';
 
 
+
+
+
+
+  
 
 const Login_form = () => {
+
+const navigate = useNavigate();
+
+
   return (
 
 
@@ -26,8 +36,8 @@ const Login_form = () => {
         <input type="password" required />
         </div>
 
-      <button type='submit' id='LF_login_btn'>Login</button>
-      <p id='LF_signup_btn'>Don't have an account? <strong><a href="https://example.com"><u>SignUp</u></a></strong></p>
+      <button type='submit' id='LF_login_btn' >Login</button>
+      <p id='LF_signup_btn'>Don't have an account? <strong><a onClick={() => navigate('/SignUp')}><u>SignUp</u></a></strong></p>
       </form>
       
 
