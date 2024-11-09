@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".submit-btn").addEventListener("click", validateReply);
+    document.querySelector(".submit-btn").addEventListener("click", validatePost);
 });
 
-function validateReply() {
-    const replyText = document.getElementById("reply-text").value.trim();
-    const replyLabel = document.getElementById("reply-label");
+function validatePost() {
+    const postText = document.getElementById("post-text").value.trim();
+    const postLabel = document.getElementById("post-label");
 
-    if (replyText === "") {
-        replyLabel.classList.add("error");
+    if (postText === "") {
+        postLabel.classList.add("error");
     } else {
-        replyLabel.classList.remove("error");
-        window.location.href = 'Discussions.html'; 
+        postLabel.classList.remove("error");
+        window.location.href = 'Discussion.html'; 
     }
 }

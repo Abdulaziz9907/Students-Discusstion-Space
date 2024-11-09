@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +9,28 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <h1>Students Discussion Space</h1>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Account</a>
-                <a href="#">Signout</a>
-            </nav>
+        <div class='navbar'>
+            <span id="site_name">Students Discussion Space</span>
+            <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Home.png" alt="home" id="home" class="logImageNav" />
+                <span class="navText" >Home</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/User.png" alt="account" id="user" class="logImageNav" />
+                <span class="navText">Account</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Logout.png" alt="logout" id="logout" class="logImageNav" />
+                <span class="navText">Signout</span>
+              </button>
         </div>
+        <img src='../../desktop ui/login/elements/Vector3.png' alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector4.png' alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector6.png' alt="comp1" id='Dis_Vec6' class='DisImage'/>
     </header>
-    
     <main>
+        <div class='space'>
+        </div>
         <section class="course-section">
             <h2>MATH208</h2>
             <div class="discussion">
@@ -39,7 +51,8 @@
                 </div>
             </div>
         </section>
-        
+    </main>
+    <footer>
         <div class="pagination">
             <a href="#">1</a>
             <a href="#">2</a>
@@ -49,7 +62,7 @@
             <a href="#">6</a>
             <a href="#">></a>
         </div>
-    </main>
+    </footer>
     <script src="Discussion.js"></script>
 </body>
 </html>

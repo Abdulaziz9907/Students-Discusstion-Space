@@ -10,6 +10,6 @@ function validateReply() {
         replyLabel.classList.add("error");
     } else {
         replyLabel.classList.remove("error");
-        window.location.href = 'Discussions.html'; 
+        window.location.href = 'Discussion.html'; 
     }
 }

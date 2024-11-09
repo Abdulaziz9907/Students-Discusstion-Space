@@ -1,7 +1,15 @@
-document.querySelectorAll('.copy-link-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        navigator.clipboard.writeText("Link copied!"); 
-        alert("Link copied to clipboard!");
+document.addEventListener("DOMContentLoaded", function () {
+    const downloadButtons = document.querySelectorAll('.copy-link-btn');
+    const popup = document.getElementById('popup2');
+
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            popup.style.display = 'block';
+            
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+        });
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
