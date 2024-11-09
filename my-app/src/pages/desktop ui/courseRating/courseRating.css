@@ -118,17 +118,15 @@
         font-size: 24px;
         color: #f7d02c;
       }
-/*       
+      
       button {
-        
+        /* Styles for the "Add Rating" button */
         background-color: #0d6119;
         color: #ffffff;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
-      } */
-
-      
+      }
       .review{
         background-color: #ffffff;
         color: black;

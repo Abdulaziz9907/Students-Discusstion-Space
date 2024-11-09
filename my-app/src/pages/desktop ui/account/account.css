@@ -37,7 +37,8 @@ gap: 4rem;
 
       #account_details_container {
         background-color: black;
-        min-height: 75vh; 
+        
+        height: 78vh;
         width: 80vw; 
         margin: 0 auto; 
         border-top-right-radius: 60px;
@@ -79,48 +80,78 @@ gap: 4rem;
     }
 
 
-    #account_details1,#account_details2{
-
+    #account_details1, #account_details2 {
         background-color: white;
-        min-height: 50px; 
-        width: 50px; 
-        
+        min-height: 50px;
+        width: 50px;
         border-radius: 60px;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Poppins';
-        position: relative; 
-       
+        position: relative;
         justify-content: center;
         top: -4vh;
         left: 3vw;
-
     }
-    #account_details1{
-
-        min-height: 32vw; 
-        width: 45vw; 
-
-
-
+    
+    #account_details1 {
+        min-height: 32vw;
+        width: 45vw;
     }
-
-    #account_details2{
-
-       
-        min-height: 27vw; 
-        width: 26vw; 
-
-
+    
+    #account_details2 {
+        min-height: 27vw;
+        width: 26vw;
     }
-
-    #account_delete_btn{
+    
+    #account_delete_btn {
         position: fixed;
-        
-        top: 65vh;
+        top: 67vh;
         left: 59vw;
+    }
+    
+    #account_details_list {
+        position: relative;
+        top: -0.5vh;
+        padding: 2vw;
+        text-align: left;
+        display: block;
+        
+        
+    }
 
-
+    .account_underline{
+        border-bottom: 1px solid #717171;
+    }
+    
+    #account_details_list > label {
+        font-weight: 900;
+        font-size: 1.2vw;
+        
+    }
+    
+    #account_details_list > input {
+        position: absolute;
+        width: 6.6vw;
+        left: 13vw;
+        height: 3vh;
+        border: none;
+        color: #717171;
+        font-size: 1vw;
+        font-weight: bold;
+    } 
+    
+    #account_details_list > button {
+        position: absolute;
+        left: 40vw;
+        background-color: transparent;
+        color: black;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: underline;
+        height: 3vh;
+       
     }
 
     
