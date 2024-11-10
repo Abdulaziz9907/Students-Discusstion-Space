@@ -1,5 +1,5 @@
 
-.question-container {
+.post-question-container {
     padding: 20px;
     padding-top: 80px; /* Add space at the top */
     background-color: #008540; /* Green background */
@@ -16,7 +16,7 @@
     margin-bottom: 20px;
   }
   
-  .question-box {
+  .post-question-box {
     background-color: #000; /* Black background */
     width: 80vw; /* 80% of viewport width */
     flex-grow: 1; /* Make it grow to take the remaining space */

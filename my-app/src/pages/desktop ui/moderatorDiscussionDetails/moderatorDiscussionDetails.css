@@ -1,0 +1,232 @@
+/* Container styling */
+.course-container {
+    padding: 20px;
+    padding-top: 80px;
+    background-color: #008540;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Title and heading styling */
+  h1, h2 {
+    color: white;
+    text-align: left;
+    width: 80vw;
+    max-width: 80vw;
+  }
+  
+  /* Discussion wrapper styling */
+  .question-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    width: 80vw;
+    max-width: 80vw;
+  }
+  
+  /* Action buttons styling */
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 10px;
+  }
+  
+  .action-buttons button {
+    background-color: #ffffff;
+    color: #27ae60;
+    border: 2px solid #27ae60;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: left;
+    width: 100px;
+  }
+  
+  .action-buttons .active {
+    background-color: #27ae60;
+    color: #ffffff;
+  }
+  
+  /* Question box styling */
+  .question-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Pin status styling */
+  .pin-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #27ae60;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  /* Question footer styling */
+  .question-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  /* Reply button styling */
+  .reply-btn {
+    background-color: white;
+    color: #27ae60;
+    border: 2px solid #27ae60;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    align-self: flex-start;
+  }
+  
+  /* Answer list styling */
+  .answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  /* Answer box styling */
+  .answer-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80vw;
+    max-width: 80vw;
+    position: relative;
+  }
+  
+  /* Answer footer and vote buttons styling */
+  .answer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  .vote-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upvote-btn, .downvote-btn {
+    background-color: #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .upvote-btn {
+    color: rgb(6, 118, 23);
+  }
+  
+  .downvote-btn {
+    color: rgb(249, 4, 4);
+  }
+  
+  .vote-count {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #7f8c8d;
+  }
+/* Modal styling */
+.ban-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .ban-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .ban-modal-content p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .checkmark {
+    font-size: 50px;
+    color: #27ae60;
+    margin: 10px 0;
+  }
+  
+  .close-modal-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+ 
+  @media (max-width: 768px) {
+    /* Make the action buttons stack and appear above the discussion content */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+  
+    .action-buttons button {
+      width: 100%; /* Full width for each button on mobile */
+      margin-bottom: 0.5rem; /* Spacing between buttons */
+    }
+  
+    /* Adjust the layout of the question-wrapper */
+    .question-wrapper {
+      flex-direction: column; /* Stack content vertically */
+      align-items: flex-start; /* Align items to the left */
+    }
+  
+    /* Adjust question box width on mobile */
+    .question-box {
+      width: 100%; /* Full width for the question box */
+    }
+  
+    /* Style for the reply button on mobile */
+    .reply-btn {
+      align-self: flex-end; /* Right-align the button */
+      margin-top: 1rem; /* Space above the reply button */
+      width: auto; /* Let it be as wide as needed */
+    }
+  }

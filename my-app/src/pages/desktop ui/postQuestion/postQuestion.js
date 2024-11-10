@@ -7,9 +7,9 @@ function PostQuestion() {
   return (
     <div>
       <Navbar />
-      <div className="question-container">
+      <div className="post-question-container">
         <h1>Enter Question:</h1>
-        <div className="question-box">
+        <div className="post-question-box">
           <label htmlFor="question" className="question-label">Write a question</label>
           <textarea
             id="question"

@@ -7,9 +7,9 @@ function PostDiscussion() {
   return (
     <div>
       <Navbar />
-      <div className="discussion-container">
+      <div className="post-discussion-container">
         <h1>Enter discussion:</h1>
-        <div className="discussion-box">
+        <div className="post-discussion-box">
           <label htmlFor="discussion" className="discussion-label">Write a discussion</label>
           <textarea
             id="discussion"

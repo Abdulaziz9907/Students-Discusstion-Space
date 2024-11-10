@@ -16,7 +16,7 @@ function ReplyOnQuestion() {
             className="answer-input"
             placeholder="Enter your answer between 3-100 words"
           ></textarea>
-          <button className="reply-btn">Reply</button>
+          <button className="reply-on-btn">Reply</button>
         </div>
       </div>
     </div>
