@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f5;
+    color: #333;
+    background-color: #008540;
+}
+
+header {
+    background-color: #fff;
+    color: #333;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 1.5em;
+}
+
+nav a {
+    color: #fff;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    margin-top: 0em;
+}
+
+.insights-section {
+    color: white;
+    text-align: center;
+    padding: 2em;
+    border-radius: 8px;
+}
+
+.insights-section h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.search-bar input {
+    width: 60%;
+    padding: 0.8em;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 1.5em;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+button {
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.add-course-btn {
+    background-color: white;
+    color: black;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+
+.manage-users-btn {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+
+.dashboard-btn {
+    background-color: white;
+    color: black;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+
+.courses-section {
+    margin-top: 2em;
+}
+
+.courses-section h3 {
+    color: white;
+    font-size: 1.8em;
+    margin-bottom: 1em;
+}
+
+.course-list {
+    background-color: #000;
+    padding: 1em;
+    bottom: 0; /* Aligns it to the bottom of the viewport */
+    border-radius: 40px;
+    z-index: 1000; 
+    color: black; /* Text color */
+}
+
+.course-item {
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-actions button {
+    margin-left: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.details-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+.navbar {
+    background-color: white;
+    width: 100vw; 
+    height: 80px; 
+    position: fixed; 
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 1rem; 
+    z-index: 1000; 
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+
+#site_name {
+    color: black;
+    font-size: 25px; 
+    margin-right: 44px; 
+    font-weight: 900;
+    font-family: 'Roboto';
+    bottom: 2px;
+    left: 16px;
+}
+
+.logImageNav {
+    width: 20px; 
+    height: 20px;
+    margin-right: 6px; 
+    transition: filter 0.3s ease-in-out;
+    
+}
+#add{
+    width: 25px;
+    aspect-ratio: 44/31;
+    margin-right: 6px; 
+    transition: filter 0.3s ease-in-out;
+}
+#manage{
+    width: 25px;
+    aspect-ratio: 47/34;
+    margin-right: 6px; 
+    transition: filter 0.3s ease-in-out;
+}
+#dashboard{
+    width: 25px;
+    aspect-ratio: 1;
+    margin-right: 6px; 
+    transition: filter 0.3s ease-in-out;
+}
+
+
+.navText {
+    color: black;
+    transition: color 0.3s ease-in-out;
+    margin-right: 6px; 
+}
+
+.navButtons {
+    padding: 5px 5px 5px 6px; 
+    background-color: transparent;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    margin-right: 11px;
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.navButtons:hover {
+    background-color: black;
+}
+
+.navButtons:hover .navText {
+    color: white;
+}
+
+.navButtons:hover .logImageNav {
+    filter: invert(1);
+}
+.space{
+    padding:32px;
+}
+
+#Dis_Vec3 {
+    right: 80vw;
+    top: 56vh;
+    max-width: 25%;
+}
+
+#Dis_Vec4 {
+    right: 93vw;
+    top: 15vh;
+}
+
+#Dis_Vec6 {
+    position: fixed;
+    top: 31vh;
+    left: 80vw;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;  
+    object-fit: contain;
+}
+
+.DisImage {
+    position: fixed;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+.add-course-btn:hover {
+    background-color: #45a049; /* Darker green */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.manage-users-btn:hover {
+    background-color: #45a049; /* Slightly lighter shade */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.dashboard-btn:hover {
+    background-color: #45a049; /* Slightly lighter shade */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+.delete-btn:hover {
+    background-color: #e63939; /* Darker red */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.details-btn:hover {
+    background-color: #45a049; /* Darker green */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 1em;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 0 1em;
+        font-size: 0.9em;
+    }
+
+    .course-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 1em;
+    }
+
+    .discussion {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .discussion-post p {
+        font-size: 1em;
+    }
+
+    .reply-btn {
+        width: 100%;
+        padding: 0.7em;
+        font-size: 1em;
+    }
+
+    .reply-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .reply-section p {
+        font-size: 1em;
+    }
+
+    .vote {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 1em;
+    }
+
+    .pagination {
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    .pagination a {
+        margin: 0 0.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .discussion {
+        padding: 1em;
+        border-radius: 8px;
+        background-color: #fff;
+        margin-bottom: 1em;
+    }
+
+    .discussion-post {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+
+    .reply-section {
+        padding: 1em;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        text-align: left;
+        margin-bottom: 1em;
+    }
+
+    .reply-section .reply-btn {
+        font-size: 1em;
+        margin-top: 1em;
+    }
+
+    .vote {
+        justify-content: space-between;
+        margin-top: 1em;
+    }
+    header h1 {
+        display: none;
+    }
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 0.5em; 
+    }
+    #site_name {
+        display: none;
+    }
+    .navbar{
+        display: inline-block;
+        flex-direction: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .navButtons {
+        text-align: center;
+        display: inline-block;
+        margin: 0 1em;
+        font-size: 0.9em;
+    }
+    .insights-section h2 {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+}

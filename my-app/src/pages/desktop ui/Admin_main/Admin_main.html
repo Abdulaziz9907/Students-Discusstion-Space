@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Course Insights</title>
+    <link rel="stylesheet" href="Admin_main.css">
+</head>
+<body>
+    <header>
+        <div class='navbar'>
+            <span id="site_name">Students Discussion Space</span>
+            <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Home.png" alt="home" id="home" class="logImageNav" />
+                <span class="navText" >Home</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/User.png" alt="account" id="user" class="logImageNav" />
+                <span class="navText">Account</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Logout.png" alt="logout" id="logout" class="logImageNav" />
+                <span class="navText">Signout</span>
+              </button>
+        </div>
+        <img src='../../desktop ui/login/elements/Vector3.png' alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector4.png' alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector6.png' alt="comp1" id='Dis_Vec6' class='DisImage'/>
+    </header>
+
+    <main>
+        <div class='space'>
+        </div>
+        <section class="insights-section">
+            <h2>Discover Course Insights and Ratings</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="action-buttons">
+                <button class="add-course-btn"><img src="Elements/add.png" alt="add" id="add" class="ControlImage" /> Add new course</button>
+                <button class="manage-users-btn"><img src="Elements/manage.png" alt="manage" id="manage" class="ControlImage" /> Manage Users</button>
+                <button class="dashboard-btn"><img src="Elements/dashboard.png" alt="dashboard" id="dashboard" class="ControlImage" /> Dashboard</button>
+            </div>
+        </section>
+
+        <section class="courses-section">
+            <div class="course-list">
+                <h3>Most Visited Courses</h3>
+                <div class="course-item">
+                    <span>MATH208</span>
+                    <div class="course-actions">
+                        <button class="delete-btn">Delete course</button>
+                        <button class="details-btn">View details</button>
+                    </div>
+                </div>
+                <div class="course-item">
+                    <span>COE301</span>
+                    <div class="course-actions">
+                        <button class="delete-btn">Delete course</button>
+                        <button class="details-btn">View details</button>
+                    </div>
+                </div>
+                <div class="course-item">
+                    <span>ENGL214</span>
+                    <div class="course-actions">
+                        <button class="delete-btn">Delete course</button>
+                        <button class="details-btn">View details</button>
+                    </div>
+                </div>
+                <div class="course-item">
+                    <span>SWE363</span>
+                    <div class="course-actions">
+                        <button class="delete-btn">Delete course</button>
+                        <button class="details-btn">View details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="Admin_main.js"></script>
+</body>
+</html>
