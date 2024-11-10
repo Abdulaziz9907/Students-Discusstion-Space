@@ -16,7 +16,7 @@ function Login() {
   return (
 
     <div className='login_body'>
-    <div >
+    <div className='login_items'>
 
       
       <p id='loginWelcome'>Welcome to <br></br>
@@ -33,9 +33,9 @@ function Login() {
       <Login_form/>
 
       
-      
-      
     </div>
+
+    
     </div>
   );
 }

@@ -1,7 +1,14 @@
+@media (max-width: 600px) { 
+
+    #site_name{
+      display: none;
+      
+     }
+    }
 .navbar {
     background-color: white;
     width: 98.3vw; 
-    height: 60px; 
+    height: 65px; 
     position: fixed; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
@@ -22,7 +29,7 @@
     font-weight: 900;
     font-family: 'Roboto';
     bottom: 2px;
-    left: 16px;
+    margin-left: 16px;
 }
 
 .logImageNav {

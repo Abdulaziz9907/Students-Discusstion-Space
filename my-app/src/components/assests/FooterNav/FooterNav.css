@@ -1,0 +1,41 @@
+.pagination-footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .pagination-footer button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .pagination-footer button.active {
+    font-weight: bold;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  
+  .pagination-footer span {
+    color: #fff;
+    place-self: center;
+  }
+
+  #fn_footer_container {
+    background-color: black;
+
+    height: 10vh;
+    width: 80vw; 
+    margin: 0 auto; 
+    border-top-right-radius: 60px;
+    border-top-left-radius: 60px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    bottom: 0;
+    
+  }

@@ -1,64 +1,176 @@
-.signup_body{
+/* General Body styling */
+.signup_body {
     background-color: #008540;
     display: flex;
-    justify-content: left;
-    color: white;
     justify-content: center;
-    
-    }
-    
-    
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    padding: 0; /* Remove padding to ensure full screen form */
+}
+
+/* General styling for logos */
+.signup_LogImage {
+    position: fixed;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+}
+
+/* Image Styling */
+#signup_Vec1 {
+    position: fixed;
+    bottom: 0;
+    right: 80px;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;
+    object-fit: contain;
+}
+
+#signup_Vec2 {
+    position: fixed;
+    right: 0;
+    top: 0;
+    max-width: 25%;
+}
+
+#signup_Vec3 {
+    position: fixed;
+    right: 80vw;
+    top: 19vh;
+    max-width: 25%;
+}
+
+#signup_Vec4 {
+    position: fixed;
+    right: 85vw;
+    top: 0;
+}
+
+#signup_Vec5 {
+    position: fixed;
+    bottom: 0;
+    right: 600px;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    min-height: 200px;
+    object-fit: contain;
+}
+
+#signup_Vec6 {
+    position: fixed;
+    right: 0;
+    top: 10vh;
+    max-width: 12%;
+}
+
+/* Media Queries for responsiveness */
+
+/* For tablets */
+@media only screen and (max-width: 768px) {
     #signup_Vec1 {
-        position: fixed;
-        bottom: 0;
-        right: 80;
-        max-width: 60%;
-        width: auto;
-        height: auto;
-        min-height: 200px;  
-        object-fit: contain;  
-       
+        max-width: 50%;
+        right: 50px;
+        bottom: 10px;
     }
-    
+
     #signup_Vec2 {
-        
-        right: 0vw;
-        top: 0;
-        max-width: 25%;
+        max-width: 30%;
+        right: 20px;
+        top: 10px;
     }
-    
+
     #signup_Vec3 {
-        right: 80vw;
-        top: 19vh;
-        max-width: 25%;
+        max-width: 30%;
+        right: 50vw;
+        top: 10vh;
     }
-    
+
     #signup_Vec4 {
-        right: 85vw;
+        right: 70vw;
+        top: 20px;
+    }
+
+    #signup_Vec5 {
+        max-width: 50%;
+        right: 300px;
+        bottom: 30px;
+    }
+
+    #signup_Vec6 {
+        max-width: 15%;
+        right: 10vw;
+        top: 12vh;
+    }
+}
+
+/* For phones */
+@media only screen and (max-width: 480px) {
+    #signup_Vec1 {
+        max-width: 50%;
+        right: 10px;
+        bottom: 0;
+    }
+
+    #signup_Vec2, #signup_Vec3, #signup_Vec4, #signup_Vec5, #signup_Vec6 {
+        max-width: 30%;
+    }
+
+    #signup_Vec3 {
+        top: 5vh;
+    }
+
+    #signup_Vec4 {
+        right: 5vw;
         top: 0;
     }
-    
+
     #signup_Vec5 {
-        position: fixed;
-        bottom: 0;
-        right: 600px;
-        max-width: 60%;
-        width: auto;
-        height: auto;
-        min-height: 200px;  
-        object-fit: contain;   
+        right: 10vw;
+        bottom: 10px;
     }
-    
+
     #signup_Vec6 {
-        right: 0vw;
-        top: 10vh;
-        max-width: 12%;
+        max-width: 20%;
+        right: 5vw;
+        top: 15vh;
+    }
+
+    /* Full screen form on small screens */
+    .signup_body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0; /* Remove padding for full screen effect */
+    }
+
+    /* Form adjustment to fill the whole screen */
+    .signup_form {
+        width: 100%;
+        height: 100vh; /* Ensure form takes full height of screen */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem; /* Add some space around the form */
+        box-sizing: border-box; /* Ensure padding is accounted for */
     }
     
-    .signup_LogImage {
-        position: fixed;
-        height: auto;
-        max-width: 100%;
-        width: auto;
+    /* Form input adjustments for full screen */
+    .signup_form input {
+        width: 100%;
+        max-width: 400px; /* Limit width on larger screens */
+        height: 3rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 1rem;
+        background-color: white;
+        color: #008540;
     }
-    
+}

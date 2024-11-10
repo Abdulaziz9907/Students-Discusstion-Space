@@ -1,0 +1,221 @@
+.sr_body {
+    background-color: #008540;
+    min-height: 100vh; 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    position: relative;
+    justify-content: center;
+}
+
+
+#sr_items{
+
+display: flex;
+flex-direction: column;
+gap: 4rem;
+}
+
+
+
+
+.sr_search-container {
+    position: relative;
+    width: 100%;
+    display: grid;
+    margin: 20px auto; 
+    top: -90px;
+    
+    place-items: center
+;
+  }
+  
+  .sr_search-bar {
+    
+    height: 35px;
+    width: 40vw;
+    padding: 10px 40px; 
+    border-radius: 20px; 
+    border: 1px solid #ccc; 
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    place-self: center;    
+    
+  }
+
+#sr_text{
+    font-size: 55px;
+    font-weight: 900;
+    font-family: "Poppins";
+    display: flex;
+    justify-content: center; 
+    color: white; 
+    text-shadow: 2px;
+    
+    }
+
+    
+      
+      
+      
+     
+
+
+
+
+      #sr_results_container {
+        background-color: transparent;
+        min-height: 50vh; 
+        height: 20vh;
+        width: 80vw; 
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        font-family: 'Poppins';
+        left: 50%; 
+        justify-content: center;
+        
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        box-sizing: border-box;
+        position: fixed; 
+        
+        transform: translateX(-50%); 
+        
+        
+      }
+
+
+    #sr_text2{
+    font-size: 45px;
+    font-weight: 900;
+    font-family: "Poppins";
+    display: flex;
+    justify-content: left; 
+    color: white; 
+    position: relative;
+    left: 6vw;
+    
+    }  
+
+    #sr_results{
+
+        
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        overflow: auto;
+    }
+
+
+    #sr_result1, #sr_result2, #sr_result3, #sr_result4, #sr_result5 {
+        position: relative;
+        
+        background-color: white;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        min-height: 9vh;
+        width: 70vw;
+        margin: 0 auto;
+        border-radius: 30px;
+        padding: 0;
+        font-family: "Poppins";
+    }
+    
+   
+    .sr_result1-text,.sr_result2-text,.sr_result3-text,.sr_result4-text ,.sr_result5-text{
+        margin-left: 0; 
+        text-align: left; 
+        padding-left: 30px;
+        font-weight: 600;
+        font-size: 25px;
+    }
+
+    .sr_result-button  {
+        background-color: #008540;
+        color: white;
+        margin-right: 20px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 20px;
+        height: 3rem;
+        width: 10vw;
+        display: flex;           
+        justify-content: center; 
+        align-items: center;     
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        }
+        
+        .sr_result-button:hover {
+        background-color: black;
+        color: white;
+        box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+        transform: scale(1.00);
+        }
+    
+
+        .sr_results-footer{
+            position: fixed;
+            width: 100%;
+            display: block;
+           
+            bottom: 0;
+            
+            
+        }
+
+
+
+/*Background shapes*/
+
+   
+    
+ 
+    
+    #sr_Vec3 {
+        right: 80vw;
+        top: 19vh;
+        max-width: 25%;
+    }
+    
+    #sr_Vec4 {
+        right: 85vw;
+        top: 0;
+    }
+    
+    #sr_Vec5 {
+        position: fixed;
+        bottom: 0;
+        left: 80vw;
+        max-width: 60%;
+        width: auto;
+        height: auto;
+        min-height: 200px;  
+        object-fit: contain;   
+    }
+    
+    #sr_Vec6 {
+        right: 0vw;
+        top: 13vh;
+        max-width: 12%;
+    }
+    
+    .sr_LogImage {
+        position: fixed;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }
+

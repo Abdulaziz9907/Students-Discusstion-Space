@@ -1,0 +1,151 @@
+/* Wrapper specific to AddRating component */
+.add-rating-wrapper {
+  background-color: #008540; /* Green background */
+  color: white; /* White text color */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Add some padding */
+  
+}
+
+/* Container for the entire page content */
+.container {
+  margin-top: 80px;
+  text-align: center;
+}
+
+/* Title for the course name */
+.course-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Main rating box with a black background */
+.rating-box {
+  background-color: #000;
+  border-radius: 8px;
+  padding: 40px;
+  width: 80vw; /* 80% of viewport width */
+  max-width: 1000px; /* Limit maximum width */
+  margin: 0 auto; /* Center the box */
+  box-sizing: border-box; /* Ensure padding is within the width */
+}
+
+/* White box around the rating section */
+.rating-section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Label and question for the rating section */
+.rating-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.rating-question {
+  font-size: 16px; /* Increased font size */
+  color: #333;
+  margin-right: 20px;
+}
+
+/* Star styling */
+.stars {
+  display: inline-flex;
+}
+
+.star {
+  font-size: 28px; /* Increased font size for larger stars */
+  color: #ccc;
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+.star.selected {
+  color: gold;
+}
+
+/* Text area for summary */
+.summary-section {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  resize: none;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Submit button */
+.submit-button {
+  background-color: #00a651;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #007f3d;
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 10px 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 600px) { 
+
+  .add-rating-wrapper {
+    width: 100vw;
+    height: 100vw;
+    
+  }
+
+
+  .rating-box { 
+    width: 100vw; /* Full viewport width */ 
+    padding: 10px; /* Adjust padding for smaller screens */ } 
+    .rating-section { 
+      flex-direction: column; /* Stack items vertically */
+       align-items: flex-start; /* Align items to the start */ } 
+       .rating-question { 
+        margin-bottom: 10px; /* Add margin to bottom for spacing */ } 
+        .stars { 
+          justify-content: flex-start; /* Align stars to the start */ } 
+          .submit-button {
+             width: 100%; /* Full width button */ }
+
+             
+          }

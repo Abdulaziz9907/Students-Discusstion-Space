@@ -1,0 +1,132 @@
+/* Styles for the course questions page */
+.course-container {
+    padding: 20px;
+    padding-top: 80px; /* Add space at the top */
+    background-color: #008540; /* Green background */
+    min-height: 100vh; /* Ensure full viewport height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    color: white; /* White text color */
+    text-align: center;
+  }
+  
+  .question-header {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 20px; /* Reduce padding */
+    width: fit-content; /* Make the box size small */
+  }
+  
+  .question-count {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 10px; /* Add space between count and button */
+  }
+  
+  .post-question-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px; /* Even more rounded corners */
+  }
+  
+  .question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* Center align the question boxes */
+  }
+  
+  .question-wrapper {
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    align-items: flex-start; /* Align items to the top */
+    gap: 10px;
+    width: 80vw; /* 80% of viewport width */
+    max-width: 80vw; /* Ensure max width does not exceed 80vw */
+  }
+  
+  .question-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+  }
+  
+  .question-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  .reply-btn {
+    background-color: white; /* White background */
+    color: #27ae60; /* Green text color */
+    border: 2px solid #27ae60; /* Green border */
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px; /* More rounded corners */
+    align-self: flex-start; /* Align button to the left */
+    margin-top: 20px; /* Add space at the top */
+    font-weight: bold; /* Bold text */
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .course-container {
+      padding: 10px;
+      padding-top: 80px; /* Maintain space at the top */
+    }
+  
+    .question-header {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center align */
+      width: fit-content; /* Keep the box size small */
+      padding: 10px; /* Adjust padding */
+    }
+  
+    .question-wrapper {
+      flex-direction: column; /* Stack question box and reply button vertically */
+      align-items: center; /* Center align the items */
+      width: 90vw; /* Adjust width on smaller screens */
+    }
+  
+    .question-box {
+      width: 90vw; /* Adjust width to 90% viewport width */
+    }
+  
+    .reply-btn {
+      margin-top: 10px; /* Adjust margin */
+      align-self: flex-start; /* Left align the button */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .question-box {
+      padding: 10px; /* Adjust padding for smaller screens */
+      width: 90vw; /* Adjust width to 90% viewport width */
+    }
+  
+    .reply-btn {
+      padding: 8px 16px; /* Adjust padding for smaller screens */
+      font-size: 14px; /* Adjust font size */
+      align-self: flex-start; /* Left align the button */
+    }
+  }
+  

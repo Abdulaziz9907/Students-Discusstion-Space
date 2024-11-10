@@ -1,0 +1,29 @@
+Follow these steps to run and view the UI of the project:
+
+-To start the project:
+
+    For javaScript files:
+    -Navigate to my-app/src/index.js and open it in terminal
+    -Run this command in your terminal: npm start
+
+    For html files:
+    -Right click on the file and open it using live server
+
+Page Details:
+
+    -Linked Pages: Some pages are linked as shown in App.js.
+    -Backend-Dependent Pages: Some pages need backend code to work fully, so it can be opended by typing the page name located in App.js for now.
+
+Error Handling:
+
+    -Custom error pages aren't created for some pages, since it can be shown using simple CSS code during run time.
+
+Work ditrbution:
+
+    -Login page, Signup page, Main page, Result page (pages 1-8) were done by: Abdullaziz Hakami
+
+    -add rating, Course discussions, Course questions, Course rating ,Post discussion ,Post question, Reply on discussion, Reply on question ,Question details (pages 9-14) were done by: Mohammed Althobaiti
+
+    -Course discussions, Course files (pages 16-19) were done by: Mohammed Alrefaei
+
+    -Moderator options, Admin page, userlist, dashboard (pages 20-28) were done by: Yousef Saeed

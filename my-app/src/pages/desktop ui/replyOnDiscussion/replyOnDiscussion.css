@@ -1,0 +1,65 @@
+/* Styles for the reply on question page */
+.reply-container {
+    padding: 20px;
+    padding-top: 80px; /* Add space at the top */
+    background-color: #008540; /* Green background */
+    height: 100vh; /* Ensure full viewport height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    color: white; /* White text color */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .reply-box {
+    background-color: #000; /* Black background */
+    width: 80vw; /* 80% of viewport width */
+    flex-grow: 1; /* Make it grow to take the remaining space */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .reply-label {
+    color: white; /* White text color */
+    width: 70%; /* Match the width of the text box */
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: left; /* Left align the text */
+  }
+  
+  .reply-input {
+    width: 70%; /* Smaller width */
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .reply-on-btn {
+    background-color: #27ae60; /* Green background */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 16px;
+    font-weight: bold;
+    align-self: center; /* Center align the button */
+  }
+  
+  .reply-btn:hover {
+    background-color: #1e8e50; /* Darker green on hover */
+  }
+  
