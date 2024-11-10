@@ -1,5 +1,5 @@
 /* Base styles */
-.account_body {
+.account_info_body {
     background-color: #008540;
     min-height: 100vh;
     width: 100%;
@@ -12,14 +12,14 @@
 }
 
 /* Main content container */
-#account_items {
+#account_info_items {
     display: flex;
     flex-direction: column;
     gap: 4rem;
 }
 
 /* Header text */
-#account_text {
+#account_info_text {
     font-size: 55px;
     font-weight: 900;
     font-family: "Poppins";
@@ -30,7 +30,7 @@
 }
 
 /* Account details container */
-#account_details_container {
+#account_info_details_container {
     background-color: black;
     height: 78vh;
     width: 80vw;
@@ -48,7 +48,7 @@
 }
 
 /* Account subtitle text */
-#account_text2 {
+#account_info_text2 {
     font-size: 2.5vw;
     font-weight: 200;
     font-family: "Poppins";
@@ -60,7 +60,7 @@
 }
 
 /* Account details section */
-#account_details {
+#account_info_details {
     min-height: 75vh;
     width: 80vw;
     margin-top: -3vh;
@@ -70,7 +70,7 @@
 }
 
 /* Account details items */
-#account_details1, #account_details2 {
+#account_info_details1, #account_info_details2 {
     background-color: white;
     min-height: 50px;
     width: 50px;
@@ -84,29 +84,29 @@
     left: 3vw;
 }
 
-#account_details1 {
+#account_info_details1 {
     min-height: 32vw;
     width: 45vw;
 }
 
-#account_details2 {
+#account_info_details2 {
     min-height: 27vw;
     width: 26vw;
 }
 
 /* Delete button */
-#account_delete_btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-left: 70px;
-        gap: 30px;
-     
+#account_info_delete_btn{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-left: 70px;
+   gap: 30px;
 }
 
+
 /* Account details list */
-#account_details_list {
+#account_info_details_list {
     position: relative;
     top: -0.5vh;
     padding: 2vw;
@@ -114,17 +114,16 @@
     display: block;
 }
 
-.account_underline {
+.account_info_underline {
     border-bottom: 1px solid #717171;
 }
 
-#account_details_list > label {
+#account_info_details_list > label {
     font-weight: 900;
     font-size: 1.2vw;
 }
 
-/* Input style */
-#account_details_list > input {
+#account_info_details_list > input {
     position: absolute;
     width: 9.6vw;
     left: 13vw;
@@ -133,20 +132,9 @@
     color: #717171;
     font-size: 1vw;
     font-weight: bold;
-    background-color: transparent;
-    transition: all 0.3s ease; /* Smooth transition for changes */
 }
 
-/* New style for editable inputs */
-#account_details_list > input.editable {
-    border: 2px solid black; /* Black border when editable */
-    background-color: #f7f7f7; /* Light gray background */
-    color: black; /* Change text color to black when editing */
-    padding-left: 1vw; /* Add padding to prevent text from touching the left edge */
-}
-
-/* Edit button */
-#account_details_list > button {
+#account_info_details_list > button {
     position: absolute;
     left: 40vw;
     background-color: transparent;
@@ -156,27 +144,21 @@
     cursor: pointer;
     text-decoration: underline;
     height: 3vh;
-    font-size: 1.1vw; /* Slightly larger button text */
-    transition: color 0.2s ease; /* Smooth transition on hover */
-}
-
-#account_details_list > button:hover {
-    color: #4CAF50; /* Change button text color on hover */
 }
 
 /* Background shapes */
-#account_Vec3 {
+#account_info_Vec3 {
     right: 80vw;
     top: 19vh;
     max-width: 25%;
 }
 
-#account_Vec4 {
+#account_info_Vec4 {
     right: 85vw;
     top: 0;
 }
 
-#account_Vec5 {
+#account_info_Vec5 {
     position: fixed;
     bottom: 0;
     left: 80vw;
@@ -187,78 +169,107 @@
     object-fit: contain;
 }
 
-#account_Vec6 {
+#account_info_Vec6 {
     right: 0vw;
     top: 13vh;
     max-width: 12%;
 }
 
-.account_LogImage {
+.account_info_LogImage {
     position: fixed;
     height: auto;
     max-width: 100%;
     width: auto;
 }
 
+.account_info_assign-button {
+    background-color: #008540;
+    color: white;
+    margin-right: 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 20px;
+    height: 3rem;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+.account_info_assign-button:hover {
+    background-color: #004A23;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+    transform: scale(1.00);
+}
+
+
+
 /* Mobile adjustments (max-width 600px) */
 @media (max-width: 600px) {
-    .account_body {
+    .account_info_body {
         padding: 1rem;
     }
 
-    #account_text {
+    #account_info_text {
         font-size: 35px;
     }
 
-    #account_text2 {
+    #account_info_text2 {
         font-size: 4vw;
         left: 5vw;
     }
 
-    #account_details_container {
+    #account_info_details_container {
         width: 100vw;
         height: 100vh; /* Ensure it fills the screen */
         padding: 2rem 1rem;
         overflow-y: auto; /* Make the details section scrollable */
     }
 
-    #account_details {
+    #account_info_details {
         flex-direction: column; /* Column layout for mobile */
         gap: 2rem;
     }
 
-    #account_details1, #account_details2 {
+    #account_info_details1, #account_details2 {
         min-height: 40vw;
         width: 90vw;
         top: 0;
         left: 0;
     }
 
-    #account_delete_btn {
+    #account_info_delete_btn {
         left: 50%;
         transform: translateX(-50%);
     }
 
-    #account_details_list {
+    #account_info_details_list {
         padding: 4vw;
     }
 
-    #account_details_list > label {
+    #account_info_details_list > label {
         font-size: 4vw;
     }
 
-    #account_details_list > input {
+    #account_info_details_list > input {
         width: 80%;
         font-size: 4vw;
         left: 10vw;
     }
 
-    #account_details_list > button {
+    #account_info_details_list > button {
         font-size: 4vw;
         left: 10vw;
     }
 
-    #account_Vec3, #account_Vec4, #account_Vec5, #account_Vec6 {
+    #account_info_Vec3, #account_info_Vec4, #account_info_Vec5, #account_info_Vec6 {
         display: none; /* Hide large background shapes on mobile */
     }
 }

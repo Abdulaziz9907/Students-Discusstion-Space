@@ -15,7 +15,8 @@ import ReplyOnQuestion from './pages/desktop ui/replyOnQuestion/replyOnQuestion'
 import ReplyOnDiscussion from './pages/desktop ui/replyOnDiscussion/replyOnDiscussion';
 import PostQuestion from './pages/desktop ui/postQuestion/postQuestion';
 import PostDiscussion from './pages/desktop ui/postDiscussion/postDiscussion';
-import ModeratorDiscussionDetails from './pages/desktop ui/moderatorDiscussionDetails/moderatorDiscussionDetails';
+import Account_search_results from './pages/desktop ui/Account_search_results/Account_search_results';
+import Account_info from './pages/desktop ui/Account_info/Account_info';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -37,7 +38,8 @@ function App() {
             <Route path="/ReplyOnDiscussion" element={<ReplyOnDiscussion />} />
             <Route path="/PostQuestion" element={<PostQuestion />} />
             <Route path="/PostDiscussion" element={<PostDiscussion />} />
-            <Route path="/ModeratorDiscussionDetails" element={<ModeratorDiscussionDetails />} />
+            <Route path="/Account search results" element={<Account_search_results />} />
+            <Route path="/Account info" element={<Account_info />} />
          </Routes>
       </BrowserRouter>         
   );

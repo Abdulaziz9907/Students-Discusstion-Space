@@ -11,7 +11,7 @@ function DeleteBtn() {
     if (!expanded) {
       setExpanded(true); 
     } else {
-      const confirmDelete = window.confirm("Your account has been deleted. Do you want to proceed?");
+      const confirmDelete = window.confirm("This account has been deleted. Click Ok to logout");
       if (confirmDelete) {
         setShowModal(true); 
         setTimeout(() => {
@@ -39,7 +39,7 @@ function DeleteBtn() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <p>Your account has been deleted.</p>
+            <p>This account has been deleted.</p>
             {handleCloseModal}
           </div>
         </div>

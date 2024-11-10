@@ -1,0 +1,263 @@
+.asr_body {
+    background-color: #008540;
+    min-height: 100vh; 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    position: relative;
+    justify-content: center;
+}
+
+
+#asr_items{
+
+display: flex;
+flex-direction: column;
+gap: 4rem;
+}
+
+
+
+
+.asr_search-container {
+    position: relative;
+    width: 100%;
+    display: grid;
+    margin: 20px auto; 
+    top: -90px;
+    
+    place-items: center
+;
+  }
+  
+  .asr_search-bar {
+    
+    height: 35px;
+    width: 40vw;
+    padding: 10px 40px; 
+    border-radius: 20px; 
+    border: 1px solid #ccc; 
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    place-self: center;    
+    
+  }
+
+#asr_text{
+    font-size: 55px;
+    font-weight: 900;
+    font-family: "Poppins";
+    display: flex;
+    justify-content: center; 
+    color: white; 
+    text-shadow: 2px;
+    
+    }
+
+    
+      
+      
+      
+     
+
+
+
+
+      #asr_results_container {
+        background-color: transparent;
+        min-height: 50vh; 
+        height: 20vh;
+        width: 80vw; 
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        font-family: 'Poppins';
+        left: 50%; 
+        justify-content: center;
+        
+        margin: 0 auto; 
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        padding: 0;
+        box-sizing: border-box;
+        position: fixed; 
+        
+        transform: translateX(-50%); 
+        
+        
+      }
+
+
+    #asr_text2{
+    font-size: 45px;
+    font-weight: 900;
+    font-family: "Poppins";
+    display: flex;
+    justify-content: left; 
+    color: white; 
+    position: relative;
+    left: 6vw;
+    
+    }  
+
+    #asr_results{
+
+        
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        overflow: auto;
+    }
+
+
+    #asr_result1, #asr_result2, #asr_result3, #asr_result4, #asr_result5 {
+        position: relative;
+        
+        background-color: white;
+        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        min-height: 9vh;
+        width: 70vw;
+        margin: 0 auto;
+        border-radius: 30px;
+        padding: 0;
+        font-family: "Poppins";
+    }
+    
+   
+    .asr_result1-text,
+    .asr_result2-text,
+    .asr_result3-text,
+    .asr_result4-text,
+    .asr_result5-text {
+    flex-grow: 1; /* Makes the text container take the available space */
+    text-align: left; /* Aligns text to the left */
+    padding-left: 10px; /* Keeps a small left padding */
+    font-weight: 600;
+    font-size: 25px;
+}
+
+    .asr_result-button ,.asr_Assign_Unassign-button {
+        background-color: #008540;
+        color: white;
+        margin-right: 20px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 20px;
+        height: 3rem;
+        width: 10vw;
+        display: flex;           
+        justify-content: center; 
+        align-items: center;     
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        }
+        .asr_Assign_Unassign-button {
+           width: 14vw;
+            }
+        
+        .asr_result-button:hover, .asr_Assign_Unassign-button:hover {
+        background-color: black;
+        color: white;
+        box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+        transform: scale(1.00);
+        }
+
+
+
+
+
+        .asr_Delete-button  {
+            background-color: #B42318;
+            color: white;
+            margin-right: 0px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 20px;
+            height: 3rem;
+            width: 10vw;
+            display: flex;           
+            justify-content: center; 
+            align-items: center;     
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            }
+            
+            .asr_Delete-button:hover {
+            background-color: #6B0800;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+            transform: scale(1.00);
+            }
+
+
+
+
+
+        .asr_results-footer{
+            position: fixed;
+            width: 100%;
+            display: block;
+           
+            bottom: 0;
+            
+            
+        }
+
+
+
+/*Background shapes*/
+
+   
+    
+ 
+    
+    #asr_Vec3 {
+        right: 80vw;
+        top: 19vh;
+        max-width: 25%;
+    }
+    
+    #asr_Vec4 {
+        right: 85vw;
+        top: 0;
+    }
+    
+    #asr_Vec5 {
+        position: fixed;
+        bottom: 0;
+        left: 80vw;
+        max-width: 60%;
+        width: auto;
+        height: auto;
+        min-height: 200px;  
+        object-fit: contain;   
+    }
+    
+    #asr_Vec6 {
+        right: 0vw;
+        top: 13vh;
+        max-width: 12%;
+    }
+    
+    .asr_LogImage {
+        position: fixed;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }
+
