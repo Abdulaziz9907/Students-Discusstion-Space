@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Signup_form.css"
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 
@@ -8,7 +9,22 @@ import { useNavigate } from 'react-router-dom';
 const Signup_form = () => {
 
 const navigate = useNavigate()
- 
+
+
+  const [inputValue, setInputValue] = useState("");
+  const validOptions = ["1", "2", "3", "4", "5", "5+"];
+
+  function handleInputChange (e) {
+    setInputValue(e.target.value); // Update the input value
+  };
+
+  function handleInputBlur  () {
+    if (!validOptions.includes(inputValue)) {
+      alert("Please select a valid option from the list.");
+      setInputValue(""); // Reset the input if invalid
+    }
+  };
+
 
   return (
 
@@ -42,8 +58,8 @@ const navigate = useNavigate()
 
 <div className='SF_lists_selectors'>
 
-        <div className='SF_input-list'>
-          <label id='SF_major_text'>Major*</label>
+        <div className='SF_input-box'>
+          <label id='SF_major_label'>Major*</label>
 
           <datalist id="SF_major" name="major"  required>
           <option value="AE"></option>
@@ -80,38 +96,31 @@ const navigate = useNavigate()
 <input type="text" list="SF_major" name="major" autoComplete="on" required />
 
 
-
-
-
-
-
-
         </div>
 
-        <div className='SF_input-list'>
-          <label id='SF_year_text'>Year*</label>
-
-
-          <datalist id="SF_year" name="year" required>
-
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="5+">5+</option>
-
-          </datalist>
-    <input type="text"  list="SF_year" name="year" autoComplete="on" required />
-
-        </div>
-
+        <div className="SF_input-box">
+      <label id="SF_year_label">Year*</label>
+      <input
+        type="text"
+        list="SF_year"
+        id="SF_year_input"
+        name="year"
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={handleInputBlur} 
+        required
+      />
+      <datalist id="SF_year">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="5+">5+</option>
+      </datalist>
+    </div>
 
       </div>
-      
-
-
-
       
 
         <div className='SF_input-box'>
