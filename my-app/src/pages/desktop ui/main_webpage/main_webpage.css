@@ -3,30 +3,34 @@
     background-color: #008540;
     min-height: 100vh;
     width: 100%;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins';
     position: relative;
     justify-content: center;
+    min-width: 400px;
+    overflow-x: hidden;
 }
 
 /* Main content container */
 #mw_items {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 80px;
+    min-width: 400px;
+    overflow-x: hidden;
 }
 
 /* Header text */
 #mw_text {
-    font-size: 55px;
+    position: relative;
+    font-size: 70px;
     font-weight: 900;
     font-family: "Poppins";
     display: flex;
     justify-content: center;
     color: white;
     text-shadow: 2px;
+    
 }
 
 /* Search container */
@@ -37,18 +41,21 @@
     margin: 20px auto;
     top: -90px;
     place-items: center;
+    min-width: 400px;
+    overflow-x: hidden;
 }
 
 .mw_search-bar {
-    height: 35px;
-    width: 40vw;
+    height: 45px;
+    width: 50vw;
     padding: 10px 40px;
     border-radius: 20px;
     border: 1px solid #ccc;
     outline: none;
-    font-size: 16px;
+    font-size: 26px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     place-self: center;
+ 
 }
 
 /* Suggestions container */
@@ -67,6 +74,8 @@
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;
+    min-width: 400px;
+    overflow-x: hidden;
 }
 
 /* Suggestions section title */
@@ -102,6 +111,8 @@
     border-radius: 30px;
     padding: 0;
     font-family: "Poppins";
+    min-width: 400px;
+    overflow-x: hidden;
 }
 
 .mw_sgst1-text, .mw_sgst2-text, .mw_sgst3-text, .mw_sgst4-text {
@@ -123,6 +134,7 @@
     font-size: 20px;
     height: 3rem;
     width: 10vw;
+    min-width: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,48 +186,29 @@
     width: auto;
 }
 
-/* Mobile adjustments (max-width 600px) */
-@media (max-width: 600px) {
-    .main_webpage_body {
-        padding: 1rem;
-    }
 
+
+@media (max-width: 1400px) {
+    #mw_text {
+        margin-top: 100px;
+        font-size: 50px;
+    }
+}
+@media (max-width: 1024px) {
     #mw_text {
         font-size: 35px;
     }
+}
 
-    .mw_search-bar {
-        width: 80vw;
-        padding: 8px 30px;
+
+@media (max-width: 720px) {
+  
+    #mw_text {
+        font-size: 25px;
+    }
+    #mw_suggestions_container{
+    width: 100%;
+    
     }
 
-    #mw_text2 {
-        font-size: 35px;
-        left: 5vw;
-    }
-
-    #mw_suggestions_container {
-        width: 90vw;
-        bottom: 10vh;
-    }
-
-    #mw_sgst1, #mw_sgst2, #mw_sgst3, #mw_sgst4 {
-        width: 90vw;
-        min-height: 7vh;
-    }
-
-    .mw_sgst1-text, .mw_sgst2-text, .mw_sgst3-text, .mw_sgst4-text {
-        font-size: 18px;
-        padding-left: 20px;
-    }
-
-    .mw_sgst-button {
-        width: 40vw;
-        font-size: 18px;
-        height: 2.5rem;
-    }
-
-    #mw_Vec3, #mw_Vec4, #mw_Vec5, #mw_Vec6 {
-        display: none; /* Hide large background elements on mobile */
-    }
 }

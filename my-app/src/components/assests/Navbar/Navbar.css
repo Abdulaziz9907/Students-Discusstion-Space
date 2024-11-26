@@ -1,15 +1,9 @@
-@media (max-width: 600px) { 
 
-    #site_name{
-      display: none;
-      
-     }
-    }
 .navbar {
     background-color: white;
-    width: 98.3vw; 
-    height: 65px; 
-    position: fixed; 
+    width: 100%; 
+    height: 79px; 
+    position: relative; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     padding: 1rem; 
@@ -17,14 +11,15 @@
     display: flex; 
     flex-direction: row;
     align-items: center;
-
+    min-width: 400px;
+    overflow-x: hidden;
 
     
 }
 
 #site_name {
     color: black;
-    font-size: 25px; 
+    font-size: 34px; 
     margin-right: 44px; 
     font-weight: 900;
     font-family: 'Roboto';
@@ -33,8 +28,8 @@
 }
 
 .logImageNav {
-    width: 20px; 
-    height: 20px ;
+    width: 30px; 
+    height: 30px ;
     margin-right: 6px; 
     transition: filter 0.3s ease-in-out;
     
@@ -48,8 +43,8 @@
 }
 
 .navButtons {
-    
-    padding: 5px 5px 5px 6px; 
+    font-size: 19px;
+    padding: 8px 8px 8px 6px; 
     background-color: transparent;
     border: none;
     border-radius: 22px;
@@ -73,4 +68,18 @@
 
 .navButtons:hover .logImageNav {
     filter: invert(1);
+}
+
+
+@media screen and (max-width: 720px) {
+
+    .navbar {
+        justify-content: center;
+    }
+    #site_name{
+        display: none;
+    }
+
+
+
 }

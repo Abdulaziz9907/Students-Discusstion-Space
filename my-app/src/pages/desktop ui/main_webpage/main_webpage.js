@@ -24,7 +24,7 @@ function main_webpage() {
     
 
      <div class="sr_search-container">
-      <input type="text" placeholder="search" class="sr_search-bar" ></input>
+      <input type="text" placeholder="search" class="mw_search-bar" ></input>
      
       </div>
  </div>
