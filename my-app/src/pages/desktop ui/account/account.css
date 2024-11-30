@@ -9,8 +9,8 @@
     font-family: 'Poppins';
     position: relative;
     justify-content: center;
-    overflow: hidden;
     min-width: 400px;
+    
 }
 
 /* Main content container */
@@ -82,7 +82,7 @@
     font-family: 'Poppins';
     position: relative;
     justify-content: center;
-    top: -40px;
+    top: -10px;
     
 }
 
@@ -210,6 +210,7 @@
 #account_details1 {
     height: 780px;
     width: 600px;
+    
 }
 
 #account_details2 {
@@ -263,14 +264,19 @@
 
                 .account_body {
                     background-color: black;
+                    
                 }
                 #account_details {
     
-                    margin-top: -180px;
+                    margin-top: -50px;
                     display: flex;
                     flex-direction: column;
                     place-items: center;
-                    
+                    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+                    overflow-y: auto; /* Enable vertical scrolling */
+                    overflow-x: hidden;
+                    max-height: 66vh; /* Limit the height to 60% of the viewport */
+
                 }
 
                 #account_details_list {
@@ -280,7 +286,6 @@
                     text-align: left;
                     display: flex;
                     justify-content: space-between;
-                    
                     
                 }
 
@@ -306,12 +311,7 @@
                     width: 800px;
                 }
 
-                #account_delete_btn {
-                    display: flex;
-                    position: relative;
-                    top: -500px;
-                    left: 135px;
-                }
+            
 
                 }
 
@@ -331,19 +331,25 @@
                         width: 700px;
                     }
     
-                    #account_delete_btn {
-                        display: flex;
-                        position: relative;
-                        top: -500px;
-                        left: 97px;
-                    }
+                   
     
                     }
 
 
                     @media (max-width: 720px) {
 
-    
+                        #account_details {
+                            padding: 10px;
+                            max-height: 70vh; /* Adjust height for smaller screens */
+
+                        }
+                    
+                        #account_details1, #account_details2 {
+                            width: 100%; /* Take the full width */
+                            height: auto; /* Adjust height dynamically */
+                        }
+
+
                         #account_details1 {
                             height: 410px;
                             width: 500px;
@@ -355,35 +361,7 @@
                             width: 500px;
                         }
         
-                        #account_delete_btn {
-                            display: flex;
-                            position: relative;
-                            top: -500px;
-                            left: 47px;
-                        }
-        
+                      
                         }
 
-                        @media (max-width: 720px) {
-
-    
-                            #account_details1 {
-                                height: 410px;
-                                width: 600px;
-                            }
-                            
-                            #account_details2 {
-                                
-                                height: 340px;
-                                width: 600px;
-                            }
-            
-                            #account_delete_btn {
-                                display: flex;
-                                position: relative;
-                                top: -500px;
-                                left: 97px;
-                            }
-            
-                            }
-    
+                    

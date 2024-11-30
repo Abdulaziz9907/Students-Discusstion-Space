@@ -12,8 +12,7 @@
     flex-direction: row;
     align-items: center;
     min-width: 400px;
-    overflow-x: hidden;
-
+    overflow-y: hidden;
     
 }
 
