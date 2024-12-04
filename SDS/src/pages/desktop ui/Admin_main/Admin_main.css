@@ -20,7 +20,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -35,7 +34,6 @@ nav a {
 }
 
 main {
-    max-width: 1200px;
     margin: 2em auto;
     margin-top: 0em;
 }
@@ -48,6 +46,7 @@ main {
 }
 
 .insights-section h2 {
+    text-align: center;
     font-size: 2em;
     margin-bottom: 1em;
 }
@@ -100,6 +99,7 @@ button {
 }
 
 .courses-section {
+    width: 100%;
     margin-top: 2em;
 }
 
@@ -404,6 +404,7 @@ button {
         font-size: 0.9em;
     }
     .insights-section h2 {
+        text-align: center;
         font-size: 1em;
         margin-bottom: 1em;
     }
