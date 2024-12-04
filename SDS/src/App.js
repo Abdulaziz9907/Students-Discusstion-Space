@@ -17,6 +17,14 @@ import PostQuestion from './pages/desktop ui/postQuestion/postQuestion';
 import PostDiscussion from './pages/desktop ui/postDiscussion/postDiscussion';
 import Account_search_results from './pages/desktop ui/Account_search_results/Account_search_results';
 import Account_info from './pages/desktop ui/Account_info/Account_info';
+import Add_Course from './pages/desktop ui/Add_Course/AddCourse';
+import Admin_main from './pages/desktop ui/Admin_main/Admin_main';
+import Admin_Search from './pages/desktop ui/Admin_Search/AdminSearch';
+import Discussion from './pages/desktop ui/Discussion/Discussion';
+import Post from './pages/desktop ui/Discussion/Post';
+import Reply from './pages/desktop ui/Discussion/Reply';
+import Files from './pages/desktop ui/Files/Files';
+import Upload from './pages/desktop ui/Files/Upload';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -40,6 +48,14 @@ function App() {
             <Route path="/PostDiscussion" element={<PostDiscussion />} />
             <Route path="/Account search results" element={<Account_search_results />} />
             <Route path="/Account info" element={<Account_info />} />
+            <Route path="/AddCourse" element={<Add_Course />} />
+            <Route path="/AdminMain" element={<Admin_main />} />
+            <Route path="/AdminSearch" element={<Admin_Search />} />
+            <Route path="/Discussion" element={<Discussion />} />
+            <Route path="/Post" element={<Post />} />
+            <Route path="/Reply" element={<Reply />} />
+            <Route path="/Files" element={<Files />} />
+            <Route path="/Upload" element={<Upload />} />
          </Routes>
       </BrowserRouter>         
   );
