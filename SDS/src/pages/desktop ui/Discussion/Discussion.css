@@ -20,7 +20,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -35,7 +34,6 @@ nav a {
 }
 
 main {
-    max-width: 1000px;
     margin: 2em auto;
     margin-top: 0em;
 }
@@ -63,10 +61,11 @@ footer {
     padding: 1.5em;
     border-radius: 8px;
     margin-bottom: 2em;
-    text-align: center;
+    align-items: center;
 }
 
 .course-section h2 {
+    text-align: center;
     font-size: 2em;
     margin-bottom: 1em;
 }
@@ -294,6 +293,7 @@ a:hover {
     }
 
     .course-section h2 {
+        text-align: center;
         font-size: 1.8em;
         margin-bottom: 1em;
     }
@@ -393,4 +393,9 @@ a:hover {
         margin: 0 1em;
         font-size: 0.9em;
     }
+}
+.vote-up,
+.vote-down {
+  font-size: 1em; /* Adjust the size to make arrows smaller */
+  padding: 0.2em 0.4em; /* Reduce padding for a compact look */
 }
