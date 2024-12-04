@@ -11,7 +11,6 @@ body {
 }
 
 header {
-    background-color: #fff;
     color: #333;
 }
 
@@ -28,19 +27,23 @@ header h1 {
 }
 
 nav a {
-    color: #fff;
     margin-left: 1em;
     text-decoration: none;
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center; 
     max-width: 1000px;
     margin: 2em auto;
     margin-top: 0em;
 }
 
 .upload-section {
-    color: #fff;
+    color:transparent;
     padding: 2em;
     border-radius: 8px;
     text-align: center;
@@ -292,3 +295,94 @@ a:hover {
     }
 }
 
+#upload-file-header {
+    background-color: #fff;
+  }
+  
+  #upload-file-vector3 {
+    right: 80vw;
+    top: 56vh;
+    max-width: 25%;
+  }
+  
+  #upload-file-vector4 {
+    right: 93vw;
+    top: 15vh;
+  }
+  
+  #upload-file-vector6 {
+    position: fixed;
+    top: 31vh;
+    left: 80vw;
+    max-width: 60%;
+    min-height: 200px;
+    object-fit: contain;
+  }
+  
+  #upload-file-main {
+    max-width: 1000px;
+    margin: 2em auto;
+    margin-top: 0em;
+  }
+  
+  #upload-file-section {
+    padding: 2em;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  #upload-file-section h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+  
+  #upload-file-form {
+    background-color: #000;
+    padding: 2em;
+    border-radius: 8px;
+  }
+  
+  #upload-file-label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #fff;
+  }
+  
+  #upload-file-box {
+    border: 2px dashed #fff;
+    padding: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .drag-area p,
+  .drag-area small {
+    margin-bottom: 0.5em;
+  }
+  
+  .select-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5em 2em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .upload-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5em 2em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: red !important;
+  }
+  
+  /* Additional CSS rules remain the same, just ensure IDs are updated */
+  
