@@ -1,49 +1,97 @@
-document.getElementById("courseForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission
+import Navbar from '../../../components/assests/Navbar/Navbar';
 
-    let isValid = true;
+import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
+import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
+import account_logo6 from '../../desktop ui/login/elements/Vector6.png';
 
-    const courseName = document.getElementById("course-name");
-    const courseNumber = document.getElementById("course-number");
-    const courseNameError = document.getElementById("course-name-error");
-    const courseNumberError = document.getElementById("course-number-error");
+import React, { useState } from 'react';
+import './AddCourse.css';
 
-    // Clear previous error messages
-    courseNameError.textContent = "";
-    courseNumberError.textContent = "";
+const AddCourse = () => {
+  const [form, setForm] = useState({ courseName: '', courseNumber: '' });
+  const [errors, setErrors] = useState({});
+  const [isModalVisible, setModalVisible] = useState(false);
 
-    // Validate course name
-    if (courseName.value.trim() === "") {
-        courseNameError.textContent = "Course name is required.";
-        courseNameError.style.display = "block";
-        isValid = false;
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+    setErrors({ ...errors, [e.target.id]: '' });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let validationErrors = {};
+
+    if (!form.courseName.trim()) {
+      validationErrors.courseName = 'Course name is required.';
     }
 
-    // Validate course number
-    if (courseNumber.value.trim() === "") {
-        courseNumberError.textContent = "Course number is required.";
-        courseNumberError.style.display = "block";
-        isValid = false;
+    if (!form.courseNumber.trim()) {
+      validationErrors.courseNumber = 'Course number is required.';
     }
 
-    if (isValid) {
-        // Show modal if validation passes
-        const modal = document.getElementById("successModal");
-        modal.style.display = "flex"; // Display the modal
-    }
-});
+    setErrors(validationErrors);
 
-// Close the modal
-document.getElementById("closeModal").addEventListener("click", function () {
-    document.getElementById("successModal").style.display = "none";
-});
-
-// Optional: Close modal when clicking outside the modal content
-window.addEventListener("click", function (event) {
-    const modal = document.getElementById("successModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-        window.location.href = "../Admin_main/Admin_main.html";
+    if (Object.keys(validationErrors).length === 0) {
+      setModalVisible(true);
     }
-});
-// just click outside to get out of popup
+  };
+
+  return (
+    <>
+      <header>
+        <Navbar />
+        <img src={account_logo3} alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src={account_logo4} alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src={account_logo6} alt="comp1" id='Dis_Vec6' class='DisImage'/>
+        </header>
+      
+      <main>
+        <div className="space"></div>
+        <section className="add-course-section">
+          <h2>Add new course</h2>
+          <div className='space'>
+            </div>
+            <div className='space'>
+            </div>
+          <form id="courseForm" onSubmit={handleSubmit}>
+            <label htmlFor="course-name">Course name*</label>
+            <input
+              type="text"
+              id="courseName"
+              value={form.courseName}
+              onChange={handleChange}
+              placeholder="Enter course name"
+            />
+            {errors.courseName && <small className="error-message">{errors.courseName}</small>}
+
+            <label htmlFor="course-number">Course number*</label>
+            <input
+              type="text"
+              id="courseNumber"
+              value={form.courseNumber}
+              onChange={handleChange}
+              placeholder="Enter course number"
+            />
+            {errors.courseNumber && <small className="error-message">{errors.courseNumber}</small>}
+
+            <button type="submit" className="submit-btn">
+              Create course
+            </button>
+          </form>
+        </section>
+      </main>
+      {isModalVisible && (
+        <div className="modal" onClick={() => setModalVisible(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close-btn" onClick={() => setModalVisible(false)}>
+              &times;
+            </span>
+            <p>Course successfully added!</p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default AddCourse;
