@@ -1,6 +1,7 @@
 import './login.css';
 import Login_form from '../../../components/assests/Login_form/Login_form';
 
+
 import login_logo1 from './elements/Vector1.png';
 import login_logo2 from './elements/Vector2.png';
 import login_logo3 from './elements/Vector3.png';
@@ -29,7 +30,6 @@ function Login() {
       <img src={login_logo5} alt="comp1" id='loginVec5' className='loginLogImage'/>
       <img src={login_logo6} alt="comp1" id='loginVec6' className='loginLogImage'/>
       <img src={login_logo} alt="comp1" id='loginComp1' className='loginLogImage'/>
-      
       <Login_form/>
 
       

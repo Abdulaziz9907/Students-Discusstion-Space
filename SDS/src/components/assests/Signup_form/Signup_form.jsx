@@ -3,7 +3,8 @@ import "./Signup_form.css"
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import Notification from "../Notification/Notification";
+import { Flip, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Signup_form = () => {
@@ -39,7 +40,19 @@ const Signup_form = () => {
       .then((result) => {
         console.log(result);
         if(result.data === "Username already exists"){
+          toast.error('Username already exists. Please choose another.', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+            });
           document.querySelector('.SF_input-box input').style.border = '2px solid red';
+          
         }
 
         else{
@@ -54,7 +67,7 @@ const Signup_form = () => {
   return (
 
     <div className='SF_box'>
-
+      <ToastContainer />
       <div id='SF_login_text'>
         <p id='SF_text1'>Signup</p>
         <p id='SF_text2'>Create your account</p>
