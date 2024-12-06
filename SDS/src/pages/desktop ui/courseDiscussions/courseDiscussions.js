@@ -1,25 +1,26 @@
 // courseDiscussions.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../../components/assests/Navbar/Navbar';
+import axios from 'axios'; // Import axios
 import './courseDiscussions.css';
 
 function CourseDiscussions() {
-  const discussions = [
-    {
-      id: 1,
-      author: 'Mohammed',
-      timestamp: '2 hours ago',
-      content: 'A particular solution of the differential equation A\'\' + 4A\' - 59 = 8e3, is',
-      replys: 0,
-    },
-    {
-      id: 2,
-      author: 'Ahmed',
-      timestamp: '23 hours ago',
-      content: 'In a certain culture of bacteria, the initial amount was 2000. If the number of bacteria doubled after 8 hours, then the number of bacteria present after 24 hours is (Assume the rate of change of population is proportional to the population present at time t)',
-      replys: 2,
-    }
-  ];
+  const [discussions, setDiscussions] = useState([]); // State to store discussions
+
+  // Fetch discussions from backend when component mounts
+  useEffect(() => {
+    const fetchDiscussions = async () => {
+      try {
+        // Replace with the correct endpoint where you're fetching discussions
+        const response = await axios.get('http://localhost:3002/discussions'); 
+        setDiscussions(response.data); // Update the state with fetched discussions
+      } catch (error) {
+        console.error("Error fetching discussions:", error);
+      }
+    };
+
+    fetchDiscussions(); // Call the function to fetch discussions
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
   return (
     <div>
@@ -32,12 +33,12 @@ function CourseDiscussions() {
         </div>
         <div className="discussion-list">
           {discussions.map((discussion) => (
-            <div key={discussion.id} className="discussion-wrapper">
+            <div key={discussion._id} className="discussion-wrapper">
               <div className="discussion-box">
                 <p>{discussion.content}</p>
                 <div className="discussion-footer">
-                  <span>{discussion.author} {discussion.timestamp}</span>
-                  <span>{discussion.replys} reply/s</span>
+                  <span>{discussion.user} {discussion.createdAt}</span> {/* Display author and timestamp */}
+                  <span>{discussion.replys || 0} reply/s</span> {/* Assuming 'replys' field exists in DB */}
                 </div>
               </div>
               <button className="reply-btn">Reply</button>
