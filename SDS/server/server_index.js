@@ -1,16 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const UsersModel=require("./models/users");
-
-const DiscussionModel = require("./models/discussions"); // Import the Discussion model
+const UsersModel = require("./models/users");
+const DiscussionModel = require("./models/discussions");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB Atlas (replace with your connection string)
-
+// MongoDB Connection
 mongoose.connect("mongodb+srv://teamUser:teamPassword@cluster0.ehkp1.mongodb.net/SDSDB?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -18,76 +16,44 @@ mongoose.connect("mongodb+srv://teamUser:teamPassword@cluster0.ehkp1.mongodb.net
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-  /* mongoose.connect("mongodb://127.0.0.1:27017/SDSDB") */
-
-
-  app.post('/login', async (req,res)=>{
-
-    const {userName, password} = req.body;
-    UsersModel.findOne({userName: userName}).then(user => {
-        if(user){
-            if(user.password === password){
-                res.json("Success")
-            }
-            else{
-                res.json("incorrectPass")
-            }
-        }
-        else{
-            res.json("UsernotExist")
-        }
-    })
-
-})
-
-app.post('/signup', async (req, res) => {
-    try {
-        const existingUser = await UsersModel.findOne({ userName: req.body.userName });
-        
-        if (existingUser) {
-            return res.json("Username already exists");
-
-        }
-
-        const newUser = await UsersModel.create(req.body);
-        res.json(newUser);
-    } catch (err) {
-        res.json(err.message);
+// Login Route
+app.post('/login', (req, res) => {
+  const { userName, password } = req.body;
+  UsersModel.findOne({ userName: userName }).then(user => {
+    if (user) {
+      res.json(user.password === password ? "Success" : "incorrectPass");
+    } else {
+      res.json("UsernotExist");
     }
+  });
 });
 
+// Signup Route
+app.post('/signup', async (req, res) => {
+  try {
+    const existingUser = await UsersModel.findOne({ userName: req.body.userName });
+    if (existingUser) return res.json("Username already exists");
 
+    const newUser = await UsersModel.create(req.body);
+    res.json(newUser);
+  } catch (err) {
+    res.json(err.message);
+  }
+});
 
-// POST route to create a new discussion
+// Add a New Discussion
 app.post('/add-discussion', async (req, res) => {
   try {
-    const { courseId, courseName, user, content, id } = req.body;
-
-    // If the ID is not provided, generate a random one
-    const discussionId = id || Math.random().toString(36).substring(7); // Random ID generation
-
-    // If the courseId is not provided, generate a random one
-    const generatedCourseId = courseId || Math.random().toString(36).substring(7); // Random Course ID generation
-
-    // Create a new discussion
-    const newDiscussion = new DiscussionModel({
-      id: discussionId, // Use the provided or generated ID
-      courseId: generatedCourseId, // Use the provided or generated Course ID
-      courseName,
-      user,
-      content,
-    });
-
-    // Save the discussion to the database
+    const { courseId, courseName, user, content } = req.body;
+    const newDiscussion = new DiscussionModel({ courseId, courseName, user, content });
     await newDiscussion.save();
-
     res.status(201).json({ message: "Discussion added successfully", discussion: newDiscussion });
   } catch (error) {
     res.status(500).json({ message: "Error adding discussion", error: error.message });
   }
 });
 
-// GET route to fetch all discussions
+// Get All Discussions
 app.get('/discussions', async (req, res) => {
   try {
     const discussions = await DiscussionModel.find();
@@ -97,18 +63,268 @@ app.get('/discussions', async (req, res) => {
   }
 });
 
-
-
-app.get('/user', async (req, res) => {
+// Add a Reply to a Discussion
+app.post('/discussions/:discussionId/reply', async (req, res) => {
   try {
-    const user = await UsersModel.find(); // Fetch the first user record
-    res.status(200).json(user);
+    const { user, content } = req.body;
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+
+    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
+
+    discussion.replies.push({ user, content });
+    await discussion.save();
+
+    res.status(201).json({ message: "Reply added successfully", discussion });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching user", error: error.message });
+    res.status(500).json({ message: "Error adding reply", error: error.message });
+  }
+});
+
+// Vote on a Reply
+app.post('/discussions/:discussionId/replies/:replyId/vote', async (req, res) => {
+  try {
+    const { userId, voteType } = req.body; // voteType = 'up' or 'down'
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+
+    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
+
+    const reply = discussion.replies.id(req.params.replyId);
+    if (!reply) return res.status(404).json({ message: "Reply not found" });
+
+    const previousVote = reply.userVotes.get(userId);
+
+    if (previousVote === voteType) {
+      reply.userVotes.delete(userId);
+      reply.votes += voteType === 'up' ? -1 : 1;
+    } else {
+      if (previousVote) reply.votes += previousVote === 'up' ? -1 : 1;
+      reply.votes += voteType === 'up' ? 1 : -1;
+      reply.userVotes.set(userId, voteType);
+    }
+
+    await discussion.save();
+    res.status(200).json({ message: "Vote updated successfully", reply });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating vote", error: error.message });
+  }
+});
+
+// Get Replies for a Discussion with Pagination
+app.get('/discussions/:discussionId/replies', async (req, res) => {
+  const { page = 1, limit = 5 } = req.query;
+
+  try {
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
+
+    const startIndex = (page - 1) * limit;
+    const paginatedReplies = discussion.replies.slice(startIndex, startIndex + parseInt(limit));
+
+    res.status(200).json({
+      totalReplies: discussion.replies.length,
+      currentPage: page,
+      totalPages: Math.ceil(discussion.replies.length / limit),
+      replies: paginatedReplies,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching replies", error: error.message });
+  }
+});
+
+// Fetch a single discussion by ID
+app.get('/discussions/:discussionId', async (req, res) => {
+  try {
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+    if (!discussion) {
+      return res.status(404).json({ message: "Discussion not found" });
+    }
+    res.status(200).json(discussion);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching discussion", error: error.message });
+  }
+});
+
+// Fetch replies for a specific discussion
+app.get('/discussions/:discussionId/replies', async (req, res) => {
+  const { page = 1 } = req.query;
+  const pageSize = 5; // Adjust as needed
+
+  try {
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+    if (!discussion) {
+      return res.status(404).json({ message: "Discussion not found" });
+    }
+
+    const replies = await ReplyModel.find({ discussionId: req.params.discussionId })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+
+    const totalReplies = await ReplyModel.countDocuments({ discussionId: req.params.discussionId });
+
+    res.status(200).json({
+      replies,
+      currentPage: page,
+      totalPages: Math.ceil(totalReplies / pageSize),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching replies", error: error.message });
+  }
+});
+
+// POST route to add a reply to a discussion
+app.post('/discussions/:id/reply', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { user, content } = req.body;
+
+    // Validate the content length
+    if (!content || content.trim().length < 3 || content.trim().length > 100) {
+      return res.status(400).json({ message: 'Content must be between 3 and 100 words' });
+    }
+
+    // Find the discussion by ID
+    const discussion = await DiscussionModel.findById(id);
+    if (!discussion) {
+      return res.status(404).json({ message: 'Discussion not found' });
+    }
+
+    // Add the reply
+    discussion.replies.push({
+      user, // Replace this with the actual user info (e.g., from session)
+      content,
+      createdAt: new Date(),
+      votes: 0, // Initialize votes to 0
+    });
+
+    // Save the updated discussion
+    await discussion.save();
+
+    res.status(201).json({ message: 'Reply added successfully', reply: discussion.replies.at(-1) });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding reply', error: error.message });
+  }
+});
+app.post('/discussions/:id/replies/:replyId/vote', async (req, res) => {
+  try {
+    const { id, replyId } = req.params;
+    const { userId, voteType } = req.body;
+
+    const discussion = await DiscussionModel.findById(id);
+    if (!discussion) return res.status(404).json({ message: 'Discussion not found' });
+
+    const reply = discussion.replies.id(replyId);
+    if (!reply) return res.status(404).json({ message: 'Reply not found' });
+
+    // Handle voting logic
+    if (voteType === 'up') {
+      reply.votes += 1;
+    } else if (voteType === 'down') {
+      reply.votes -= 1;
+    }
+
+    await discussion.save();
+    res.status(200).json({ message: 'Vote updated successfully', votes: reply.votes });
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating vote', error: error.message });
   }
 });
 
 
+const multer = require('multer');
+const FileModel = require('./models/files'); // Import the File model
+const router = express.Router();
+
+// Set up Multer
+const storage = multer.diskStorage({
+  destination: './uploads',
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only JPG, PNG, and PDF are allowed.'));
+    }
+  },
+});
+
+
+// GET Files by Course
+router.get('/files', async (req, res) => {
+  const { courseId } = req.query;
+  try {
+    const files = await FileModel.find({ courseId });
+    res.status(200).json({ files });
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching files' });
+  }
+});
+
+// POST Upload File
+router.post('/upload', upload.single('file'), async (req, res) => {
+  const { courseId } = req.body;
+  const { originalname, path } = req.file;
+
+  try {
+    const newFile = new FileModel({
+      courseId,
+      fileName: originalname,
+      filePath: path,
+    });
+    await newFile.save();
+    res.status(201).json({ message: 'File uploaded successfully', file: newFile });
+  } catch (error) {
+    res.status(500).json({ error: 'Error uploading file' });
+  }
+});
+
+// GET Download File
+router.get('/files/:id/download', async (req, res) => {
+  try {
+    const file = await FileModel.findById(req.params.id);
+    if (!file) return res.status(404).json({ error: 'File not found' });
+    res.download(file.filePath, file.fileName);
+  } catch (error) {
+    res.status(500).json({ error: 'Error downloading file' });
+  }
+});
+
+
+// File upload endpoint
+router.post('/upload', upload.single('file'), async (req, res) => {
+  try {
+    const { courseId } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+
+    if (!courseId) {
+      return res.status(400).json({ message: 'Missing course ID' });
+    }
+
+    const file = new FileModel({
+      courseId,
+      fileName: req.file.filename,
+      filePath: req.file.path,
+      uploadDate: new Date(),
+    });
+
+    await file.save();
+    res.status(201).json({ message: 'File uploaded successfully', file });
+  } catch (error) {
+    console.error('File upload error:', error);
+    res.status(500).json({ message: 'Error uploading file', error: error.message });
+  }
+});
+module.exports = router;
 
 // Listen on port 3002
 app.listen(3002, () => {
