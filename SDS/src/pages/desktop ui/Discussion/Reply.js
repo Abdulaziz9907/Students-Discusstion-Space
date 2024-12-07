@@ -1,5 +1,6 @@
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Reply.css';
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
@@ -10,23 +11,38 @@ const ReplyDiscussion = () => {
   const [replyText, setReplyText] = useState('');
   const [error, setError] = useState(false);
 
-  const handleReplySubmit = () => {
+  // Extract discussion ID from the URL query parameter
+  const discussionId = new URLSearchParams(window.location.search).get('id');
+
+  const handleReplySubmit = async () => {
     if (replyText.trim() === '') {
       setError(true);
-    } else {
-      setError(false);
-      // Redirect to Discussion page
-      window.location.href = 'Discussion';
+      return;
+    }
+
+    setError(false);
+
+    try {
+      // Send reply to backend
+      await axios.post(`http://localhost:3002/discussions/${discussionId}/reply`, {
+        user: 'current_user', // Replace with actual user information
+        content: replyText,
+      });
+
+      // Redirect back to the discussion page
+      window.location.href = `/discussion?id=${discussionId}`;
+    } catch (error) {
+      console.error('Error submitting reply:', error);
     }
   };
 
   return (
     <>
       <header>
-        <Navbar/>
-        <img src={account_logo3} alt="comp1" id="Dis_Vec3" className="DisImage" />
-        <img src={account_logo4} alt="comp2" id="Dis_Vec4" className="DisImage" />
-        <img src={account_logo6} alt="comp3" id="Dis_Vec6" className="DisImage" />
+        <Navbar />
+        <img src={account_logo3} alt="Vector 3" id="Dis_Vec3" className="DisImage" />
+        <img src={account_logo4} alt="Vector 4" id="Dis_Vec4" className="DisImage" />
+        <img src={account_logo6} alt="Vector 6" id="Dis_Vec6" className="DisImage" />
       </header>
 
       <main>

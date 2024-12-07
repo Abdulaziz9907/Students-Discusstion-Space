@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '../../../components/assests/Navbar/Navbar';
-import React, { useState } from 'react';
 import './Discussion.css';
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
@@ -7,100 +8,137 @@ import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
 import account_logo6 from '../../desktop ui/login/elements/Vector6.png';
 
 const Discussion = () => {
-  const [upvoteClicked, setUpvoteClicked] = useState(false);
-  const [downvoteClicked, setDownvoteClicked] = useState(false);
-  const [votes, setVotes] = useState(6);
+  const [discussion, setDiscussion] = useState(null);
+  const [replies, setReplies] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const handleUpvote = () => {
-    if (!upvoteClicked) {
-      setVotes(downvoteClicked ? votes + 2 : votes + 1);
-      setUpvoteClicked(true);
-      setDownvoteClicked(false);
-    } else {
-      setVotes(votes - 1);
-      setUpvoteClicked(false);
+  // Extract ID from URL (assuming React Router is used)
+  const discussionId = new URLSearchParams(window.location.search).get('id');
+
+  useEffect(() => {
+    if (discussionId) {
+      fetchDiscussion();
+      fetchReplies();
+    }
+  }, [discussionId, currentPage]);
+
+  const fetchDiscussion = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3002/discussions/${discussionId}`);
+      setDiscussion(response.data);
+    } catch (error) {
+      console.error('Error fetching discussion:', error);
     }
   };
 
-  const handleDownvote = () => {
-    if (!downvoteClicked) {
-      setVotes(upvoteClicked ? votes - 2 : votes - 1);
-      setDownvoteClicked(true);
-      setUpvoteClicked(false);
-    } else {
-      setVotes(votes + 1);
-      setDownvoteClicked(false);
+  const fetchReplies = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3002/discussions/${discussionId}/replies?page=${currentPage}`
+      );
+      setReplies(response.data.replies || []);
+      setTotalPages(response.data.totalPages || 1);
+    } catch (error) {
+      console.error('Error fetching replies:', error);
     }
   };
 
-  const handleReply = () => {
-    window.location.href = 'Reply';
+  const handleVote = async (replyId, voteType) => {
+    try {
+      await axios.post(`http://localhost:3002/discussions/${discussionId}/replies/${replyId}/vote`, {
+        voteType,
+      });
+      fetchReplies(); // Refresh replies after voting
+    } catch (error) {
+      console.error('Error voting on reply:', error);
+    }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleReplyRedirect = () => {
+    window.location.href = `/reply?id=${discussionId}`;
   };
 
   return (
     <>
       <header>
         <Navbar />
-        <img src={account_logo3} alt="comp1" id="Dis_Vec3" className="DisImage" />
-        <img src={account_logo4} alt="comp2" id="Dis_Vec4" className="DisImage" />
-        <img src={account_logo6} alt="comp3" id="Dis_Vec6" className="DisImage" />
+        <img src={account_logo3} alt="Vector 3" id="Dis_Vec3" className="DisImage" />
+        <img src={account_logo4} alt="Vector 4" id="Dis_Vec4" className="DisImage" />
+        <img src={account_logo6} alt="Vector 6" id="Dis_Vec6" className="DisImage" />
       </header>
 
       <main>
         <div className="space"></div>
         <section className="course-section">
-          <h2>MATH208</h2>
-          <div className="discussion">
-            <div className="discussion-post">
-              <p>
-                <strong>ahmed</strong> <span>23 hour/s ago</span>
-              </p>
-              <p>Can I take this course with ENGL214 in summer?</p>
-            </div>
-            <button className="reply-btn" onClick={handleReply}>
-              Reply
-            </button>
-          </div>
+          {discussion && (
+            <>
+              <h2>{discussion.courseName}</h2>
+              <h3>Discussion:</h3>
+              <div className="discussion">
+                <div className="discussion-post">
+                  <p className="user-info">
+                    <strong>{discussion.user}</strong>
+                    <span>{new Date(discussion.createdAt).toLocaleString()}</span>
+                  </p>
+                  <p>{discussion.content}</p>
+                </div>
+                <button className="reply-btn" onClick={handleReplyRedirect}>
+                  Reply
+                </button>
+              </div>
+            </>
+          )}
 
-          <div className="reply-section">
-            <p>
-              <strong>zeyad</strong> <span>2 hour/s ago</span>
-            </p>
-            <p>
-              Yes, you can take this course with ENGL 214 in the summer. If MATH 102 was easy for
-              you, it should be manageable. Just make sure to stay organized with your assignments.
-              This way, you can balance both courses effectively.
-            </p>
-            <div className="vote">
-              <button
-                className={`vote-up ${upvoteClicked ? 'clicked' : 'unclicked'}`}
-                onClick={handleUpvote}
-              >
-                ⬆
-              </button>
-              <span>{votes}</span>
-              <button
-                className={`vote-down ${downvoteClicked ? 'clicked' : 'unclicked'}`}
-                onClick={handleDownvote}
-              >
-                ⬇
-              </button>
-            </div>
-          </div>
+          {replies.length > 0 && (
+            <>
+              <h3>Reply/s:</h3>
+              {replies.map((reply) => (
+                <div key={reply._id} className="reply-section">
+                  <div className="reply-content">
+                    <p className="user-info">
+                      <strong>{reply.user}</strong>
+                      <span>{new Date(reply.createdAt).toLocaleString()}</span>
+                    </p>
+                    <p>{reply.content}</p>
+                  </div>
+                  <div className="vote">
+                    <button
+                      className="vote-up"
+                      onClick={() => handleVote(reply._id, 'up')}
+                    >
+                      ⬆
+                    </button>
+                    <span>{reply.votes}</span>
+                    <button
+                      className="vote-down"
+                      onClick={() => handleVote(reply._id, 'down')}
+                    >
+                      ⬇
+                    </button>
+                  </div>
+                </div>
+              ))}
+
+              <div className="pagination">
+                {[...Array(totalPages)].map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={currentPage === idx + 1 ? 'active' : ''}
+                    onClick={() => handlePageChange(idx + 1)}
+                  >
+                    {idx + 1}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </section>
       </main>
-
-      <footer>
-        <div className="pagination">
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <span>…</span>
-          <a href="#">6</a>
-          <a href="#">{">"}</a>
-        </div>
-      </footer>
     </>
   );
 };

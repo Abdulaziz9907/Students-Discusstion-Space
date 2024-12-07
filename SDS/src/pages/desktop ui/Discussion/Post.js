@@ -7,16 +7,39 @@ import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
 import account_logo6 from '../../desktop ui/login/elements/Vector6.png';
 
 const PostDiscussion = () => {
-  const [postText, setPostText] = useState('');
+  const [discussionContent, setDiscussionContent] = useState('');
   const [error, setError] = useState(false);
 
-  const handleSubmit = () => {
-    if (postText.trim() === '') {
+  // Extract courseId from the URL (e.g., /post?id=MATH208)
+  const courseId = new URLSearchParams(window.location.search).get('id');
+  const courseName = courseId; // Assuming course name matches course ID (MATH208)
+
+  const handlePostSubmit = async () => {
+    if (!discussionContent.trim()) {
       setError(true);
-    } else {
+      return;
+    }
+
+    try {
       setError(false);
-      // Navigate to the discussion page
-      window.location.href = 'Discussion';
+      // Post the new discussion to the backend
+      await fetch('http://localhost:3002/add-discussion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseId,
+          courseName,
+          user: 'current_user', // Replace with actual user info
+          content: discussionContent,
+        }),
+      });
+
+      // Navigate to the course's discussions page
+      window.location.href = `/discussions?course=${courseId}`;
+    } catch (error) {
+      console.error('Error posting discussion:', error);
     }
   };
 
@@ -32,23 +55,23 @@ const PostDiscussion = () => {
       <main>
         <div className="space"></div>
         <section className="post-section">
-          <h2>Post discussion for: MATH208</h2>
+          <h2>Post a New Discussion for: {courseId}</h2>
           <div className="post-box">
             <label
-              htmlFor="post-text"
+              htmlFor="discussion-text"
               id="post-label"
               className={error ? 'error' : ''}
             >
               Write your discussion*
             </label>
             <textarea
-              id="post-text"
+              id="discussion-text"
               placeholder="Write your discussion here between 3-100 words"
-              value={postText}
-              onChange={(e) => setPostText(e.target.value)}
+              value={discussionContent}
+              onChange={(e) => setDiscussionContent(e.target.value)}
             ></textarea>
-            <button className="submit-btn" onClick={handleSubmit}>
-              Post Discussion
+            <button className="submit-btn" onClick={handlePostSubmit}>
+              Post
             </button>
           </div>
         </section>
