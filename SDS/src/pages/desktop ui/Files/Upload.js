@@ -1,5 +1,6 @@
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import React, { useState, useRef } from 'react';
+import axios from 'axios'; // Import axios for API calls
 import './Upload.css';
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
@@ -11,24 +12,42 @@ const UploadFilePage = () => {
   const [error, setError] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Extract course ID from URL
+  const courseId = new URLSearchParams(window.location.search).get('id');
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    if (e.target.files.length) {
-      setError(false);
-      // Redirect to Files page
-      window.location.href = 'Files.html';
-    }
+    setError(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!file) {
-      setError(true);
-    } else {
-      setError(false);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!file) {
+    setError(true);
+    return;
+  }
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('courseId', courseId);
+
+    const response = await axios.post('http://localhost:3002/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    if (response.status === 201) {
       alert('File uploaded successfully!');
+      window.location.href = `/files?id=${courseId}`;
     }
-  };
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    alert('File upload failed. Please try again.');
+  }
+};
+
 
   const handleSelectFile = () => {
     fileInputRef.current.click();
@@ -61,7 +80,7 @@ const UploadFilePage = () => {
       <main id="upload-file-main">
         <div className="space" id="upload-file-space"></div>
         <section className="upload-section" id="upload-file-section">
-          <h2>Upload file for: MATH208</h2>
+          <h2>Upload file for: {courseId || 'Course'}</h2>
           <form id="upload-file-form" onSubmit={handleSubmit}>
             <label
               htmlFor="upload-file-input"
