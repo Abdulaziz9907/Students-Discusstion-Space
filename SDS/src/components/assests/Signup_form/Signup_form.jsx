@@ -14,7 +14,11 @@ const Signup_form = () => {
   const[lName,setLname]=useState();
   const[major,setMajor]=useState();
   const[password,setPassword]=useState();
-
+  let ratings = 0, 
+    questions = 0, 
+    answers = 0, 
+    files = 0, 
+    discussions = 0;
 
   const navigate = useNavigate();
 
@@ -36,11 +40,11 @@ const Signup_form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:3002/signup', { userName, fName, lName, major, year, password })
+      .post('http://localhost:3002/signup', { userName, fName, lName, major, year, password, ratings, questions, answers, files, discussions })
       .then((result) => {
         console.log(result);
         if(result.data === "Username already exists"){
-          toast.error('Username already exists. Please choose another.', {
+          toast.error('Username already exists please choose another.', {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
@@ -54,9 +58,24 @@ const Signup_form = () => {
           document.querySelector('.SF_input-box input').style.border = '2px solid red';
           
         }
-
+        
         else{
-        navigate('/')
+
+        
+
+          toast.success('Account created successfully', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+             
+            });
+            navigate('/', { state: { showSuccessToast: true } });
         }
       })
       .catch((err) => console.log(err));

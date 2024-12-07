@@ -8,7 +8,12 @@ const UsersSchema= new moongose.Schema({
     lName: String,
     major: String,
     year: Number,
-    password: String
+    password: String,
+    ratings: Number,
+    questions: Number,
+    answers: Number,
+    files: Number,
+    discussions: Number,
 
 })
 

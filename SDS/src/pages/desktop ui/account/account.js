@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './account.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import DeleteBtn from '../../../components/assests/DeleteBtn/DeleteBtn';
+import axios from 'axios';
 
 import account_logo3 from './elements/Vector3.png';
 import account_logo4 from './elements/Vector4.png';
@@ -9,7 +10,24 @@ import account_logo5 from './elements/Vector5.png';
 import account_logo6 from './elements/Vector6.png';
 
 function Account() {
-  // Manage state for input fields and their edit modes
+
+  const [user, setUser] = useState([]); // State to store discussions
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:3002/user'); 
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser(); // Call the function to fetch discussions
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+  console.log(user);
+  
   const [fields, setFields] = useState({
     username: { value: 'Abdullaziz363', isEditing: false },
     firstName: { value: 'Abdullaziz', isEditing: false },

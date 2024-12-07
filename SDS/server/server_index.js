@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB Atlas (replace with your connection string)
+
 mongoose.connect("mongodb+srv://teamUser:teamPassword@cluster0.ehkp1.mongodb.net/SDSDB?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,8 +18,10 @@ mongoose.connect("mongodb+srv://teamUser:teamPassword@cluster0.ehkp1.mongodb.net
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+  /* mongoose.connect("mongodb://127.0.0.1:27017/SDSDB") */
 
-  app.post('/login',(req,res)=>{
+
+  app.post('/login', async (req,res)=>{
 
     const {userName, password} = req.body;
     UsersModel.findOne({userName: userName}).then(user => {
@@ -93,6 +96,19 @@ app.get('/discussions', async (req, res) => {
     res.status(500).json({ message: "Error fetching discussions", error: error.message });
   }
 });
+
+
+
+app.get('/user', async (req, res) => {
+  try {
+    const user = await UsersModel.find(); // Fetch the first user record
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching user", error: error.message });
+  }
+});
+
+
 
 // Listen on port 3002
 app.listen(3002, () => {

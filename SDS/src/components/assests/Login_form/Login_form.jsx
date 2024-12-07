@@ -1,16 +1,50 @@
 import React from 'react'
 import "./Login_form.css"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import lf_logo from './elements/Component 1.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Flip, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login_form = () => {
 
 const navigate = useNavigate();
+const location = useLocation();
+
 
 const[userName,setUserName]=useState();
 const[password,setPassword]=useState();
+
+useEffect(() => {
+  if (location.state?.showSuccessToast) {
+    toast.success('Account created successfully', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+    });
+  }
+  else if(location.state?.showDeletedToast){
+    toast.success('Account deleted successfully', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+    });
+  }
+}, [location.state]);
+
 
 const handleSubmit=(e)=>{
   e.preventDefault()
@@ -18,6 +52,19 @@ const handleSubmit=(e)=>{
     console.log(result);
     if(result.data === "Success"){navigate('/Main Webpage')}
     else{
+
+      toast.error('Username or password is not correct', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Flip,
+        });
+
       document.querySelectorAll('.LF_input-box input').forEach(input => input.style.border = '2px solid red');
     }
     
@@ -26,6 +73,7 @@ const handleSubmit=(e)=>{
   return (
 
     <div className='LF_box'>
+      <ToastContainer />
 
 
       <div id='LF_login_text'>

@@ -18,17 +18,17 @@ const Navbar = () => {
 
 <span id="site_name">Students Discussion Space</span>
 
-<button class="navButtons" onClick={() => navigate('/Main Webpage')}>
-    <img src={logo_h} alt="home" id="home" class="logImageNav" />
-    <span class="navText" >Home</span>
+<button className="navButtons" onClick={() => navigate('/Main Webpage')}>
+    <img src={logo_h} alt="home" id="home" className="logImageNav" />
+    <span className="navText" >Home</span>
   </button>
-  <button class="navButtons" onClick={() => navigate('/Account')}>
-    <img src={logo_u} alt="account" id="user" class="logImageNav" />
-    <span class="navText">Account</span>
+  <button className="navButtons" onClick={() => navigate('/Account')}>
+    <img src={logo_u} alt="account" id="user" className="logImageNav" />
+    <span className="navText">Account</span>
   </button>
-  <button class="navButtons" onClick={() => navigate('/')}>
-    <img src={logo_l} alt="logout" id="logout" class="logImageNav" />
-    <span class="navText">Signout</span>
+  <button className="navButtons" onClick={() => navigate('/')}>
+    <img src={logo_l} alt="logout" id="logout" className="logImageNav" />
+    <span className="navText">Signout</span>
   </button>
 
       

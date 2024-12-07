@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import './DeleteBtn.css'; 
+import { useNavigate } from 'react-router-dom';
+import './DeleteBtn.css';
 
-function DeleteBtn() {
+function DeleteBtn({ userName }) {
   const [expanded, setExpanded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    console.log("Attempting to delete user with userName:", userName); // Log userName
     if (!expanded) {
-      setExpanded(true); 
+      setExpanded(true);
     } else {
-      const confirmDelete = window.alert("This account has been deleted. Click Ok to logout");
-      if (confirmDelete) {
-        setShowModal(true); 
-        setTimeout(() => {
-          navigate('/'); 
-        }, 200); 
+      try {
+        const response = await fetch(`http://localhost:3002/delete-account/${userName}`, {
+          method: "DELETE",
+        });
+
+        const data = await response.json();
+        console.log("Response from server:", data); // Log server response
+        if (response.ok) {
+          alert(data.message);
+          navigate('/', { state: { showDeletedToast: true } });
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error while deleting account:", error);
+        alert("An error occurred while deleting the account.");
       }
     }
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false); 
   };
 
   return (
@@ -35,15 +41,6 @@ function DeleteBtn() {
       >
         {expanded ? '' : 'Delete account'}
       </button>
-
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>This account has been deleted.</p>
-            {handleCloseModal}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
