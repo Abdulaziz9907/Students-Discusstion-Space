@@ -25,12 +25,16 @@ import Post from './pages/desktop ui/Discussion/Post';
 import Reply from './pages/desktop ui/Discussion/Reply';
 import Files from './pages/desktop ui/Files/Files';
 import Upload from './pages/desktop ui/Files/Upload';
+import { UserProvider } from '../src/context/userContext';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
    return (
+       <UserProvider>
       <BrowserRouter>
+   
+
          <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/SignUp" element={<Signup />} />
@@ -57,7 +61,9 @@ function App() {
             <Route path="/Files" element={<Files />} />
             <Route path="/Upload" element={<Upload />} />
          </Routes>
-      </BrowserRouter>         
+         
+      </BrowserRouter>  
+     </UserProvider>        
   );
 }
 

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './account.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import DeleteBtn from '../../../components/assests/DeleteBtn/DeleteBtn';
 import axios from 'axios';
+import { UserContext } from '../../../context/userContext';
 
 import account_logo3 from './elements/Vector3.png';
 import account_logo4 from './elements/Vector4.png';
@@ -10,34 +11,67 @@ import account_logo5 from './elements/Vector5.png';
 import account_logo6 from './elements/Vector6.png';
 
 function Account() {
-
-  const [user, setUser] = useState([]); // State to store discussions
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get('http://localhost:3002/user'); 
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-
-    fetchUser(); // Call the function to fetch discussions
-  }, []); // Empty dependency array ensures this runs only once when the component mounts
-
-  console.log(user);
-  
+  const { userName } = useContext(UserContext); // Access username from context
+  console.log(userName+" account")
   const [fields, setFields] = useState({
-    username: { value: 'Abdullaziz363', isEditing: false },
-    firstName: { value: 'Abdullaziz', isEditing: false },
-    lastName: { value: 'Hakami', isEditing: false },
-    major: { value: 'CS', isEditing: false },
-    level: { value: 'Junior', isEditing: false },
-    password: { value: 'stu-ccm123', isEditing: false }
+    username: { value: userName, isEditing: false },
+    firstName: { value: '', isEditing: false },
+    lastName: { value: '', isEditing: false },
+    major: { value: '', isEditing: false },
+    level: { value: '', isEditing: false },
+    password: { value: '', isEditing: false }
   });
 
-  // Handle the "Edit" button click
+  const [loading, setLoading] = useState(true); // To handle loading state
+  const [error, setError] = useState(''); // For error handling
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (!userName) {
+        console.log('User name is not defined. Skipping fetch...');
+        setLoading(false);
+        return;
+      }
+  
+      console.log('Fetching user details with username:', userName);
+  
+      try {
+        const response = await axios.get('http://localhost:3002/user', {
+          params: { userName },
+        });
+  
+        console.log('Response from server:', response.data);
+  
+        if (response?.data) {
+          setFields({
+            username: { value: userName, isEditing: false },
+            firstName: { value: response.data.fName || '', isEditing: false },
+            lastName: { value: response.data.lName || '', isEditing: false },
+            major: { value: response.data.major || '', isEditing: false },
+            level: { value: response.data.year || '', isEditing: false },
+            password: { value: response.data.password || '', isEditing: false },
+            
+            
+          });
+        }
+  
+        setLoading(false);
+      } catch (err) {
+        console.error('Error occurred while fetching user details:', err);
+  
+        if (err.response) {
+          console.error('Error response data:', err.response.data);
+        }
+  
+        setError('Failed to load user details');
+        setLoading(false);
+      }
+    };
+  
+    fetchUserDetails();
+  }, [userName]);
+
+  // Handle edit button click
   const handleEditClick = (field) => {
     setFields(prevState => ({
       ...prevState,
@@ -45,13 +79,21 @@ function Account() {
     }));
   };
 
-  // Handle the value change when the user edits the field
+  // Handle input change
   const handleInputChange = (field, event) => {
     setFields(prevState => ({
       ...prevState,
       [field]: { ...prevState[field], value: event.target.value }
     }));
   };
+
+  if (loading) {
+    return <p>Loading user details...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: 'red' }}>{error}</p>;
+  }
 
   return (
     <div className='account_body'>
