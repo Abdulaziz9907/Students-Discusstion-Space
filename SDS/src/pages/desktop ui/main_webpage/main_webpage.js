@@ -5,8 +5,30 @@ import mw_logo4 from './elements/Vector4.png';
 import mw_logo5 from './elements/Vector5.png';
 import mw_logo6 from './elements/Vector6.png';
 import mw_search from './elements/search.png';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function main_webpage() {
+
+
+function Main_webpage() {
+
+
+  const [courseId, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (courseId.trim()) {
+      navigate('/Search Results', { state: { courseId } }); // Pass the search term to SearchResults
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(); // Trigger search on Enter key press
+    }
+  };
+
+
   return (
 
     <div className='main_webpage_body'>
@@ -24,7 +46,11 @@ function main_webpage() {
     
 
      <div class="sr_search-container">
-      <input type="text" placeholder="search" class="mw_search-bar" ></input>
+      <input type="text" placeholder="search" class="mw_search-bar" 
+      value={courseId}
+      onChange={(e) => setSearchTerm(e.target.value)} // Update search term state
+      onKeyDown={handleKeyDown} // Trigger search on Enter
+      ></input>
      
       </div>
  </div>
@@ -80,4 +106,4 @@ function main_webpage() {
 }
 
 
-export default main_webpage;
+export default Main_webpage;
