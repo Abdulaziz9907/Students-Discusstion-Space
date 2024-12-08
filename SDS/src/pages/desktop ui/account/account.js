@@ -3,12 +3,13 @@ import './account.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import DeleteBtn from '../../../components/assests/DeleteBtn/DeleteBtn';
 import axios from 'axios';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { UserContext } from '../../../context/userContext';
-
 import account_logo3 from './elements/Vector3.png';
 import account_logo4 from './elements/Vector4.png';
 import account_logo5 from './elements/Vector5.png';
 import account_logo6 from './elements/Vector6.png';
+
 
 function Account() {
   const { userName } = useContext(UserContext); // Access username from context
@@ -102,6 +103,61 @@ function Account() {
     return <p style={{ color: 'red' }}>{error}</p>;
   }
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Extract the values from `fields`
+    const updatedData = {
+      userName: userName,
+      fName: fields.firstName.value,
+      lName: fields.lastName.value,
+      major: fields.major.value,
+      year: fields.level.value,
+      password: fields.password.value,
+      ratings: fields.ratings.value,
+      questions: fields.questions.value,
+      answers: fields.answers.value,
+      files: fields.files.value,
+      discussions: fields.discussions.value,
+    };
+
+    axios
+      .put('http://localhost:3002/update', updatedData)
+      .then((result) => {
+        console.log(result);
+        if (result.data === "Error") {
+          toast.error('Error', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+          });
+          document.querySelector('.SF_input-box input').style.border = '2px solid red';
+        } else {
+          toast.success('Account updated successfully', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
   return (
     <div className='account_body'>
       <div id='account_items'>
@@ -125,7 +181,7 @@ function Account() {
             <p id='account_text2'>Personal Info</p>
 
             <div id='account_details1'>
-              <form>
+              <form onSubmit={handleSubmit}>
                 {/* Username */}
                 <div id='account_details_list' className='account_underline'>
                   <label htmlFor="account_username">Username:</label>
@@ -138,9 +194,7 @@ function Account() {
                     readOnly={!fields.username.isEditing}
                     className={fields.username.isEditing ? 'editable' : ''} // Apply editable class
                   />
-                  <button type="button" onClick={() => handleEditClick('username')}>
-                    {fields.username.isEditing ? 'Save' : 'Edit'}
-                  </button>
+                  
                 </div>
 
                 {/* First name */}
@@ -227,6 +281,11 @@ function Account() {
                     {fields.password.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
+
+                <button type="submit" id="mw_sgst-button">
+                  Update
+                </button>
+
               </form>
             </div>
           </div>

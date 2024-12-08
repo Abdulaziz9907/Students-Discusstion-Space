@@ -342,27 +342,38 @@ app.get('/user', async (req, res) => {
   }
 });
 
-app.delete('/delete-account/:userName', async (req, res) => {
-  const { userName } = req.params;
+app.put('/update', async (req, res) => {
+  const { userName, fName, lName, major, year, password, ratings, questions, answers, files, discussions } = req.body;
 
   try {
-    const deletedUser = await UsersModel.findOneAndDelete({ userName: userName });
+    const user = await UsersModel.findOneAndUpdate(
+      { userName }, // Find user by username
+      {
+        fName,
+        lName,
+        major,
+        year,
+        password,
+        ratings,
+        questions,
+        answers,
+        files,
+        discussions,
+      },
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Ensure the provided fields follow the defined schema
+      }
+    );
 
-    if (!deletedUser) {
-      return res.status(404).json({ 
-        message: 'User not found. Unable to delete account.' 
-      });
+    if (!user) {
+      return res.status(404).json("Error"); // If the user doesn't exist
     }
 
-    res.status(200).json({ 
-      message: 'Account successfully deleted'
-    });
+    res.status(200).json(user); // Send the updated user details as a response
   } catch (error) {
-    console.error('Error deleting account:', error);
-    res.status(500).json({ 
-      message: 'An error occurred while deleting the account',
-      error: error.message 
-    });
+    console.error('Error updating user:', error);
+    res.status(500).json("Error");
   }
 });
 
