@@ -40,7 +40,7 @@ function ReplyOnQuestion() {
       
       
       // Navigate back to the Coursequestions page after posting the reply
-      navigate("/CourseQuestions" , { state: { questionId } });
+      navigate("/questionDetails" , { state: { questionId } });
     } catch (error) {
       console.error("Error posting reply:", error);
       alert('Failed to post reply');

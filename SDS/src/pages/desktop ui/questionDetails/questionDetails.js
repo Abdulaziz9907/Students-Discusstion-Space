@@ -85,7 +85,7 @@ function QuestionDetails() {
           </div>
           <button
             className="reply-btn"
-            onClick={() => navigate(`/ReplyOnQuestion?questionId=${questionId}`)}
+            onClick={() => navigate("/ReplyOnQuestion", { state: { questionId } })}
           >
             Reply
           </button>
