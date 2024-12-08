@@ -10,7 +10,7 @@ function PostDiscussion() {
   const { state } = useLocation(); // Get state from navigation
   const navigate = useNavigate();
 
-  const courseName = state?.courseName || ''; // Get course name from state
+  const courseName = state?.courseName || 'All courses'; // Get course name from state
 
   // Handle the discussion submission
   const handlePostDiscussion = async () => {
@@ -28,7 +28,7 @@ function PostDiscussion() {
       });
 
       // Navigate back to discussions page after posting
-      navigate('/CourseDiscussions');
+      navigate('/CourseDiscussions', { state: { courseName } });
     } catch (error) {
       console.error("Error posting discussion:", error);
       alert('Failed to post discussion');

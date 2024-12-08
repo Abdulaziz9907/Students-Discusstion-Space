@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const UsersModel = require("./models/users");
 const DiscussionModel = require("./models/discussions");
+const QuestionModel = require('./models/questions');
 
 const app = express();
 app.use(express.json());
@@ -117,6 +118,123 @@ app.post('/reply-to-discussion', async (req, res) => {
     res.status(500).json({ message: "Error adding reply", error: error.message });
   }
 });
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Add a New Question
+app.post('/add-question', async (req, res) => {
+  try {
+    const { courseId, courseName, user, content } = req.body;
+    const newQuestion = new QuestionModel({ courseId, courseName, user, content });
+    await newQuestion.save();
+    res.status(201).json({ message: "Question added successfully", question: newQuestion });
+  } catch (error) {
+    res.status(500).json({ message: "Error adding question", error: error.message });
+  }
+});
+
+// Get All Questions
+
+app.get('/questions', async (req, res) => {
+  try {
+    const { courseName } = req.query; // Get courseName from query parameters
+    const questions = courseName
+      ? await QuestionModel.find({ courseName }) // Filter questions by courseName if provided
+      : await QuestionModel.find(); // Fetch all questions if no courseName is provided
+
+    res.status(200).json(questions); // Send the questions in the response
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching questions", error: error.message });
+  }
+});
+
+
+
+// GET route to fetch a specific question by ID
+app.get('/questions/:questionId', async (req, res) => {
+  try {
+    const question = await QuestionModel.findById(req.params.questionId);
+    if (!question) {
+      return res.status(404).json({ error: 'Question not found' });
+    }
+    res.json(question);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch question details' });
+  }
+});
+
+app.post('/questions/:questionId/replies/:replyId/vote', async (req, res) => {
+  const { voteType } = req.body;
+
+  if (!['up', 'down'].includes(voteType)) {
+    return res.status(400).json({ error: 'Invalid vote type' });
+  }
+
+  try {
+    const question = await QuestionModel.findById(req.params.questionId);
+    if (!question) {
+      return res.status(404).json({ error: 'Question not found' });
+    }
+
+    const reply = question.replies.id(req.params.replyId);
+    if (!reply) {
+      return res.status(404).json({ error: 'Reply not found' });
+    }
+
+    if (voteType === 'up') {
+      reply.votes += 1;
+    } else {
+      reply.votes -= 1;
+    }
+
+    await question.save();
+    res.json(reply);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update vote' });
+  }
+});
+
+
+// POST route to add a reply to a specific question
+app.post('/reply-to-question', async (req, res) => {
+  const { questionId, content, user } = req.body;
+
+  try {
+    // Find the discussion by ID
+    const question = await QuestionModel.findById(questionId);
+    if (!question) {
+      return res.status(404).json({ message: "question not found" });
+    }
+
+    // Create a new reply object
+    const newReply = {
+      user,
+      content,
+      votes: 0, // Initial vote count for the reply
+      userVotes: new Map(),
+    };
+
+    // Add the reply to the question's replies array
+    question.replies.push(newReply);
+    await question.save(); // Save the updated discussion with the new reply
+
+    res.status(201).json({ message: "Reply added successfully", question });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding reply", error: error.message });
+  }
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 
 
 

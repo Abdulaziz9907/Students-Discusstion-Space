@@ -31,6 +31,7 @@
     flex-grow: 1;
     width: 80vw; /* 80% of viewport width */
     max-width: 80vw; /* Ensure max width does not exceed 80vw */
+    
     margin-bottom: 20px; /* Add space between question and answers */
   }
   
@@ -78,6 +79,7 @@
     flex-grow: 1;
     width: 80vw; /* 80% of viewport width */
     max-width: 80vw; /* Ensure max width does not exceed 80vw */
+    min-height: 100px;
     position: relative; /* To position vote buttons absolutely */
   }
   

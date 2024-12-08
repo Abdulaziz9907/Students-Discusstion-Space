@@ -1,59 +1,116 @@
-// questionDetails.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import './questionDetails.css';
 
 function QuestionDetails() {
-  const question = {
-    author: 'Ahmed',
-    timestamp: '23 hours ago',
-    content: 'In a certain culture of bacteria, the initial amount was 2000. If the number of bacteria doubled after 8 hours, then the number of bacteria present after 24 hours is (Assume the rate of change of population is proportional to the population present at time t)',
-    answers: [
-      {
-        id: 1,
-        author: 'Mohammed',
-        timestamp: '2 hours ago',
-        content: 'To determine the number of bacteria after 24 hours, we start with the initial amount of 2000 bacteria. The problem states that the population doubles every 8 hours. Number of doublings = 24 hours / 8 hours per doubling = 3 doublings. Population after 24 hours = 2000 × 2^3 = 2000 × 8 = 16,000. Thus, the number of bacteria present after 24 hours is 16,000.',
-        upvotes: 5,
-        downvotes: 2,
-      },
-      {
-        id: 2,
-        author: 'Sara',
-        timestamp: '1 hour ago',
-        content: 'The number of bacteria is 2000. It doubles every 8 hours, so after 24 hours, it probably just gets really big. I think it might be around 100,000 or something. It’s just a lot of bacteria, you know?',
-        upvotes: 3,
-        downvotes: 1,
+  const { state } = useLocation();
+  const  questionId  = state?.questionId || '123'; // Get the questionId from the URL
+  const navigate = useNavigate();
+  const [question, setQuestion] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch the question details from the backend
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const response = await fetch(`http://localhost:3002/questions/${questionId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch question details');
+        }
+        const data = await response.json();
+        setQuestion(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-    ]
+    };
+
+    fetchQuestion();
+  }, [questionId]);
+
+  // Handle vote updates
+  const handleVote = async (replyId, voteType) => {
+    try {
+    
+      const response = await fetch(`http://localhost:3002/questions/${questionId}/replies/${replyId}/vote`, {
+        
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ voteType }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update vote');
+        
+      }
+
+      const updatedReply = await response.json();
+
+      // Update the question state to reflect the new vote count
+      setQuestion((prevQuestion) => ({
+        ...prevQuestion,
+        replies: prevQuestion.replies.map((reply) =>
+          reply._id === updatedReply._id ? updatedReply : reply
+        ),
+      }));
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!question) {
+    return <p>Question not found</p>;
+  }
 
   return (
     <div>
       <Navbar />
       <div className="course-container">
-        <h1>MATH208</h1>
-        <h2 >Question</h2>
+        <h1>{question.courseName}</h1>
+        <h2>Question</h2>
         <div className="question-wrapper">
           <div className="question-box">
             <p>{question.content}</p>
             <div className="question-footer">
-              <span>{question.author} {question.timestamp}</span>
+              <span>{question.user} {question.createdAt}</span>
             </div>
           </div>
-          <button className="reply-btn">Reply</button>
+          <button
+            className="reply-btn"
+            onClick={() => navigate(`/ReplyOnQuestion?questionId=${questionId}`)}
+          >
+            Reply
+          </button>
         </div>
         <h2>Answers</h2>
         <div className="answer-list">
-          {question.answers.map((answer) => (
-            <div key={answer.id} className="answer-box">
-              <p id='answer-content'>{answer.content}</p>
+          {question.replies.map((reply) => (
+            <div key={reply._id} className="answer-box">
+              <p id="answer-content">{reply.content}</p>
               <div className="answer-footer">
-                <span>{answer.author} {answer.timestamp}</span>
+                <span>{reply.user} {reply.createdAt}</span>
                 <div className="vote-buttons">
-                  <button className="upvote-btn">▲</button>
-                  <span className="vote-count">{answer.upvotes - answer.downvotes}</span>
-                  <button className="downvote-btn">▼</button>
+                  <button
+                    className="upvote-btn"
+                    onClick={() => handleVote(reply._id, 'up')}
+                  >
+                    ▲
+                  </button>
+                  <span className="vote-count">{reply.votes}</span>
+                  <button
+                    className="downvote-btn"
+                    onClick={() => handleVote(reply._id, 'down')}
+                  >
+                    ▼
+                  </button>
                 </div>
               </div>
             </div>

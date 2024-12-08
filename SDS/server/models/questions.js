@@ -1,4 +1,4 @@
-// models/discussions.js
+
 const mongoose = require('mongoose');
 
 // Define the schema for replies
@@ -23,8 +23,8 @@ const replySchema = new mongoose.Schema({
   timestamps: true, // Adds createdAt and updatedAt fields
 });
 
-// Extend the schema for discussions
-const discussionSchema = new mongoose.Schema({
+// Extend the schema for questions
+const questionSchema = new mongoose.Schema({
   courseId: {
     type: String,
      // Ensures courseId is required
@@ -47,6 +47,6 @@ const discussionSchema = new mongoose.Schema({
 });
 
 // Create the model using the schema
-const Discussion = mongoose.model('Discussion', discussionSchema);
+const Question = mongoose.model('Question', questionSchema);
 
-module.exports = Discussion;
+module.exports = Question;

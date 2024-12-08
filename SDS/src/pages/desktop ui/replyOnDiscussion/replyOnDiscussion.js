@@ -39,7 +39,7 @@ function ReplyOnDiscussion() {
       
       
       // Navigate back to the CourseDiscussions page after posting the reply
-      navigate('/CourseDiscussions');
+      navigate(`/Discussion?id=${discussionId}`);
     } catch (error) {
       console.error("Error posting reply:", error);
       alert('Failed to post reply');
