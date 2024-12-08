@@ -386,6 +386,58 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 });
 module.exports = router;
 
+
+app.get('/user', async (req, res) => {
+  try {
+    const { userName } = req.query; // or req.body if using POST
+    const user = await UsersModel.findOne({ userName: userName });
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/update', async (req, res) => {
+  const { userName, fName, lName, major, year, password, ratings, questions, answers, files, discussions } = req.body;
+
+  try {
+    const user = await UsersModel.findOneAndUpdate(
+      { userName }, // Find user by username
+      {
+        fName,
+        lName,
+        major,
+        year,
+        password,
+        ratings,
+        questions,
+        answers,
+        files,
+        discussions,
+      },
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Ensure the provided fields follow the defined schema
+      }
+    );
+
+    if (!user) {
+      return res.status(404).json("Error"); // If the user doesn't exist
+    }
+
+    res.status(200).json(user); // Send the updated user details as a response
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json("Error");
+  }
+});
+
+
 // Listen on port 3002
 app.listen(3002, () => {
   console.log("Server is running on port 3002");

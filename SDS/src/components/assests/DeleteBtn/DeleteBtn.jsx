@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DeleteBtn.css';
+import { UserContext } from '../../../context/userContext';
 
-function DeleteBtn({ userName }) {
+function DeleteBtn() {
   const [expanded, setExpanded] = useState(false);
+  const { userName } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    console.log("Attempting to delete user with userName:", userName); // Log userName
+    console.log("Attempting to delete user with userName:", userName);
     if (!expanded) {
       setExpanded(true);
     } else {
@@ -17,9 +19,9 @@ function DeleteBtn({ userName }) {
         });
 
         const data = await response.json();
-        console.log("Response from server:", data); // Log server response
+        console.log("Response from server:", data);
         if (response.ok) {
-          alert(data.message);
+          
           navigate('/', { state: { showDeletedToast: true } });
         } else {
           alert(data.message);

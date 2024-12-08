@@ -27,6 +27,21 @@ const Login_form = () => {
         transition: Flip,
       });
     }
+
+    else if(location.state?.showDeletedToast){
+      toast.success('Account deleted successfully', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+      transition: Flip,
+    });}
+
+
   }, [location.state]);
 
   const handleSubmit = (e) => {

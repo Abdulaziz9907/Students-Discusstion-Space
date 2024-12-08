@@ -3,12 +3,13 @@ import './account.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import DeleteBtn from '../../../components/assests/DeleteBtn/DeleteBtn';
 import axios from 'axios';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { UserContext } from '../../../context/userContext';
-
 import account_logo3 from './elements/Vector3.png';
 import account_logo4 from './elements/Vector4.png';
 import account_logo5 from './elements/Vector5.png';
 import account_logo6 from './elements/Vector6.png';
+
 
 function Account() {
   const { userName } = useContext(UserContext); // Access username from context
@@ -18,8 +19,13 @@ function Account() {
     firstName: { value: '', isEditing: false },
     lastName: { value: '', isEditing: false },
     major: { value: '', isEditing: false },
-    level: { value: '', isEditing: false },
-    password: { value: '', isEditing: false }
+    level: { value: 0, isEditing: false },
+    password: { value: '', isEditing: false },
+    ratings: { value: 0, isEditing: false },
+    questions: { value: 0, isEditing: false },
+    answers: { value: 0, isEditing: false },
+    files: { value: 0, isEditing: false },
+    discussions: { value: 0, isEditing: false }
   });
 
   const [loading, setLoading] = useState(true); // To handle loading state
@@ -37,9 +43,8 @@ function Account() {
   
       try {
         const response = await axios.get('http://localhost:3002/user', {
-          params: { userName },
+          params: { userName } 
         });
-  
         console.log('Response from server:', response.data);
   
         if (response?.data) {
@@ -50,8 +55,11 @@ function Account() {
             major: { value: response.data.major || '', isEditing: false },
             level: { value: response.data.year || '', isEditing: false },
             password: { value: response.data.password || '', isEditing: false },
-            
-            
+            ratings: { value: response.data.ratings || 0, isEditing: false },
+            questions: { value: response.data.questions || 0, isEditing: false },
+            answers: { value: response.data.answers || 0, isEditing: false },
+            files: { value: response.data.files || 0, isEditing: false },
+            discussions: { value: response.data.discussions || 0, isEditing: false }
           });
         }
   
@@ -95,6 +103,61 @@ function Account() {
     return <p style={{ color: 'red' }}>{error}</p>;
   }
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Extract the values from `fields`
+    const updatedData = {
+      userName: userName,
+      fName: fields.firstName.value,
+      lName: fields.lastName.value,
+      major: fields.major.value,
+      year: fields.level.value,
+      password: fields.password.value,
+      ratings: fields.ratings.value,
+      questions: fields.questions.value,
+      answers: fields.answers.value,
+      files: fields.files.value,
+      discussions: fields.discussions.value,
+    };
+
+    axios
+      .put('http://localhost:3002/update', updatedData)
+      .then((result) => {
+        console.log(result);
+        if (result.data === "Error") {
+          toast.error('Error', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+          });
+          document.querySelector('.SF_input-box input').style.border = '2px solid red';
+        } else {
+          toast.success('Account updated successfully', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Flip,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
   return (
     <div className='account_body'>
       <div id='account_items'>
@@ -118,7 +181,7 @@ function Account() {
             <p id='account_text2'>Personal Info</p>
 
             <div id='account_details1'>
-              <form>
+              <form onSubmit={handleSubmit}>
                 {/* Username */}
                 <div id='account_details_list' className='account_underline'>
                   <label htmlFor="account_username">Username:</label>
@@ -131,9 +194,7 @@ function Account() {
                     readOnly={!fields.username.isEditing}
                     className={fields.username.isEditing ? 'editable' : ''} // Apply editable class
                   />
-                  <button type="button" onClick={() => handleEditClick('username')}>
-                    {fields.username.isEditing ? 'Save' : 'Edit'}
-                  </button>
+                  
                 </div>
 
                 {/* First name */}
@@ -220,6 +281,11 @@ function Account() {
                     {fields.password.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
+
+                <button type="submit" id="mw_sgst-button">
+                  Update
+                </button>
+
               </form>
             </div>
           </div>
@@ -228,23 +294,23 @@ function Account() {
             <p id='account_text2'>Contributions</p>
             <div id='account_details2'>
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_ratings">2 rating/s</label>
+                <label htmlFor="account_ratings">{fields.ratings.value} rating/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_questions">5 question/s</label>
+                <label htmlFor="account_questions">{fields.questions.value} question/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_answers">1 answer/s</label>
+                <label htmlFor="account_answers">{fields.answers.value} answer/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_files">2 file/s uploaded</label>
+                <label htmlFor="account_files">{fields.files.value} file/s uploaded</label>
               </div>
 
               <div id='account_details_list'>
-                <label htmlFor="account_discussions">0 discussion/s</label>
+                <label htmlFor="account_discussions">{fields.discussions.value} discussion/s</label>
               </div>
             </div>
 
