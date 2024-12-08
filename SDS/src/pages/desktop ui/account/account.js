@@ -18,8 +18,13 @@ function Account() {
     firstName: { value: '', isEditing: false },
     lastName: { value: '', isEditing: false },
     major: { value: '', isEditing: false },
-    level: { value: '', isEditing: false },
-    password: { value: '', isEditing: false }
+    level: { value: 0, isEditing: false },
+    password: { value: '', isEditing: false },
+    ratings: { value: 0, isEditing: false },
+    questions: { value: 0, isEditing: false },
+    answers: { value: 0, isEditing: false },
+    files: { value: 0, isEditing: false },
+    discussions: { value: 0, isEditing: false }
   });
 
   const [loading, setLoading] = useState(true); // To handle loading state
@@ -49,8 +54,11 @@ function Account() {
             major: { value: response.data.major || '', isEditing: false },
             level: { value: response.data.year || '', isEditing: false },
             password: { value: response.data.password || '', isEditing: false },
-            
-            
+            ratings: { value: response.data.ratings || 0, isEditing: false },
+            questions: { value: response.data.questions || 0, isEditing: false },
+            answers: { value: response.data.answers || 0, isEditing: false },
+            files: { value: response.data.files || 0, isEditing: false },
+            discussions: { value: response.data.discussions || 0, isEditing: false }
           });
         }
   
@@ -227,23 +235,23 @@ function Account() {
             <p id='account_text2'>Contributions</p>
             <div id='account_details2'>
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_ratings">2 rating/s</label>
+                <label htmlFor="account_ratings">{fields.ratings.value} rating/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_questions">5 question/s</label>
+                <label htmlFor="account_questions">{fields.questions.value} question/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_answers">1 answer/s</label>
+                <label htmlFor="account_answers">{fields.answers.value} answer/s</label>
               </div>
 
               <div id='account_details_list' className='account_underline'>
-                <label htmlFor="account_files">2 file/s uploaded</label>
+                <label htmlFor="account_files">{fields.files.value} file/s uploaded</label>
               </div>
 
               <div id='account_details_list'>
-                <label htmlFor="account_discussions">0 discussion/s</label>
+                <label htmlFor="account_discussions">{fields.discussions.value} discussion/s</label>
               </div>
             </div>
 
