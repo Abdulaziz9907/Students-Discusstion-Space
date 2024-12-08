@@ -3,7 +3,11 @@ const moongose= require('mongoose');
 
 const UsersSchema= new moongose.Schema({
 
-    userName: String,
+    userName: {
+        type: String,
+        required: true,  // Ensures courseId is required
+        unique: true,    // Ensures courseId is unique
+      },
     fName: String,
     lName: String,
     major: String,

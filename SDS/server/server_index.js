@@ -4,6 +4,7 @@ const cors = require("cors");
 const UsersModel = require("./models/users");
 const DiscussionModel = require("./models/discussions");
 const QuestionModel = require('./models/questions');
+const Courses = require("./models/courses");
 
 const app = express();
 app.use(express.json());
@@ -554,6 +555,31 @@ app.put('/update', async (req, res) => {
     res.status(500).json("Error");
   }
 });
+
+
+app.get('/courses', async (req, res) => {
+  try {
+    console.log("searching course in server  ");
+    const { courseId } = req.query;
+    console.log("server searching for: " + courseId);
+
+    // Search for courses matching the regex pattern
+    const courses = await Courses.find({ courseId: { $regex: courseId, $options: 'i' } });
+
+    if (!courses || courses.length === 0) {
+      return res.status(404).json({ message: 'course not found' });
+    }
+
+    // Extract only courseId from the results
+    const courseIds = courses.map(course => course.courseId);
+
+    return res.json(courseIds);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 
 
 // Listen on port 3002

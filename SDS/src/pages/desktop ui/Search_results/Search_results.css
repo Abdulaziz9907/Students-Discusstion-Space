@@ -8,6 +8,7 @@
     font-family: 'Poppins';
     position: relative;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 
@@ -33,7 +34,8 @@ gap: 4rem;
   }
   
   .sr_search-bar {
-    
+    min-width: 400px;
+
     height: 45px;
     width: 50vw;
     padding: 10px 40px;
@@ -46,6 +48,8 @@ gap: 4rem;
   }
 
 #sr_text{
+    min-width: 400px;
+
     position: relative;
     font-size: 70px;
     font-weight: 900;
@@ -57,16 +61,8 @@ gap: 4rem;
 
     }
 
-    
-      
-      
-      
-     
 
-
-
-
-      #sr_results_container {
+    #sr_results_container {
         background-color: transparent;
         min-height: 50vh; 
         height: 20vh;
@@ -78,18 +74,11 @@ gap: 4rem;
         font-family: 'Poppins';
         left: 50%; 
         justify-content: center;
-        
-        margin: 0 auto; 
-        border-top-right-radius: 60px;
-        border-top-left-radius: 60px;
-        padding: 0;
         box-sizing: border-box;
         position: fixed; 
-        
-        transform: translateX(-50%); 
-        
-        
+        transform: translateX(-50%);
       }
+      
 
 
     #sr_text2{
@@ -106,16 +95,16 @@ gap: 4rem;
 
     #sr_results{
 
-        
-        height: 550px;
+        height: 750px;
         display: flex;
         flex-direction: column;
         gap: 22px;
         overflow: auto;
+        
     }
 
 
-    #sr_result1, #sr_result2, #sr_result3, #sr_result4, #sr_result5 {
+    #sr_result {
         position: relative;
         
         background-color: white;
@@ -124,14 +113,17 @@ gap: 4rem;
         align-items: center;
         min-height: 9vh;
         width: 70vw;
+        min-width: 400px;
         margin: 0 auto;
         border-radius: 30px;
         padding: 0;
         font-family: "Poppins";
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+
     }
     
    
-    .sr_result1-text,.sr_result2-text,.sr_result3-text,.sr_result4-text ,.sr_result5-text{
+    .sr_result-text{
         margin-left: 0; 
         text-align: left; 
         padding-left: 30px;
@@ -177,7 +169,28 @@ gap: 4rem;
             
         }
 
-
+        .loading-container {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #555;
+          }
+          
+          .loading-container span {
+            font-weight: bold;
+            animation: bounce 1s infinite;
+          }
+          
+          /* Optional: Add simple bounce animation */
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-5px);
+            }
+          }
+          
 
 /*Background shapes*/
 
