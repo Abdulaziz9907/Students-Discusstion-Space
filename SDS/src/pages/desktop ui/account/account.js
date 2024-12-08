@@ -37,9 +37,8 @@ function Account() {
   
       try {
         const response = await axios.get('http://localhost:3002/user', {
-          params: { userName },
+          params: { userName } 
         });
-  
         console.log('Response from server:', response.data);
   
         if (response?.data) {

@@ -326,6 +326,23 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 });
 module.exports = router;
 
+
+app.get('/user', async (req, res) => {
+  try {
+    const { userName } = req.query; // or req.body if using POST
+    const user = await UsersModel.findOne({ userName: userName });
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 // Listen on port 3002
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
