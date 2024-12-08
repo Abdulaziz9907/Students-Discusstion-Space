@@ -342,6 +342,30 @@ app.get('/user', async (req, res) => {
   }
 });
 
+app.delete('/delete-account/:userName', async (req, res) => {
+  const { userName } = req.params;
+
+  try {
+    const deletedUser = await UsersModel.findOneAndDelete({ userName: userName });
+
+    if (!deletedUser) {
+      return res.status(404).json({ 
+        message: 'User not found. Unable to delete account.' 
+      });
+    }
+
+    res.status(200).json({ 
+      message: 'Account successfully deleted'
+    });
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    res.status(500).json({ 
+      message: 'An error occurred while deleting the account',
+      error: error.message 
+    });
+  }
+});
+
 
 // Listen on port 3002
 app.listen(3002, () => {
