@@ -138,7 +138,7 @@ function Account() {
             theme: "dark",
             transition: Flip,
           });
-          document.querySelector('.SF_input-box input').style.border = '2px solid red';
+          
         } else {
           toast.success('Account updated successfully', {
             position: "top-right",
@@ -160,6 +160,7 @@ function Account() {
 
   return (
     <div className='account_body'>
+      <ToastContainer />
       <div id='account_items'>
         <div>
           <Navbar />
