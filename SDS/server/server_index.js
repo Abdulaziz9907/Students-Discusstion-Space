@@ -54,14 +54,74 @@ app.post('/add-discussion', async (req, res) => {
 });
 
 // Get All Discussions
+
 app.get('/discussions', async (req, res) => {
   try {
-    const discussions = await DiscussionModel.find();
-    res.status(200).json(discussions);
+    const { courseName } = req.query; // Get courseName from query parameters
+    const discussions = courseName
+      ? await DiscussionModel.find({ courseName }) // Filter discussions by courseName if provided
+      : await DiscussionModel.find(); // Fetch all discussions if no courseName is provided
+
+    res.status(200).json(discussions); // Send the discussions in the response
   } catch (error) {
     res.status(500).json({ message: "Error fetching discussions", error: error.message });
   }
 });
+
+
+
+// GET route to fetch a specific discussion by ID
+app.get('/discussion/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // Extract discussion ID from route params
+    const discussion = await DiscussionModel.findById(id);
+
+    if (!discussion) {
+      return res.status(404).json({ message: "Discussion not found" });
+    }
+
+    res.status(200).json(discussion);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching discussion", error: error.message });
+  }
+});
+
+// In server_index.js
+
+// POST route to add a reply to a specific discussion
+app.post('/reply-to-discussion', async (req, res) => {
+  const { discussionId, content, user } = req.body;
+
+  try {
+    // Find the discussion by ID
+    const discussion = await DiscussionModel.findById(discussionId);
+    if (!discussion) {
+      return res.status(404).json({ message: "Discussion not found" });
+    }
+
+    // Create a new reply object
+    const newReply = {
+      user,
+      content,
+      votes: 0, // Initial vote count for the reply
+      userVotes: new Map(),
+    };
+
+    // Add the reply to the discussion's replies array
+    discussion.replies.push(newReply);
+    await discussion.save(); // Save the updated discussion with the new reply
+
+    res.status(201).json({ message: "Reply added successfully", discussion });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding reply", error: error.message });
+  }
+});
+
+
+
+
+
 
 // Add a Reply to a Discussion
 app.post('/discussions/:discussionId/reply', async (req, res) => {
