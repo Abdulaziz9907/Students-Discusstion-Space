@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function CourseDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { courseName = 'Unknown Course' } = location.state || {};
+  const { courseId = 'Unknown Course' } = location.state || {};
 
   return (
     <div className="cd_body">
@@ -20,7 +20,7 @@ function CourseDetails() {
         </div>
 
         <div>
-          <p id="cd_text">Course: {courseName}</p>
+          <p id="cd_text">Course: {courseId}</p>
         </div>
       </div>
 
@@ -33,20 +33,20 @@ function CourseDetails() {
         <div id="cd_details">
           <div id="cd_details1">
             <span className="cd_details1-text">Course Difficulty Rating:</span>
-            <button className="cd_details-button" onClick={() => navigate('/CourseRating', { state: { courseName } })}>View rating</button>
+            <button className="cd_details-button" onClick={() => navigate('/CourseRating', { state: { courseId } })}>View rating</button>
           </div>
 
           <div id="cd_details2">
             <span className="cd_details2-text">Questions section</span>
             <button className="cd_details-button"
-            onClick={() => navigate('/CourseQuestions', { state: { courseName } })}>View questions</button>
+            onClick={() => navigate('/CourseQuestions', { state: { courseId } })}>View questions</button>
           </div>
 
           <div id="cd_details3">
             <span className="cd_details3-text">Discussions section</span>
             <button
               className="cd_details-button"
-              onClick={() => navigate('/CourseDiscussions', { state: { courseName } })}
+              onClick={() => navigate('/CourseDiscussions', { state: { courseId } })}
             >
               View discussions
             </button>
@@ -55,7 +55,7 @@ function CourseDetails() {
           <div id="cd_details4">
             <span className="cd_details4-text">Files</span>
             <button className="cd_details-button"
-             onClick={() => navigate('/Files', { state: { courseName } })}>View files</button>
+             onClick={() => navigate('/Files', { state: { courseId } })}>View files</button>
           </div>
         </div>
       </div>

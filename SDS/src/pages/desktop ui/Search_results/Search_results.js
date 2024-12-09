@@ -69,8 +69,8 @@ function Search_results() {
     }
   };
 
-  const handleViewDetails = (courseName) => {
-    navigate('/CourseDetails', { state: { courseName } }); // Navigate with courseName
+  const handleViewDetails = (courseId) => {
+    navigate('/CourseDetails', { state: { courseId } }); // Navigate with courseName
   };
 
   return (

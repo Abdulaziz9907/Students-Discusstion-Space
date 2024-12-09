@@ -26,6 +26,7 @@ const ratingSchema = new mongoose.Schema({
 const courseSchema = new mongoose.Schema({
   courseName: {
     type: String,
+    unique: true,
     required: true, // Ensures courseName is required
   },
   courseId: {
