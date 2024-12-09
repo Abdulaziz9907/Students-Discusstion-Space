@@ -13,6 +13,7 @@
 
 /* Main content container */
 #mw_items {
+    
     display: flex;
     flex-direction: column;
     gap: 80px;
@@ -22,6 +23,7 @@
 
 /* Header text */
 #mw_text {
+    
     position: relative;
     font-size: 70px;
     font-weight: 900;

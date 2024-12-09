@@ -2,7 +2,7 @@
 .navbar {
     background-color: white;
     width: 100%; 
-    height: 79px; 
+    min-height: 80px;
     position: relative; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;

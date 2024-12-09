@@ -638,7 +638,39 @@ app.delete('/delete-account/:userName', async (req, res) => {
 });
 
 
+/* app.get('/questions/count', async (req, res) => {
+  const { courseId } = req.query;
 
+  if (!courseId) {
+    return res.status(400).json({ message: 'courseId is required' });
+  }
+
+  try {
+    const count = await QuestionModel.countDocuments({ courseId });
+
+    return res.status(200).json({ count });
+  } catch (error) {
+    console.error('Error fetching question count:', error);
+    return res.status(500).json({ message: 'Error fetching question count', error: error.message });
+  }
+});
+
+app.get('/discussions/count', async (req, res) => {
+  const { courseId } = req.query;
+
+  if (!courseId) {
+    return res.status(400).json({ message: 'courseId is required' });
+  }
+
+  try {
+    const count = await DiscussionModel.countDocuments({ courseId });
+
+    return res.status(200).json({ count });
+  } catch (error) {
+    console.error('Error fetching question count:', error);
+    return res.status(500).json({ message: 'Error fetching discussion count', error: error.message });
+  }
+}); */
 
 
 // Listen on port 3002
