@@ -12,10 +12,10 @@
 
 #loginWelcome {
     position: absolute;
-    right: 30vw;
-    top: -9vh;
+    left: 40vw;
+    top: 4vh;
     z-index: 2;
-    font-size: 8rem;
+    font-size: 7vw;
     line-height: 0.9;
     text-align: left;
     display: block; 
@@ -48,8 +48,8 @@
 #loginComp1 {
     right: 0vw;
     bottom: 0;
-    max-width: 90%;
-    min-height: 600px;
+    width: 25vw;
+    
 }
 
 #loginVec1 {
@@ -96,9 +96,13 @@
     width: auto;
 }
 
-/* Media Queries for Responsiveness */
+@media screen and (max-width: 1531px) {
 
-/* For Phones (portrait) */
+    #loginWelcome{
+        left: 60vw;
+    }
+
+}
 @media screen and (max-width: 480px) {
     /* Hide background images for simpler view */
     #loginWelcome,
