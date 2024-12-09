@@ -44,6 +44,70 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Endpoint to retrieve a course by name
+app.get('/courses/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const course = await Courses.findOne({ courseName: name });
+    
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+    res.status(200).json(course);
+  } catch (error) {
+    res.status(500).json({ message: 'Error retrieving course', error: error.message });
+  }
+});
+
+/// Endpoint to add a rating to a course by name
+app.post('/courses/:courseName/rating', async (req, res) => {
+  const { courseName } = req.params; // Get course name from URL parameters
+  const { user, comment, value } = req.body; // Get rating details from the body
+
+  // Validate rating details
+  if (!user || !comment || !value || value < 1 || value > 5) {
+    return res.status(400).json({ message: 'Invalid rating details provided' });
+  }
+
+  try {
+    // Find the course by its name
+    const course = await Courses.findOne({ courseName: courseName });
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    // Create a new rating object
+    const newRating = {
+      user,
+      comment,
+      value,
+      timeStamp: new Date(),
+    };
+
+    // Add the new rating to the course's ratings array and calculate the new average rating
+    course.ratings.push(newRating);
+    course.courseRating =
+      course.ratings.reduce((sum, rating) => sum + rating.value, 0) / course.ratings.length;
+
+    // Save the updated course
+    await course.save();
+
+    res.status(201).json({
+      message: 'Rating added successfully',
+      updatedCourse: course,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding rating', error: error.message });
+  }
+});
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 // Add a New Discussion
 app.post('/add-discussion', async (req, res) => {
   try {

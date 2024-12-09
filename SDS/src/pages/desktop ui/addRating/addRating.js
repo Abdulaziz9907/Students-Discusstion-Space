@@ -1,24 +1,46 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import "./addRating.css";
+import axios from 'axios';
 
-function AddRating({ courseName }) {
+function AddRating() {
   const [rating, setRating] = useState(0);
   const [summary, setSummary] = useState("");
   const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const courseName = location.state?.courseName || "Unknown Course"; // Get courseName from navigation state
 
   const handleRatingClick = (index) => {
     setRating(index + 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (rating === 0 || summary.trim().length < 3) {
       setError("Please fill out both fields before submitting.");
-    } else {
-      setError("");
-      // Submit logic here
-      alert(`Rating submitted: ${rating} stars - ${summary}`);
+    
+      return;
+    }
+
+    setError("");
+
+    try {
+      // Send the rating to the backend
+      const response = await axios.post(`http://localhost:3002/courses/${courseName}/rating`, {
+        user: "Anonymous User", // Replace with an actual user identifier in a real-world application
+        comment: summary,
+        value: rating,
+      });
+
+      alert("Rating submitted successfully!");
+      // Redirect back to the course page
+      navigate(-1);
+    } catch (err) {
+      console.error("Error submitting rating:", err.message);
+      setError("Failed to submit the rating. Please try again later.");
     }
   };
 
