@@ -193,9 +193,11 @@
 
 @media (max-width: 1400px) {
     #mw_text {
-        margin-top: 100px;
+        
         font-size: 50px;
     }
+    .mw_search-bar {
+        height: 45px;}
 }
 @media (max-width: 1024px) {
     #mw_text {
@@ -207,6 +209,7 @@
 @media (max-width: 720px) {
   
     #mw_text {
+        margin-top: 40px;
         font-size: 25px;
     }
     #mw_suggestions_container{
