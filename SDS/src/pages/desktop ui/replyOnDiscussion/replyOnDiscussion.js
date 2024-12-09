@@ -31,10 +31,12 @@ function ReplyOnDiscussion() {
     try {
       // Send the reply content to the backend
       await axios.post('http://localhost:3002/reply-to-discussion', {
+       
         discussionId: discussionId,  // Passing the discussionId
         content: replyContent,        // Passing the reply content
         user: 'CurrentUser',          // Replace with actual user data (e.g. from auth context or state)
       });
+
 
       
       

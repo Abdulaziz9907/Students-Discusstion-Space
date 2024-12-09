@@ -291,6 +291,38 @@ app.post('/reply-to-question', async (req, res) => {
 });
 
 
+
+// POST route to add a reply to a specific discussion
+app.post('/reply-to-discussion', async (req, res) => {
+  const { discussionId, content, user } = req.body;
+
+  try {
+    // Find the discussion by ID
+    const discussion = await DiscussionModel.findById(discussionId);
+    if (!discussion) {
+      return res.status(404).json({ message: "discussion not found" });
+    }
+
+    // Create a new reply object
+    const newReply = {
+      user,
+      content,
+      votes: 0, // Initial vote count for the reply
+      userVotes: new Map(),
+    };
+
+    // Add the reply to the discussion's replies array
+    discussion.replies.push(newReply);
+    await discussion.save(); // Save the updated discussion with the new reply
+
+    res.status(201).json({ message: "Reply added successfully", discussion });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding reply", error: error.message });
+  }
+});
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
