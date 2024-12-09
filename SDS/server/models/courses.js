@@ -34,6 +34,10 @@ const courseSchema = new mongoose.Schema({
     required: true, // Ensures courseId is required
     unique: true,   // Ensures courseId is unique
   },
+  visits: {
+    type: Number,
+    default: 0 // Ensures courseId is required
+  },
   courseRating: {
     type: Number,
     default: 0,    // Defaults to 0 (no ratings yet)
