@@ -638,6 +638,21 @@ app.delete('/delete-account/:userName', async (req, res) => {
 });
 
 
+app.get('/course-name', async (req, res) => {
+  try {
+    console.log("searching course name in server  ");
+    const { courseId } = req.query;
+    console.log("server searching course name for: " + courseId);
+
+    const courseName = await Courses.findOne({ courseId });
+
+    return res.json(courseName);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 /* app.get('/questions/count', async (req, res) => {
   const { courseId } = req.query;
 
