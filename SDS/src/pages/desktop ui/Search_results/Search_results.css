@@ -255,21 +255,30 @@ gap: 4rem;
 
     @media (max-width: 1400px) {
         #sr_text {
-            margin-top: 100px;
+            margin-top: 20px;
             font-size: 50px;
         }
     }
     @media (max-width: 1024px) {
-        #srw_text {
-            font-size: 35px;
+        #sr_text {
+            margin-top: 40px;
+            font-size: 41px;
         }
+        .sr_search-bar {
+            height: 45px;}
+
+            #sr_results_full {
+                
+                min-height: 65vh;
+            }
+    
     }
     
     
     @media (max-width: 720px) {
       
         #sr_text {
-            font-size: 25px;
+            font-size: 38px;
         }
         #sr_results_container{
         width: 100%;
