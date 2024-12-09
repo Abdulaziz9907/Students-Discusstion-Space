@@ -45,6 +45,33 @@ app.post('/signup', async (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
+// Endpoint to add a new course
+app.post('/add-course', async (req, res) => {
+  const { courseName, courseId } = req.body;
+
+  // Validate request body
+  if (!courseName || !courseId) {
+    return res.status(400).json({ error: 'Course name and ID are required' });
+  }
+
+  try {
+    // Create a new course document
+    const newCourse = new Courses({ courseName, courseId });
+    await newCourse.save();
+
+    res.status(201).json({
+      message: 'Course added successfully',
+      course: newCourse,
+    });
+  } catch (err) {
+    if (err.code === 11000) {
+      // Handle duplicate key error
+      res.status(409).json({ error: 'Course ID or name already exists' });
+    } else {
+      res.status(500).json({ error: 'Failed to add course', details: err.message });
+    }
+  }
+});
 
 
 // Endpoint to retrieve a course by name
