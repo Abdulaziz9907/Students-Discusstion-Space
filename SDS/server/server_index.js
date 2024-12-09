@@ -5,6 +5,7 @@ const UsersModel = require("./models/users");
 const DiscussionModel = require("./models/discussions");
 const QuestionModel = require('./models/questions');
 const Courses = require("./models/courses");
+const FilesModel = require("./models/files");
 
 const app = express();
 app.use(express.json());
@@ -47,6 +48,11 @@ app.post('/signup', async (req, res) => {
 app.post('/add-discussion', async (req, res) => {
   try {
     const { courseId, courseName, user, content } = req.body;
+
+    if (!user || !content) {
+      return res.status(400).json({ message: 'User and content are required' });
+    }
+
     const newDiscussion = new DiscussionModel({ courseId, courseName, user, content });
     await newDiscussion.save();
     res.status(201).json({ message: "Discussion added successfully", discussion: newDiscussion });
@@ -72,53 +78,19 @@ app.get('/discussions', async (req, res) => {
 
 
 
-// GET route to fetch a specific discussion by ID
-app.get('/discussion/:id', async (req, res) => {
+// Fetch a single discussion by ID
+app.get('/discussions/:discussionId', async (req, res) => {
   try {
-    const { id } = req.params; // Extract discussion ID from route params
-    const discussion = await DiscussionModel.findById(id);
-
-    if (!discussion) {
+    const discussion = await DiscussionModel.findById(req.params.discussionId);
+    if(!discussion){
       return res.status(404).json({ message: "Discussion not found" });
     }
-
     res.status(200).json(discussion);
   } catch (error) {
     res.status(500).json({ message: "Error fetching discussion", error: error.message });
   }
 });
 
-// In server_index.js
-
-// POST route to add a reply to a specific discussion
-app.post('/reply-to-discussion', async (req, res) => {
-  const { discussionId, content, user } = req.body;
-
-  try {
-    // Find the discussion by ID
-    const discussion = await DiscussionModel.findById(discussionId);
-    if (!discussion) {
-      return res.status(404).json({ message: "Discussion not found" });
-    }
-
-    // Create a new reply object
-    const newReply = {
-      user,
-      content,
-      votes: 0, // Initial vote count for the reply
-      userVotes: new Map(),
-    };
-
-    // Add the reply to the discussion's replies array
-    discussion.replies.push(newReply);
-    await discussion.save(); // Save the updated discussion with the new reply
-
-    res.status(201).json({ message: "Reply added successfully", discussion });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error adding reply", error: error.message });
-  }
-});
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,101 +204,10 @@ app.post('/reply-to-question', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// Add a Reply to a Discussion
-app.post('/discussions/:discussionId/reply', async (req, res) => {
-  try {
-    const { user, content } = req.body;
-    const discussion = await DiscussionModel.findById(req.params.discussionId);
-
-    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
-
-    discussion.replies.push({ user, content });
-    await discussion.save();
-
-    res.status(201).json({ message: "Reply added successfully", discussion });
-  } catch (error) {
-    res.status(500).json({ message: "Error adding reply", error: error.message });
-  }
-});
-
-// Vote on a Reply
-app.post('/discussions/:discussionId/replies/:replyId/vote', async (req, res) => {
-  try {
-    const { userId, voteType } = req.body; // voteType = 'up' or 'down'
-    const discussion = await DiscussionModel.findById(req.params.discussionId);
-
-    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
-
-    const reply = discussion.replies.id(req.params.replyId);
-    if (!reply) return res.status(404).json({ message: "Reply not found" });
-
-    const previousVote = reply.userVotes.get(userId);
-
-    if (previousVote === voteType) {
-      reply.userVotes.delete(userId);
-      reply.votes += voteType === 'up' ? -1 : 1;
-    } else {
-      if (previousVote) reply.votes += previousVote === 'up' ? -1 : 1;
-      reply.votes += voteType === 'up' ? 1 : -1;
-      reply.userVotes.set(userId, voteType);
-    }
-
-    await discussion.save();
-    res.status(200).json({ message: "Vote updated successfully", reply });
-  } catch (error) {
-    res.status(500).json({ message: "Error updating vote", error: error.message });
-  }
-});
-
-// Get Replies for a Discussion with Pagination
-app.get('/discussions/:discussionId/replies', async (req, res) => {
-  const { page = 1, limit = 5 } = req.query;
-
-  try {
-    const discussion = await DiscussionModel.findById(req.params.discussionId);
-    if (!discussion) return res.status(404).json({ message: "Discussion not found" });
-
-    const startIndex = (page - 1) * limit;
-    const paginatedReplies = discussion.replies.slice(startIndex, startIndex + parseInt(limit));
-
-    res.status(200).json({
-      totalReplies: discussion.replies.length,
-      currentPage: page,
-      totalPages: Math.ceil(discussion.replies.length / limit),
-      replies: paginatedReplies,
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching replies", error: error.message });
-  }
-});
-
-// Fetch a single discussion by ID
-app.get('/discussions/:discussionId', async (req, res) => {
-  try {
-    const discussion = await DiscussionModel.findById(req.params.discussionId);
-    if (!discussion) {
-      return res.status(404).json({ message: "Discussion not found" });
-    }
-    res.status(200).json(discussion);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching discussion", error: error.message });
-  }
-});
-
 // Fetch replies for a specific discussion
 app.get('/discussions/:discussionId/replies', async (req, res) => {
   const { page = 1 } = req.query;
-  const pageSize = 5; // Adjust as needed
+  const pageSize = 3; // Adjust as needed
 
   try {
     const discussion = await DiscussionModel.findById(req.params.discussionId);
@@ -383,6 +264,9 @@ app.post('/discussions/:id/reply', async (req, res) => {
     res.status(500).json({ message: 'Error adding reply', error: error.message });
   }
 });
+
+
+
 app.post('/discussions/:id/replies/:replyId/vote', async (req, res) => {
   try {
     const { id, replyId } = req.params;
@@ -394,116 +278,206 @@ app.post('/discussions/:id/replies/:replyId/vote', async (req, res) => {
     const reply = discussion.replies.id(replyId);
     if (!reply) return res.status(404).json({ message: 'Reply not found' });
 
-    // Handle voting logic
-    if (voteType === 'up') {
-      reply.votes += 1;
-    } else if (voteType === 'down') {
-      reply.votes -= 1;
+    if (!reply.userVotes) {
+      reply.userVotes = new Map(); // Initialize userVotes as a Map if not present
+    }
+
+    // Get previous vote from the user
+    const previousVote = reply.userVotes.get(userId);
+
+    if (previousVote === voteType) {
+      // If the user is undoing their vote, remove the vote
+      reply.userVotes.delete(userId);
+      reply.votes += voteType === 'up' ? -1 : 1;
+    } else {
+      // Update the vote
+      if (previousVote) {
+        reply.votes += previousVote === 'up' ? -1 : 1; // Undo the previous vote
+      }
+      reply.votes += voteType === 'up' ? 1 : -1; // Apply the new vote
+      reply.userVotes.set(userId, voteType);
     }
 
     await discussion.save();
     res.status(200).json({ message: 'Vote updated successfully', votes: reply.votes });
   } catch (error) {
+    console.error('Error updating vote:', error.message);
     res.status(500).json({ message: 'Error updating vote', error: error.message });
   }
 });
 
 
+
+//////////////////////
+// Files
 const multer = require('multer');
-const FileModel = require('./models/files'); // Import the File model
+const path = require('path');
+
 const router = express.Router();
 
-// Set up Multer
+
+// Configure Multer
 const storage = multer.diskStorage({
-  destination: './uploads',
+  destination: (req, file, cb) => {
+    cb(null, './uploads'); // Directory to save files
+  },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 
-const upload = multer({
-  storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error('Invalid file type. Only JPG, PNG, and PDF are allowed.'));
+
+// File Upload Endpoint
+const { containerClient } = require('./azureBlob');
+
+const upload = multer({ storage: multer.memoryStorage() }); // Use memory storage
+
+
+app.post('/upload', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file || !req.body.courseId) {
+      return res.status(400).json({ message: 'File and courseId are required' });
     }
-  },
-});
 
+    const blobName = `${req.body.courseId}/${Date.now()}-${req.file.originalname}`;
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
-// GET Files by Course
-router.get('/files', async (req, res) => {
-  const { courseId } = req.query;
-  try {
-    const files = await FileModel.find({ courseId });
-    res.status(200).json({ files });
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching files' });
-  }
-});
-
-// POST Upload File
-router.post('/upload', upload.single('file'), async (req, res) => {
-  const { courseId } = req.body;
-  const { originalname, path } = req.file;
-
-  try {
-    const newFile = new FileModel({
-      courseId,
-      fileName: originalname,
-      filePath: path,
+    await blockBlobClient.upload(req.file.buffer, req.file.size, {
+      blobHTTPHeaders: { blobContentType: req.file.mimetype },
     });
+
+    const fileUrl = blockBlobClient.url;
+
+    // Save metadata to MongoDB
+    const newFile = new FilesModel({
+      courseId: req.body.courseId,
+      fileName: req.file.originalname,
+      filePath: blobName,
+      fileUrl,
+      uploadedAt: new Date(),
+    });
+
     await newFile.save();
+
     res.status(201).json({ message: 'File uploaded successfully', file: newFile });
   } catch (error) {
-    res.status(500).json({ error: 'Error uploading file' });
-  }
-});
-
-// GET Download File
-router.get('/files/:id/download', async (req, res) => {
-  try {
-    const file = await FileModel.findById(req.params.id);
-    if (!file) return res.status(404).json({ error: 'File not found' });
-    res.download(file.filePath, file.fileName);
-  } catch (error) {
-    res.status(500).json({ error: 'Error downloading file' });
-  }
-});
-
-
-// File upload endpoint
-router.post('/upload', upload.single('file'), async (req, res) => {
-  try {
-    const { courseId } = req.body;
-
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
-    }
-
-    if (!courseId) {
-      return res.status(400).json({ message: 'Missing course ID' });
-    }
-
-    const file = new FileModel({
-      courseId,
-      fileName: req.file.filename,
-      filePath: req.file.path,
-      uploadDate: new Date(),
-    });
-
-    await file.save();
-    res.status(201).json({ message: 'File uploaded successfully', file });
-  } catch (error) {
-    console.error('File upload error:', error);
+    console.error('Error uploading file:', error.message);
     res.status(500).json({ message: 'Error uploading file', error: error.message });
   }
 });
+
+
+router.get('/files/:blobName', async (req, res) => {
+  try {
+    const blobName = req.params.blobName;
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+    if (!(await blockBlobClient.exists())) {
+      return res.status(404).json({ message: 'File not found' });
+    }
+
+    const downloadUrl = blockBlobClient.url;
+    res.status(200).json({ url: downloadUrl });
+  } catch (error) {
+    console.error('Error fetching file:', error);
+    res.status(500).json({ message: 'Error fetching file', error: error.message });
+  }
+});
+
+
+
+
+// Serve Uploaded Files
+router.get('/files/:fileName', (req, res) => {
+  const filePath = path.join(__dirname, '../uploads', req.params.fileName);
+  res.download(filePath, (err) => {
+    if (err) {
+      console.error('File download error:', err);
+      res.status(404).json({ message: 'File not found' });
+    }
+  });
+});
+
+app.get('/files', async (req, res) => {
+  const { courseId } = req.query;
+
+  if (!courseId) {
+    return res.status(400).json({ message: 'courseId is required' });
+  }
+
+  try {
+    // Fetch files metadata from MongoDB
+    const files = await FilesModel.find({ courseId });
+
+    if (files.length === 0) {
+      return res.status(404).json({ message: `No files found for courseId: ${courseId}` });
+    }
+
+    res.status(200).json(files);
+  } catch (error) {
+    console.error('Error fetching files:', error.message);
+    res.status(500).json({ message: 'Error fetching files', error: error.message });
+  }
+});
+
+
+app.get('/files/:id/download', async (req, res) => {
+  try {
+    const fileId = req.params.id;
+
+    // Retrieve file metadata from MongoDB
+    const file = await FilesModel.findById(fileId);
+    if (!file) {
+      return res.status(404).json({ message: 'File not found' });
+    }
+
+    const blockBlobClient = containerClient.getBlockBlobClient(file.filePath);
+
+    // Check if the blob exists
+    if (!(await blockBlobClient.exists())) {
+      return res.status(404).json({ message: 'Blob not found in Azure Storage' });
+    }
+
+    // Generate a SAS URL for downloading the file (Optional)
+    const fileUrl = blockBlobClient.url;
+
+    res.status(200).json({ url: fileUrl });
+  } catch (error) {
+    console.error('Error downloading file:', error.message);
+    res.status(500).json({ message: 'Error downloading file', error: error.message });
+  }
+});
+
+
+app.get('/files/:id/link', async (req, res) => {
+  try {
+    const fileId = req.params.id;
+
+    // Retrieve file metadata from MongoDB
+    const file = await FilesModel.findById(fileId);
+    if (!file) {
+      return res.status(404).json({ message: 'File not found' });
+    }
+
+    // Send the file URL for copying
+    res.status(200).json({ url: file.fileUrl });
+  } catch (error) {
+    console.error('Error fetching file link:', error.message);
+    res.status(500).json({ message: 'Error fetching file link', error: error.message });
+  }
+});
+
+
+
 module.exports = router;
+         
+
+//Files ova
+//////////////
+
+
+
+
 
 
 app.get('/user', async (req, res) => {
