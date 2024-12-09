@@ -10,10 +10,13 @@ import account_logo4 from './elements/Vector4.png';
 import account_logo5 from './elements/Vector5.png';
 import account_logo6 from './elements/Vector6.png';
 
+import { ring2 } from 'ldrs';
+ring2.register();
 
 function Account() {
-  const { userName } = useContext(UserContext); // Access username from context
-  console.log(userName+" account")
+  const { userName } = useContext(UserContext);
+  console.log(userName + " account");
+
   const [fields, setFields] = useState({
     username: { value: userName, isEditing: false },
     firstName: { value: '', isEditing: false },
@@ -25,11 +28,11 @@ function Account() {
     questions: { value: 0, isEditing: false },
     answers: { value: 0, isEditing: false },
     files: { value: 0, isEditing: false },
-    discussions: { value: 0, isEditing: false }
+    discussions: { value: 0, isEditing: false },
   });
 
-  const [loading, setLoading] = useState(true); // To handle loading state
-  const [error, setError] = useState(''); // For error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -38,15 +41,15 @@ function Account() {
         setLoading(false);
         return;
       }
-  
+
       console.log('Fetching user details with username:', userName);
-  
+
       try {
         const response = await axios.get('http://localhost:3002/user', {
-          params: { userName } 
+          params: { userName },
         });
         console.log('Response from server:', response.data);
-  
+
         if (response?.data) {
           setFields({
             username: { value: userName, isEditing: false },
@@ -59,55 +62,43 @@ function Account() {
             questions: { value: response.data.questions || 0, isEditing: false },
             answers: { value: response.data.answers || 0, isEditing: false },
             files: { value: response.data.files || 0, isEditing: false },
-            discussions: { value: response.data.discussions || 0, isEditing: false }
+            discussions: { value: response.data.discussions || 0, isEditing: false },
           });
         }
-  
+
         setLoading(false);
       } catch (err) {
         console.error('Error occurred while fetching user details:', err);
-  
+
         if (err.response) {
           console.error('Error response data:', err.response.data);
         }
-  
+
         setError('Failed to load user details');
         setLoading(false);
       }
     };
-  
+
     fetchUserDetails();
   }, [userName]);
 
-  // Handle edit button click
   const handleEditClick = (field) => {
-    setFields(prevState => ({
+    setFields((prevState) => ({
       ...prevState,
-      [field]: { ...prevState[field], isEditing: !prevState[field].isEditing }
+      [field]: { ...prevState[field], isEditing: !prevState[field].isEditing },
     }));
   };
 
-  // Handle input change
   const handleInputChange = (field, event) => {
-    setFields(prevState => ({
+    setFields((prevState) => ({
       ...prevState,
-      [field]: { ...prevState[field], value: event.target.value }
+      [field]: { ...prevState[field], value: event.target.value },
     }));
   };
-
-  if (loading) {
-    return <p>Loading user details...</p>;
-  }
-
-  if (error) {
-    return <p style={{ color: 'red' }}>{error}</p>;
-  }
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Extract the values from `fields`
     const updatedData = {
       userName: userName,
       fName: fields.firstName.value,
@@ -126,29 +117,28 @@ function Account() {
       .put('http://localhost:3002/update', updatedData)
       .then((result) => {
         console.log(result);
-        if (result.data === "Error") {
+        if (result.data === 'Error') {
           toast.error('Error', {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: 'dark',
             transition: Flip,
           });
-          
         } else {
           toast.success('Account updated successfully', {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: 'dark',
             transition: Flip,
           });
         }
@@ -156,35 +146,33 @@ function Account() {
       .catch((err) => console.log(err));
   };
 
-
-
   return (
-    <div className='account_body'>
+    <div className="account_body">
       <ToastContainer />
-      <div id='account_items'>
-        <div>
-          <Navbar />
+      <Navbar />
+      {loading ? (
+        <div className="loading-container">
+          <l-ring-2
+            size="70"
+            stroke="9"
+            stroke-length="0.25"
+            bg-opacity="0.1"
+            speed="0.8"
+            color="white"
+          ></l-ring-2>
         </div>
-
-        <div>
-          <p id='account_text'>Account</p>
-        </div>
-      </div>
-
-      <img src={account_logo3} alt="comp1" id='account_Vec3' className='account_LogImage' />
-      <img src={account_logo4} alt="comp1" id='account_Vec4' className='account_LogImage' />
-      <img src={account_logo5} alt="comp1" id='account_Vec5' className='account_LogImage' />
-      <img src={account_logo6} alt="comp1" id='account_Vec6' className='account_LogImage' />
-
-      <div id='account_details_container'>
-        <div id='account_details'>
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <div id="account_details_container">
+        <div id="account_details">
           <div>
-            <p id='account_text2'>Personal Info</p>
-
-            <div id='account_details1'>
+            <p id="account_text2">Personal Info</p>
+      
+            <div id="account_details1">
               <form onSubmit={handleSubmit}>
                 {/* Username */}
-                <div id='account_details_list' className='account_underline'>
+                <div id="account_details_list" className="account_underline">
                   <label htmlFor="account_username">Username:</label>
                   <input
                     type="text"
@@ -193,14 +181,13 @@ function Account() {
                     value={fields.username.value}
                     onChange={(e) => handleInputChange('username', e)}
                     readOnly={!fields.username.isEditing}
-                    className={fields.username.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.username.isEditing ? 'editable' : ''}
                   />
-                  
                 </div>
-
-                {/* First name */}
-                <div id='account_details_list' className='account_underline'>
-                  <label htmlFor="account_first-name">First name:</label>
+      
+                {/* First Name */}
+                <div id="account_details_list" className="account_underline">
+                  <label htmlFor="account_first-name">First Name:</label>
                   <input
                     type="text"
                     id="account_first-name"
@@ -208,16 +195,16 @@ function Account() {
                     value={fields.firstName.value}
                     onChange={(e) => handleInputChange('firstName', e)}
                     readOnly={!fields.firstName.isEditing}
-                    className={fields.firstName.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.firstName.isEditing ? 'editable' : ''}
                   />
                   <button type="button" onClick={() => handleEditClick('firstName')}>
                     {fields.firstName.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
-
-                {/* Last name */}
-                <div id='account_details_list' className='account_underline'>
-                  <label htmlFor="account_last-name">Last name:</label>
+      
+                {/* Last Name */}
+                <div id="account_details_list" className="account_underline">
+                  <label htmlFor="account_last-name">Last Name:</label>
                   <input
                     type="text"
                     id="account_last-name"
@@ -225,15 +212,15 @@ function Account() {
                     value={fields.lastName.value}
                     onChange={(e) => handleInputChange('lastName', e)}
                     readOnly={!fields.lastName.isEditing}
-                    className={fields.lastName.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.lastName.isEditing ? 'editable' : ''}
                   />
                   <button type="button" onClick={() => handleEditClick('lastName')}>
                     {fields.lastName.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
-
+      
                 {/* Major */}
-                <div id='account_details_list' className='account_underline'>
+                <div id="account_details_list" className="account_underline">
                   <label htmlFor="account_major">Major:</label>
                   <input
                     type="text"
@@ -242,15 +229,15 @@ function Account() {
                     value={fields.major.value}
                     onChange={(e) => handleInputChange('major', e)}
                     readOnly={!fields.major.isEditing}
-                    className={fields.major.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.major.isEditing ? 'editable' : ''}
                   />
                   <button type="button" onClick={() => handleEditClick('major')}>
                     {fields.major.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
-
+      
                 {/* Level */}
-                <div id='account_details_list' className='account_underline'>
+                <div id="account_details_list" className="account_underline">
                   <label htmlFor="account_level">Level:</label>
                   <input
                     type="text"
@@ -259,15 +246,15 @@ function Account() {
                     value={fields.level.value}
                     onChange={(e) => handleInputChange('level', e)}
                     readOnly={!fields.level.isEditing}
-                    className={fields.level.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.level.isEditing ? 'editable' : ''}
                   />
                   <button type="button" onClick={() => handleEditClick('level')}>
                     {fields.level.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
-
+      
                 {/* Password */}
-                <div id='account_details_list'>
+                <div id="account_details_list">
                   <label htmlFor="account_password">Password:</label>
                   <input
                     type="text"
@@ -276,51 +263,49 @@ function Account() {
                     value={fields.password.value}
                     onChange={(e) => handleInputChange('password', e)}
                     readOnly={!fields.password.isEditing}
-                    className={fields.password.isEditing ? 'editable' : ''} // Apply editable class
+                    className={fields.password.isEditing ? 'editable' : ''}
                   />
                   <button type="button" onClick={() => handleEditClick('password')}>
                     {fields.password.isEditing ? 'Save' : 'Edit'}
                   </button>
                 </div>
-
+      
                 <button type="submit" id="mw_sgst-button">
                   Update
                 </button>
-
               </form>
             </div>
           </div>
-
+      
+          {/* Contributions Section */}
           <div>
-            <p id='account_text2'>Contributions</p>
-            <div id='account_details2'>
-              <div id='account_details_list' className='account_underline'>
+            <p id="account_text2">Contributions</p>
+            <div id="account_details2">
+              <div id="account_details_list" className="account_underline">
                 <label htmlFor="account_ratings">{fields.ratings.value} rating/s</label>
               </div>
-
-              <div id='account_details_list' className='account_underline'>
+              <div id="account_details_list" className="account_underline">
                 <label htmlFor="account_questions">{fields.questions.value} question/s</label>
               </div>
-
-              <div id='account_details_list' className='account_underline'>
+              <div id="account_details_list" className="account_underline">
                 <label htmlFor="account_answers">{fields.answers.value} answer/s</label>
               </div>
-
-              <div id='account_details_list' className='account_underline'>
+              <div id="account_details_list" className="account_underline">
                 <label htmlFor="account_files">{fields.files.value} file/s uploaded</label>
               </div>
-
-              <div id='account_details_list'>
+              <div id="account_details_list">
                 <label htmlFor="account_discussions">{fields.discussions.value} discussion/s</label>
               </div>
             </div>
-
-            <span id='account_delete_btn'>
+      
+            <span id="account_delete_btn">
               <DeleteBtn />
             </span>
           </div>
         </div>
       </div>
+      
+      )}
     </div>
   );
 }

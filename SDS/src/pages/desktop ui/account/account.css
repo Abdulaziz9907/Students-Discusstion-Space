@@ -205,6 +205,14 @@
     width: auto;
 }
 
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+
 /* Mobile adjustments (max-width 600px) */
 @media (max-width: 2170px) {
 #account_details1 {

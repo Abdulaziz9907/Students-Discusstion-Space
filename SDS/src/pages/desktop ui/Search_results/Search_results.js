@@ -8,6 +8,10 @@ import sr_logo6 from './elements/Vector6.png';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { ring2 } from 'ldrs';
+
+// Register the custom element
+ring2.register();
 
 function Search_results() {
   const location = useLocation();
@@ -17,6 +21,7 @@ function Search_results() {
   const [results, setResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [noResults, setNoResults] = useState(false);
   const totalPages = 6;
 
   const handlePageChange = (page) => {
@@ -28,15 +33,22 @@ function Search_results() {
     const fetchCourses = async () => {
       if (searchTerm) {
         setLoading(true);
+        setNoResults(false);
         try {
           const response = await axios.get('http://localhost:3002/courses', {
             params: { courseId: searchTerm },
           });
           setResults(response.data);
           console.log('courses: ', response.data);
+          
+          // Only set noResults to true if the request succeeds but returns no results
+          if (response.data.length === 0) {
+            setNoResults(true);
+          }
         } catch (error) {
           console.error('Error fetching courses:', error);
           setResults([]);
+          setNoResults(true);
         } finally {
           setLoading(false);
         }
@@ -87,8 +99,19 @@ function Search_results() {
         <div id="sr_results">
           {loading ? (
             <div className="loading-container">
-              <span>Loading...</span>
+              <l-ring-2
+                size="70"
+                stroke="9"
+                stroke-length="0.25"
+                bg-opacity="0.1"
+                speed="0.8"
+                color="white"
+              ></l-ring-2>
             </div>
+          ) : noResults ? (
+            <p id="sr_text" className="sr_notfound_text">
+              Sorry, we couldn't find anything for: "{searchTerm}"
+            </p>
           ) : results.length > 0 ? (
             results.map((result, index) => (
               <div key={index} id={`sr_result`}>
@@ -98,21 +121,9 @@ function Search_results() {
                 <button className="sr_result-button">View details</button>
               </div>
             ))
-          ) : (
-            <p id='sr_text' className='sr_notfound_text'>
-              Sorry, we couldn't find anything for: "{searchTerm}"
-            </p>
-          )}
+          ) : null}
         </div>
       </div>
-
-      {/* <div className='sr_results-footer'>
-        <FooterNav
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </div> */}
     </div>
   );
 }

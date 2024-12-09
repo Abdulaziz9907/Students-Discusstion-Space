@@ -1,11 +1,17 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
-// Create context
 export const UserContext = createContext();
 
-// Create provider
 export const UserProvider = ({ children }) => {
-  const [userName, setUserName] = useState(null); // Initialize with null
+  const [userName, setUserName] = useState(() => {
+    // Retrieve from localStorage if available
+    return localStorage.getItem('userName') || '';
+  });
+
+  useEffect(() => {
+    // Save to localStorage whenever userName changes
+    localStorage.setItem('userName', userName);
+  }, [userName]);
 
   return (
     <UserContext.Provider value={{ userName, setUserName }}>
