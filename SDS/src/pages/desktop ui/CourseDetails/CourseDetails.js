@@ -21,7 +21,7 @@ function CourseDetails() {
             params: { courseId },
           });
           setCourseName(response.data.courseName);
-          console.log('course name: ', courseName);
+          
 
         } catch (error) {
           console.error('Error fetching course name:', error);
