@@ -150,8 +150,10 @@ function Account() {
     <div className="account_body">
       <ToastContainer />
       <Navbar />
+        <p id="account_text">Account</p>
       {loading ? (
         <div className="loading-container">
+          
           <l-ring-2
             size="70"
             stroke="9"
@@ -160,17 +162,29 @@ function Account() {
             speed="0.8"
             color="white"
           ></l-ring-2>
+          
         </div>
       ) : error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
+        <>
+        <p id="account_text">Account</p>
+
+      <img src={account_logo3} alt="comp1" id="account_Vec3" className="account_LogImage" />
+      <img src={account_logo4} alt="comp1" id="account_Vec4" className="account_LogImage" />
+      <img src={account_logo5} alt="comp1" id="account_Vec5" className="account_LogImage" />
+      <img src={account_logo6} alt="comp1" id="account_Vec6" className="account_LogImage" />
+
+
         <div id="account_details_container">
+          
+          
         <div id="account_details">
           <div>
             <p id="account_text2">Personal Info</p>
       
             <div id="account_details1">
-              <form onSubmit={handleSubmit}>
+              <form id="account-details-form" onSubmit={handleSubmit}>
                 {/* Username */}
                 <div id="account_details_list" className="account_underline">
                   <label htmlFor="account_username">Username:</label>
@@ -270,9 +284,7 @@ function Account() {
                   </button>
                 </div>
       
-                <button type="submit" id="mw_sgst-button">
-                  Update
-                </button>
+                
               </form>
             </div>
           </div>
@@ -299,14 +311,20 @@ function Account() {
             </div>
       
             <span id="account_delete_btn">
+            <button type="submit" className="account_update-button" form="account-details-form">
+                  Update
+              </button>
               <DeleteBtn />
+              
             </span>
           </div>
         </div>
       </div>
-      
+      </>
       )}
+      
     </div>
+    
   );
 }
 

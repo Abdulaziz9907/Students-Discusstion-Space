@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Course</title>
+    <link rel="stylesheet" href="AddCourse.css">
+</head>
+<body>
+    <header>
+        <div class='navbar'>
+            <span id="site_name">Students Discussion Space</span>
+            <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Home.png" alt="home" id="home" class="logImageNav" />
+                <span class="navText" >Home</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/User.png" alt="account" id="user" class="logImageNav" />
+                <span class="navText">Account</span>
+              </button>
+              <button class="navButtons">
+                <img src="../../../components/assests/Navbar/elements/Logout.png" alt="logout" id="logout" class="logImageNav" />
+                <span class="navText">Signout</span>
+              </button>
+        </div>
+        <img src='../../desktop ui/login/elements/Vector3.png' alt="comp1" id='Dis_Vec3' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector4.png' alt="comp1" id='Dis_Vec4' class='DisImage'/>
+        <img src='../../desktop ui/login/elements/Vector6.png' alt="comp1" id='Dis_Vec6' class='DisImage'/>
+    </header>
+
+    <main>
+        <div class='space'>
+        </div>
+        <section class="add-course-section">
+            <h2>Add new course</h2>
+            <div class='space'>
+            </div>
+            <div class='space'>
+            </div>
+            <form id="courseForm">
+                <label for="course-name">Course name*</label>
+                <input type="text" id="course-name" placeholder="Enter course name">
+                <small id="course-name-error" class="error-message"></small>
+
+                <label for="course-number">Course number*</label>
+                <input type="text" id="course-number" placeholder="Enter course number">
+                <small id="course-number-error" class="error-message"></small>
+
+                <button type="submit" class="submit-btn">Create course</button>
+            </form>
+        </section>
+    </main>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <p>Course successfully added!</p>
+        </div>
+    </div>
+    <script src="AddCourse.js"></script>
+</body>
+</html>

@@ -9,8 +9,6 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Updated import
 import axios from 'axios';
 import { ring2 } from 'ldrs';
-
-// Register the custom element
 ring2.register();
 
 function Search_results() {
@@ -69,9 +67,20 @@ function Search_results() {
     }
   };
 
-  const handleViewDetails = (courseId) => {
-    navigate('/CourseDetails', { state: { courseId } }); // Navigate with courseName
+  const handleViewDetails = async (courseId) => {
+    try {
+      console.log("getting "+courseId+" visits")
+      await axios.put(`http://localhost:3002/coursesVisits`, { 
+        courseId: courseId 
+      });
+    
+      navigate('/CourseDetails', { state: { courseId } });
+    } catch (error) {
+      console.error('Error incrementing course visits:', error.response?.data || error.message);
+      navigate('/CourseDetails', { state: { courseId } });
+    }
   };
+  
 
   return (
     <div className="sr_body">

@@ -653,6 +653,43 @@ app.get('/course-name', async (req, res) => {
 });
 
 
+app.get('/visits', async (req, res) => {
+  try {
+    const courses = await Courses.find().sort({ visits: -1 }); // Sort by visits in descending order
+    res.json(courses);
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    res.status(500).json({ error: 'Failed to fetch courses' });
+  }
+});
+
+app.put('/coursesVisits', async (req, res) => {
+  const { courseId } = req.body; 
+  console.log("server incrementing this course visits: "+ courseId);
+
+  try {
+    const courseVisits = await Courses.findOneAndUpdate(
+      { courseId: courseId }, // Make sure to match the exact field in your schema
+      { $inc: { visits: 1 } },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!courseVisits) {
+      return res.status(404).json("Course not found");
+    }
+
+    res.status(200).json(courseVisits);
+  } catch (error) {
+    console.error('Error updating visits:', error.message);
+    res.status(500).json("Server error");
+  }
+});
+
+
+
 /* app.get('/questions/count', async (req, res) => {
   const { courseId } = req.query;
 

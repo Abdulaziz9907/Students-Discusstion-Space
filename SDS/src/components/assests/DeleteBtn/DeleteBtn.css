@@ -10,7 +10,8 @@
     transition: all 0.8s ease, height 2s ; /* Smooth animation */
     outline: none;
     font-size: 20px;
-    width: 209px;
+    min-width: 90px;
+    width: 7vw;
     height: 45px;
     transition: width 0.5s,height 0.5s ;
   

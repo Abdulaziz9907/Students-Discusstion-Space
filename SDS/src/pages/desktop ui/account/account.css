@@ -10,7 +10,6 @@
     position: relative;
     justify-content: center;
     min-width: 400px;
-    
 }
 
 /* Main content container */
@@ -22,6 +21,7 @@
 
 /* Header text */
 #account_text {
+    
     font-size: 55px;
     font-weight: 900;
     font-family: "Poppins";
@@ -61,29 +61,52 @@
     left: 3vw;
 }
 
+.account_update-button {
+    background-color: #008540;
+    color: white;
+    margin-right: 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 20px;
+    height: 43px;
+    min-width: 70px;
+    width: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.account_update-button:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+    transform: scale(1.00);
+}
+
 /* Account details section */
 #account_details {
-    
-    margin-top: -80px;
     display: flex;
     flex-direction: row;
     gap: 10px;
     justify-content: space-between;
-    padding: 70px;
+    padding: 40px;
 }
 
 /* Account details items */
 #account_details1, #account_details2 {
     background-color: white;
-    
     border-radius: 60px;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins';
     position: relative;
     justify-content: center;
-    top: -10px;
-    
+    top: 0px;
 }
 
 #account_details1 {
@@ -94,16 +117,17 @@
 #account_details2 {
     height: 640px;
     width: 600px;
+    
 }
 
 /* Delete button */
 #account_delete_btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-     
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 /* Account details list */
@@ -114,7 +138,7 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
-    
+    align-items: center; /* Added to align items */
 }
 
 .account_underline {
@@ -124,12 +148,12 @@
 #account_details_list > label {
     font-weight: 900;
     font-size: 25px;
-    
+    flex: 0 0 250px; /* Added to ensure consistent alignment */
+    min-width: 250px; /* Prevent wrapping */
 }
 
 /* Input style */
 #account_details_list > input {
-    
     width: 160px;
     left: 280px;
     height: 30px;
@@ -138,15 +162,17 @@
     font-size: 20px;
     font-weight: bold;
     background-color: transparent;
-    transition: all 0.3s ease; /* Smooth transition for changes */
+    transition: all 0.3s ease;
+    flex: 1; /* Allow input to take remaining space */
+    margin-left: 20px; /* Add space between label and input */
 }
 
 /* New style for editable inputs */
 #account_details_list > input.editable {
-    border: 2px solid black; /* Black border when editable */
-    background-color: #f7f7f7; /* Light gray background */
-    color: black; /* Change text color to black when editing */
-    padding-left: 20px; /* Add padding to prevent text from touching the left edge */
+    border: 2px solid black;
+    background-color: #f7f7f7;
+    color: black;
+    padding-left: 20px;
 }
 
 /* Edit button */
@@ -159,14 +185,14 @@
     cursor: pointer;
     text-decoration: underline;
     height: 20px;
-    font-size: 20px; /* Slightly larger button text */
-    transition: color 0.2s ease; /* Smooth transition on hover */
+    font-size: 20px;
+    transition: color 0.2s ease;
     display: flex;
-    
+    margin-left: 20px; /* Add space between input and button */
 }
 
 #account_details_list > button:hover {
-    color: #4CAF50; /* Change button text color on hover */
+    color: #4CAF50;
 }
 
 /* Background shapes */
@@ -210,21 +236,29 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
+}
 
-/* Mobile adjustments (max-width 600px) */
+/* Media Queries */
+@media (max-height: 1090px) {
+    #account_details {
+        position: relative;
+        max-height: 80vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+    }
+}
+
 @media (max-width: 2170px) {
-#account_details1 {
-    height: 780px;
-    width: 600px;
-    
-}
+    #account_details1 {
+        height: 780px;
+        width: 600px;
+    }
 
-#account_details2 {
-    height: 640px;
-    width: 600px;
-}
+    #account_details2 {
+        height: 640px;
+        width: 600px;
+    }
 }
 
 @media (max-width: 1686px) {
@@ -237,139 +271,100 @@
         height: 640px;
         width: 400px;
     }
+}
+
+@media (max-width: 1420px) {
+    #account_details1 {
+        height: 780px;
+        width: 600px;
     }
 
-
-    @media (max-width: 1420px) {
-        #account_details1 {
-            height: 780px;
-            width: 500px;
-        }
-        
-        #account_details2 {
-            height: 640px;
-            width: 300px;
-        }
-        }
     
-
-        @media (max-width: 1213px) {
-            #account_details1 {
-                height: 780px;
-                width: 500px;
-            }
-            
-            #account_details2 {
-                height: 640px;
-                width: 320px;
-            }
-            }
+    #account_details2 {
+        height: 640px;
+        width: 300px;
+    }
+}
 
 
 
-            @media (max-width: 1198px) {
+@media (max-width: 1198px) {
+    .account_body {
+        background-color: black;
+    }
+    #account_text{
+        display: none;
+    }
 
+    #account_details {
+        margin-top: -70px;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        scrollbar-width: thin;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 86vh;
+    }
 
-                .account_body {
-                    background-color: black;
-                    
-                }
-                #account_details {
+    #account_details_list {
+        position: relative;
+        top: 10px;
+        padding: 13px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #account_Vec3, #account_Vec4, #account_Vec5, #account_Vec6 {
+        display: none;
+    }
+
+    #account_details_container {
+        width: 100%;
+    }
+
+    #account_details1 {
+        height: 410px;
+        width: 800px;
+    }
     
-                    margin-top: -50px;
-                    display: flex;
-                    flex-direction: column;
-                    place-items: center;
-                    scrollbar-width: thin; /* Thin scrollbar for Firefox */
-                    overflow-y: auto; /* Enable vertical scrolling */
-                    overflow-x: hidden;
-                    max-height: 66vh; /* Limit the height to 60% of the viewport */
+    #account_details2 {
+        height: 340px;
+        width: 800px;
+    }
+}
 
-                }
-
-                #account_details_list {
-                    position: relative;
-                    top: 10px;
-                    padding: 13px;
-                    text-align: left;
-                    display: flex;
-                    justify-content: space-between;
-                    
-                }
-
-
-                #account_Vec3,#account_Vec4,#account_Vec5,#account_Vec6{
-                    display: none;
-                }
-
-                #account_details_container {
-
-                    width: 100%;
-                }
-
-
-                #account_details1 {
-                    height: 410px;
-                    width: 800px;
-                }
-                
-                #account_details2 {
-                    
-                    height: 340px;
-                    width: 800px;
-                }
-
-            
-
-                }
-
-
-
-                @media (max-width: 1024px) {
-
+@media (max-width: 1024px) {
+    #account_details1 {
+        height: 410px;
+        width: 700px;
+    }
     
-                    #account_details1 {
-                        height: 410px;
-                        width: 700px;
-                    }
-                    
-                    #account_details2 {
-                        
-                        height: 340px;
-                        width: 700px;
-                    }
+    #account_details2 {
+        height: 340px;
+        width: 700px;
+    }
+}
+
+@media (max-width: 720px) {
+    #account_details {
+        padding: 10px;
+        max-height: 90vh;
+    }
+
+    #account_details1, #account_details2 {
+        width: 100%;
+        height: auto;
+    }
+
+    #account_details1 {
+        height: 410px;
+        width: 500px;
+    }
     
-                   
-    
-                    }
-
-
-                    @media (max-width: 720px) {
-
-                        #account_details {
-                            padding: 10px;
-                            max-height: 70vh; /* Adjust height for smaller screens */
-
-                        }
-                    
-                        #account_details1, #account_details2 {
-                            width: 100%; /* Take the full width */
-                            height: auto; /* Adjust height dynamically */
-                        }
-
-
-                        #account_details1 {
-                            height: 410px;
-                            width: 500px;
-                        }
-                        
-                        #account_details2 {
-                            
-                            height: 340px;
-                            width: 500px;
-                        }
-        
-                      
-                        }
-
-                    
+    #account_details2 {
+        height: 340px;
+        width: 500px;
+    }
+}

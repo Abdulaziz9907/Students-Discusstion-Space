@@ -19,7 +19,6 @@ import Account_search_results from './pages/desktop ui/Account_search_results/Ac
 import Account_info from './pages/desktop ui/Account_info/Account_info';
 import Add_Course from './pages/desktop ui/Add_Course/AddCourse';
 import Admin_main from './pages/desktop ui/Admin_main/Admin_main';
-import Admin_Search from './pages/desktop ui/Admin_Search/AdminSearch';
 import Discussion from './pages/desktop ui/Discussion/Discussion';
 import CourseDetails from './pages/desktop ui/CourseDetails/CourseDetails';
 import Post from './pages/desktop ui/Discussion/Post';
@@ -56,7 +55,6 @@ function App() {
             <Route path="/Account info" element={<Account_info />} />
             <Route path="/AddCourse" element={<Add_Course />} />
             <Route path="/AdminMain" element={<Admin_main />} />
-            <Route path="/AdminSearch" element={<Admin_Search />} />
             <Route path="/Discussion" element={<Discussion />} />
             <Route path="/Post" element={<Post />} />
             <Route path="/Reply" element={<Reply />} />

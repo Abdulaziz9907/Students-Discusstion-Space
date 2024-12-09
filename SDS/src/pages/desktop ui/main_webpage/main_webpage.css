@@ -10,6 +10,61 @@
     min-width: 400px;
     overflow-x: hidden;
 }
+.action-buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    top: -180px;
+    
+}
+
+.ControlImage{
+    width: 30px;
+    margin-right: 10px;
+    height: auto;
+}
+.loading-container-mainpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Matches the height of the mw_suggestions content */
+    width: 100%; /* Optional: Ensure it spans the container width */
+    position: relative; /* Keep the loader within the bounds of the container */
+    top: 130px;
+  }
+
+.add-course-btn,.dashboard-btn,.manage-users-btn {
+    background-color: white;
+    color: black;
+    margin-right: 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 20px;
+    height: 3rem;
+    width: 11vw;
+    min-width: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    
+}
+.add-course-btn:hover,.dashboard-btn:hover,.manage-users-btn:hover {
+    
+    filter: invert(1);
+    transform: scale(1.00);
+}
+
 
 /* Main content container */
 #mw_items {
