@@ -13,8 +13,8 @@ const Discussion = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Extract ID from URL (assuming React Router is used)
   const discussionId = new URLSearchParams(window.location.search).get('id');
+  const username = new URLSearchParams(window.location.search).get('username');
 
   useEffect(() => {
     if (discussionId) {
@@ -46,12 +46,17 @@ const Discussion = () => {
 
   const handleVote = async (replyId, voteType) => {
     try {
-      await axios.post(`http://localhost:3002/discussions/${discussionId}/replies/${replyId}/vote`, {
-        voteType,
-      });
-      fetchReplies(); // Refresh replies after voting
+      const response = await axios.post(
+        `http://localhost:3002/discussions/${discussionId}/replies/${replyId}/vote`,
+        {
+          username,
+          voteType,
+        }
+      );
+      fetchReplies();
     } catch (error) {
       console.error('Error voting on reply:', error);
+      alert('Failed to cast vote. Please try again.');
     }
   };
 
@@ -60,34 +65,34 @@ const Discussion = () => {
   };
 
   const handleReplyRedirect = () => {
-    window.location.href = `/reply?id=${discussionId}`;
+    window.location.href = `/reply?id=${discussionId}&username=${username}`;
   };
 
   return (
     <>
-      <header>
+      <header id="discussion-header">
         <Navbar />
         <img src={account_logo3} alt="Vector 3" id="Dis_Vec3" className="DisImage" />
         <img src={account_logo4} alt="Vector 4" id="Dis_Vec4" className="DisImage" />
         <img src={account_logo6} alt="Vector 6" id="Dis_Vec6" className="DisImage" />
       </header>
 
-      <main>
-        <div className="space"></div>
-        <section className="course-section">
+      <main id="discussion-main">
+        <div id="discussion-space"></div>
+        <section id="discussion-course-section">
           {discussion && (
             <>
-              <h2>{discussion.courseName}</h2>
-              <h3>Discussion:</h3>
-              <div className="discussion">
-                <div className="discussion-post">
-                  <p className="user-info">
+              <h2 id="discussion-title">{discussion.courseName}</h2>
+              <h3 id="discussion-heading">Discussion:</h3>
+              <div id="discussion-container">
+                <div id="discussion-post">
+                  <p id="discussion-user-info">
                     <strong>{discussion.user}</strong>
                     <span>{new Date(discussion.createdAt).toLocaleString()}</span>
                   </p>
-                  <p>{discussion.content}</p>
+                  <p id="discussion-content">{discussion.content}</p>
                 </div>
-                <button className="reply-btn" onClick={handleReplyRedirect}>
+                <button id="discussion-reply-btn" onClick={handleReplyRedirect}>
                   Reply
                 </button>
               </div>
@@ -96,26 +101,26 @@ const Discussion = () => {
 
           {replies.length > 0 && (
             <>
-              <h3>Reply/s:</h3>
+              <h3 id="replies-heading">Reply/s:</h3>
               {replies.map((reply) => (
-                <div key={reply._id} className="reply-section">
-                  <div className="reply-content">
-                    <p className="user-info">
+                <div key={reply._id} id="reply-section321">
+                  <div id="reply-content">
+                    <p id="reply-user-info">
                       <strong>{reply.user}</strong>
                       <span>{new Date(reply.createdAt).toLocaleString()}</span>
                     </p>
-                    <p>{reply.content}</p>
+                    <p id="reply-text">{reply.content}</p>
                   </div>
-                  <div className="vote">
+                  <div id="reply-vote">
                     <button
-                      className="vote-up"
+                      id="reply-vote-up"
                       onClick={() => handleVote(reply._id, 'up')}
                     >
                       ⬆
                     </button>
-                    <span>{reply.votes}</span>
+                    <span id="reply-vote-count">{reply.votes}</span>
                     <button
-                      className="vote-down"
+                      id="reply-vote-down"
                       onClick={() => handleVote(reply._id, 'down')}
                     >
                       ⬇
@@ -123,22 +128,25 @@ const Discussion = () => {
                   </div>
                 </div>
               ))}
-
-              <div className="pagination">
-                {[...Array(totalPages)].map((_, idx) => (
-                  <button
-                    key={idx}
-                    className={currentPage === idx + 1 ? 'active' : ''}
-                    onClick={() => handlePageChange(idx + 1)}
-                  >
-                    {idx + 1}
-                  </button>
-                ))}
-              </div>
             </>
           )}
         </section>
       </main>
+      <footer id="discussion-pagination-footer">
+      <div id="pagination-container">
+        {[...Array(totalPages)].map((_, idx) => (
+          <button
+            key={idx}
+            id={`pagination-btn-${idx + 1}`}
+            className={currentPage === idx + 1 ? 'active' : ''}
+            onClick={() => handlePageChange(idx + 1)}
+          >
+            {idx + 1}
+          </button>
+        ))}
+      </div>
+    </footer>
+
     </>
   );
 };

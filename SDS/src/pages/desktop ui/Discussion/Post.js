@@ -10,9 +10,9 @@ const PostDiscussion = () => {
   const [discussionContent, setDiscussionContent] = useState('');
   const [error, setError] = useState(false);
 
-  // Extract courseId from the URL (e.g., /post?id=MATH208)
   const courseId = new URLSearchParams(window.location.search).get('id');
-  const courseName = courseId; // Assuming course name matches course ID (MATH208)
+  const username = new URLSearchParams(window.location.search).get('username');
+  const courseName = courseId;
 
   const handlePostSubmit = async () => {
     if (!discussionContent.trim()) {
@@ -22,7 +22,6 @@ const PostDiscussion = () => {
 
     try {
       setError(false);
-      // Post the new discussion to the backend
       await fetch('http://localhost:3002/add-discussion', {
         method: 'POST',
         headers: {
@@ -31,13 +30,12 @@ const PostDiscussion = () => {
         body: JSON.stringify({
           courseId,
           courseName,
-          user: 'current_user', // Replace with actual user info
+          user: username,
           content: discussionContent,
         }),
       });
 
-      // Navigate to the course's discussions page
-      window.location.href = `/discussions?course=${courseId}`;
+      window.location.href = `/discussions?course=${courseId}&username=${username}`;
     } catch (error) {
       console.error('Error posting discussion:', error);
     }
@@ -45,32 +43,32 @@ const PostDiscussion = () => {
 
   return (
     <>
-      <header>
+      <header id="post-discussion-header">
         <Navbar />
-        <img src={account_logo3} alt="comp1" id="Dis_Vec3" className="DisImage" />
-        <img src={account_logo4} alt="comp2" id="Dis_Vec4" className="DisImage" />
-        <img src={account_logo6} alt="comp3" id="Dis_Vec6" className="DisImage" />
+        <img src={account_logo3} alt="Vector 3" id="post-vector-3" className="post-image" />
+        <img src={account_logo4} alt="Vector 4" id="post-vector-4" className="post-image" />
+        <img src={account_logo6} alt="Vector 6" id="post-vector-6" className="post-image" />
       </header>
 
-      <main>
-        <div className="space"></div>
-        <section className="post-section">
-          <h2>Post a New Discussion for: {courseId}</h2>
-          <div className="post-box">
+      <main id="post-discussion-main">
+        <div id="post-discussion-space" className="space"></div>
+        <section id="post-discussion-section">
+          <h2 id="post-discussion-title">Post a New Discussion for: {courseId}</h2>
+          <div id="post-discussion-box">
             <label
-              htmlFor="discussion-text"
-              id="post-label"
+              htmlFor="post-discussion-textarea"
+              id="post-discussion-label"
               className={error ? 'error' : ''}
             >
               Write your discussion*
             </label>
             <textarea
-              id="discussion-text"
+              id="post-discussion-textarea"
               placeholder="Write your discussion here between 3-100 words"
               value={discussionContent}
               onChange={(e) => setDiscussionContent(e.target.value)}
             ></textarea>
-            <button className="submit-btn" onClick={handlePostSubmit}>
+            <button id="post-discussion-submit" onClick={handlePostSubmit}>
               Post
             </button>
           </div>

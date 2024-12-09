@@ -11,8 +11,8 @@ const ReplyDiscussion = () => {
   const [replyText, setReplyText] = useState('');
   const [error, setError] = useState(false);
 
-  // Extract discussion ID from the URL query parameter
   const discussionId = new URLSearchParams(window.location.search).get('id');
+  const username = new URLSearchParams(window.location.search).get('username');
 
   const handleReplySubmit = async () => {
     if (replyText.trim() === '') {
@@ -23,14 +23,12 @@ const ReplyDiscussion = () => {
     setError(false);
 
     try {
-      // Send reply to backend
       await axios.post(`http://localhost:3002/discussions/${discussionId}/reply`, {
-        user: 'current_user', // Replace with actual user information
+        user: username,
         content: replyText,
       });
 
-      // Redirect back to the discussion page
-      window.location.href = `/discussion?id=${discussionId}`;
+      window.location.href = `/discussion?id=${discussionId}&username=${username}`;
     } catch (error) {
       console.error('Error submitting reply:', error);
     }
@@ -38,18 +36,18 @@ const ReplyDiscussion = () => {
 
   return (
     <>
-      <header>
+      <header id="reply-header">
         <Navbar />
-        <img src={account_logo3} alt="Vector 3" id="Dis_Vec3" className="DisImage" />
-        <img src={account_logo4} alt="Vector 4" id="Dis_Vec4" className="DisImage" />
-        <img src={account_logo6} alt="Vector 6" id="Dis_Vec6" className="DisImage" />
+        <img src={account_logo3} alt="Vector 3" id="reply-vector-3" className="reply-image" />
+        <img src={account_logo4} alt="Vector 4" id="reply-vector-4" className="reply-image" />
+        <img src={account_logo6} alt="Vector 6" id="reply-vector-6" className="reply-image" />
       </header>
 
-      <main>
-        <div className="space"></div>
-        <section className="reply-section2">
-          <h2>Reply for discussion:</h2>
-          <div className="reply-box">
+      <main id="reply-main">
+        <div id="reply-space"></div>
+        <section id="reply-section123">
+          <h2 id="reply-heading">Reply for discussion:</h2>
+          <div id="reply-box">
             <label
               htmlFor="reply-text"
               id="reply-label"
@@ -63,7 +61,7 @@ const ReplyDiscussion = () => {
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
             ></textarea>
-            <button className="submit-btn" onClick={handleReplySubmit}>
+            <button id="reply-submit-btn" onClick={handleReplySubmit}>
               Reply
             </button>
           </div>

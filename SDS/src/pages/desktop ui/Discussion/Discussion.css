@@ -5,69 +5,6 @@
     box-sizing: border-box;
   }
   
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #008540;
-    color: #333;
-  }
-  
-  header {
-    background-color: #fff;
-  }
-  
-  .main {
-    margin-top: 0em;
-  }
-  
-  /* Navbar */
-  .navbar {
-    background-color: white;
-    width: 100vw;
-    height: 80px;
-    position: fixed;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    padding: 1rem;
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  #site_name {
-    color: black;
-    font-size: 25px;
-    margin-right: 44px;
-    font-weight: 900;
-    font-family: 'Roboto';
-  }
-  
-  .navButtons {
-    padding: 5px 5px 5px 6px;
-    background-color: transparent;
-    border: none;
-    border-radius: 22px;
-    cursor: pointer;
-    margin-right: 11px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-  }
-  
-  .navButtons:hover {
-    background-color: black;
-  }
-  
-  .navButtons:hover .navText {
-    color: white;
-  }
-  
-  .navButtons:hover .logImageNav {
-    filter: invert(1);
-  }
-  
   /* Images */
   .DisImage {
     position: fixed;
@@ -102,30 +39,55 @@
   .space {
     padding: 32px;
   }
+  /* General Styles */
+  #discussion-main {
+    margin-top: 0em;
+  }
   
-  .course-section {
+  #discussion-header {
+    background-color: #fff;
+  }
+  
+  /* Spacing */
+  #discussion-space {
+    padding: 32px;
+  }
+  
+  /* Course Section */
+  #discussion-course-section {
     color: #fff;
     padding: 1.5em;
     margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
-  .course-section h2 {
+  #discussion-title {
     text-align: center;
     font-size: 2em;
     margin-bottom: 1em;
   }
-  
-  .course-section h3 {
+  #replies-heading{
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #fff;
+    text-align: left;
+    width: 70%;
+    margin-left: 1em;
+  }
+  #discussion-heading {
     font-size: 1.8em;
     font-weight: bold;
     margin-bottom: 1em;
     color: #fff;
     text-align: left;
+    width: 70%;
     margin-left: 1em;
   }
   
   /* Discussion Styling */
-  .discussion {
+  #discussion-container {
     background-color: #fff;
     color: #333;
     padding: 1em;
@@ -134,21 +96,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 70%;
   }
   
-  .discussion-post .user-info {
+  #discussion-post #discussion-user-info {
     font-size: 0.9em;
     color: #666;
     display: flex;
     justify-content: space-between;
   }
   
-  .discussion-post p {
+  #discussion-post #discussion-content {
     margin-bottom: 0.5em;
   }
   
-  /* Reply Button */
-  .reply-btn {
+  #discussion-reply-btn {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -161,12 +123,12 @@
     transition: all 0.3s ease-in-out;
   }
   
-  .reply-btn:hover {
+  #discussion-reply-btn:hover {
     background-color: #3e8e41;
   }
   
-  /* Replies Styling */
-  .reply-section {
+  /* Reply Styling */
+  #reply-section321 {
     background-color: #e0ffe0;
     padding: 1em;
     border-radius: 8px;
@@ -175,31 +137,33 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    text-align: left;
+    width: 70%;
   }
   
-  .reply-content {
+  #reply-content {
     width: 80%;
   }
   
-  .reply-section .user-info {
+  #reply-content #reply-user-info {
     font-size: 0.9em;
     color: #666;
     display: flex;
     justify-content: space-between;
   }
   
-  .reply-section p {
+  #reply-content #reply-text {
     margin-bottom: 0.5em;
   }
   
   /* Vote Styling */
-  .vote {
+  #reply-vote {
     display: flex;
     align-items: center;
   }
   
-  .vote-up,
-  .vote-down {
+  #reply-vote #reply-vote-up,
+  #reply-vote #reply-vote-down {
     font-size: 1em;
     padding: 0.2em 0.4em;
     background: none;
@@ -209,27 +173,26 @@
     transition: color 0.3s ease;
   }
   
-  .vote-up:hover {
+  #reply-vote #reply-vote-up:hover {
     color: green;
   }
   
-  .vote-down:hover {
+  #reply-vote #reply-vote-down:hover {
     color: red;
   }
   
-  .vote span {
+  #reply-vote #reply-vote-count {
     font-size: 1em;
     margin: 0 0.5em;
   }
   
   /* Pagination */
-  .pagination {
+  #discussion-pagination {
     text-align: center;
     padding: 1em;
   }
   
-  .pagination a,
-  .pagination button {
+  #discussion-pagination button {
     color: white;
     background-color: transparent;
     border: none;
@@ -239,96 +202,27 @@
     cursor: pointer;
   }
   
-  .pagination a:hover,
-  .pagination button:hover {
+  #discussion-pagination button:hover {
     color: #4CAF50;
   }
-  
-  /* Footer */
-  footer {
+  /* Pagination Footer Styling */
+#discussion-pagination-footer {
     background-color: black;
-    width: 100%;
+    color: white;
     position: fixed;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 1rem;
-    z-index: 1000;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    bottom: 0;
-    left: 0;
-    color: white;
-    text-align: center;
-  }
-  
-  /* Media Queries */
-  @media (max-width: 768px) {
-    .header-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .navbar {
-      display: inline-block;
-      text-align: center;
-    }
-  
-    .navButtons {
-      display: inline-block;
-      margin: 0 1em;
-      font-size: 0.9em;
-    }
-  
-    .course-section h2 {
-      font-size: 1.8em;
-      margin-bottom: 1em;
-    }
-  
-    .discussion,
-    .reply-section {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .reply-btn {
-      width: 100%;
-      padding: 0.7em;
-      font-size: 1em;
-      margin-top: 1em;
-    }
-  
-    .vote {
-      width: 100%;
-      justify-content: space-between;
-      margin-top: 1em;
-    }
-  
-    .pagination a,
-    .pagination button {
-      margin: 0 0.5em;
-      font-size: 0.9em;
-    }
-  
-    #site_name {
-      display: none;
-    }
-  }
-  
-  .pagination {
-    text-align: left;
-    padding: 1em;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    z-index: 1000;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
+    z-index: 1000;
   }
   
-  .pagination button {
+  #pagination-container button {
     margin: 0 0.5em;
     background: none;
     color: white;
@@ -337,30 +231,12 @@
     font-size: 1em;
   }
   
-  .pagination button.active {
+  #pagination-container button.active {
     font-weight: bold;
     text-decoration: underline;
   }
   
-  .vote {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
+  #pagination-container button:hover {
+    color: #4CAF50;
   }
-  
-  .vote button {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .vote-up:hover {
-    color: green;
-  }
-  
-  .vote-down:hover {
-    color: red;
-  }
-  
   
