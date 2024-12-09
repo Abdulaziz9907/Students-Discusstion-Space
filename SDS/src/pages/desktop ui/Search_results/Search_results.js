@@ -95,6 +95,7 @@ function Search_results() {
       <img src={sr_logo5} alt="comp1" id='sr_Vec5' className='sr_LogImage' />
       <img src={sr_logo6} alt="comp1" id='sr_Vec6' className='sr_LogImage' />
 
+      <div id='sr_results_full'>
       <div id='sr_results_container'>
         <div id="sr_results">
           {loading ? (
@@ -123,6 +124,7 @@ function Search_results() {
             ))
           ) : null}
         </div>
+      </div>
       </div>
     </div>
   );

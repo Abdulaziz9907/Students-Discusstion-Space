@@ -21,6 +21,7 @@ import Add_Course from './pages/desktop ui/Add_Course/AddCourse';
 import Admin_main from './pages/desktop ui/Admin_main/Admin_main';
 import Admin_Search from './pages/desktop ui/Admin_Search/AdminSearch';
 import Discussion from './pages/desktop ui/Discussion/Discussion';
+import CourseDetails from './pages/desktop ui/CourseDetails/CourseDetails';
 import Post from './pages/desktop ui/Discussion/Post';
 import Reply from './pages/desktop ui/Discussion/Reply';
 import Files from './pages/desktop ui/Files/Files';
@@ -41,6 +42,7 @@ function App() {
             <Route path="/Main Webpage" element={<Main_Webpage />} />
             <Route path="/Account" element={<Account />} />
             <Route path="/Search Results" element={<Search_results />} />
+            <Route path="/CourseDetails" element={<CourseDetails />} />
             <Route path="/CourseRating" element={<CourseRating />} />
             <Route path="/AddRating" element={<AddRating />} />
             <Route path="/CourseQuestions" element={<CourseQuestions />} />
