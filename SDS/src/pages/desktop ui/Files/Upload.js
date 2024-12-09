@@ -1,6 +1,6 @@
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import React, { useState, useRef } from 'react';
-import axios from 'axios'; // Import axios for API calls
+import axios from 'axios';
 import './Upload.css';
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
@@ -10,44 +10,66 @@ import account_logo6 from '../../desktop ui/login/elements/Vector6.png';
 const UploadFilePage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
 
   // Extract course ID from URL
   const courseId = new URLSearchParams(window.location.search).get('id');
+  const username = new URLSearchParams(window.location.search).get('username');
 
+  // Handle file selection
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    setError(false);
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const validTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+      if (!validTypes.includes(selectedFile.type)) {
+        setError(true);
+        alert('Invalid file type. Only JPG, PNG, or PDF files are allowed.');
+        return;
+      }
+
+      if (selectedFile.size > 10 * 1024 * 1024) {
+        setError(true);
+        alert('File size exceeds 10MB.');
+        return;
+      }
+
+      setFile(selectedFile);
+      setError(false);
+    }
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!file) {
-    setError(true);
-    return;
-  }
+  // Handle file upload submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      setError(true);
+      return;
+    }
 
-  try {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('courseId', courseId);
 
-    const response = await axios.post('http://localhost:3002/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    try {
+      setIsUploading(true);
+      const response = await axios.post('http://localhost:3002/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-    if (response.status === 201) {
-      alert('File uploaded successfully!');
-      window.location.href = `/files?id=${courseId}`;
+      if (response.status === 201) {
+        alert('File uploaded successfully!');
+        window.location.href = `/files?id=${courseId}&username=${username}`;
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('File upload failed. Please try again.');
+    } finally {
+      setIsUploading(false);
     }
-  } catch (error) {
-    console.error('Error uploading file:', error);
-    alert('File upload failed. Please try again.');
-  }
-};
-
+  };
 
   const handleSelectFile = () => {
     fileInputRef.current.click();

@@ -9,7 +9,8 @@ import account_logo6 from '../login/elements/Vector6.png';
 
 const FileUploadPage = () => {
   const [files, setFiles] = useState([]);
-  const courseId = new URLSearchParams(window.location.search).get('id'); // Extract courseId from URL
+  const courseId = new URLSearchParams(window.location.search).get('id');
+  const username = new URLSearchParams(window.location.search).get('username');
 
   useEffect(() => {
     fetchFiles();
@@ -18,51 +19,60 @@ const FileUploadPage = () => {
   const fetchFiles = async () => {
     try {
       const response = await axios.get(`http://localhost:3002/files?courseId=${courseId}`);
-      setFiles(response.data.files || []);
+      setFiles(response.data || []);
     } catch (error) {
       console.error('Error fetching files:', error);
     }
-  };
+  };  
 
-  const handleCopyLink = (fileId) => {
-    navigator.clipboard.writeText(`http://localhost:3002/files/${fileId}`);
-    const popup = document.getElementById('file-popup-copy');
-    popup.style.display = 'block';
-    setTimeout(() => {
-      popup.style.display = 'none';
-    }, 3000);
+  const handleCopyLink = async (fileId) => {
+    try {
+      // Fetch the file URL from the backend
+      const response = await axios.get(`http://localhost:3002/files/${fileId}/link`);
+      const { url } = response.data;
+  
+      // Copy the URL to clipboard
+      navigator.clipboard.writeText(url);
+  
+      // Show the popup
+      const popup = document.getElementById('file-popup-copy');
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    } catch (error) {
+      console.error('Error copying link:', error);
+      alert('Failed to copy the link. Please try again.');
+    }
   };
+  
 
   const handleDownload = async (fileId) => {
     try {
       const popup = document.getElementById('file-popup-download');
       popup.style.display = 'block';
-
-      const response = await axios.get(`http://localhost:3002/files/${fileId}/download`, {
-        responseType: 'blob', // To download the file as a blob
-      });
-
-      // Create a temporary anchor element to trigger the download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${fileId}`); // Use the file name as the download name
-      document.body.appendChild(link);
-      link.click();
-
-      // Cleanup
-      link.parentNode.removeChild(link);
+  
+      // Fetch the download URL from the backend
+      const response = await axios.get(`http://localhost:3002/files/${fileId}/download`);
+      const { url } = response.data;
+  
+      // Trigger download
+      window.open(url, '_blank');
+  
       setTimeout(() => {
         popup.style.display = 'none';
       }, 3000);
     } catch (error) {
       console.error('Error downloading file:', error);
+      alert('Failed to download the file. Please try again.');
     }
   };
+  
 
   const handleUploadRedirect = () => {
-    window.location.href = `/upload?id=${courseId}`; // Navigate to upload page with courseId
+    window.location.href = `/upload?id=${courseId}&username=${username}`;
   };
+  
 
   return (
     <>
