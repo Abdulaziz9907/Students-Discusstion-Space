@@ -19,6 +19,10 @@ flex-direction: column;
 gap: 4rem;
 }
 
+#sr_btns{
+    display: flex;
+    gap: 10px;
+}
 
 
 
@@ -245,6 +249,32 @@ gap: 4rem;
         top: 13vh;
         max-width: 12%;
     }
+
+    .sr_Delete-button  {
+        background-color: #B42318;
+        color: white;
+        margin-right: 0px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 20px;
+        height: 3rem;
+        width: 10vw;
+        display: flex;           
+        justify-content: center; 
+        align-items: center;     
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        }
+        
+        .sr_Delete-button:hover {
+        background-color: #6B0800;
+        color: white;
+        box-shadow: 0 0 10px rgba(0, 166, 126, 0.3);
+        transform: scale(1.00);
+        }
     
     .sr_LogImage {
         position: fixed;

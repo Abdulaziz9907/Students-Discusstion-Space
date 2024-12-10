@@ -5,10 +5,15 @@ import sr_logo3 from './elements/Vector3.png';
 import sr_logo4 from './elements/Vector4.png';
 import sr_logo5 from './elements/Vector5.png';
 import sr_logo6 from './elements/Vector6.png';
-import { useState, useEffect } from 'react';
+import { useContext,useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Updated import
+import { UserContext } from '../../../context/userContext';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import axios from 'axios';
 import { ring2 } from 'ldrs';
+
+
+
 ring2.register();
 
 function Search_results() {
@@ -23,9 +28,8 @@ function Search_results() {
   const [noResults, setNoResults] = useState(false);
   const totalPages = 6;
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const { userName } = useContext(UserContext);
+  console.log(userName + " account in mainpage ");
 
   // Fetch the courses when `searchTerm` changes
   useEffect(() => {
@@ -57,6 +61,54 @@ function Search_results() {
     fetchCourses();
   }, [searchTerm]);
 
+
+
+
+
+
+  const handleDeleteClick = async (courseId) => {
+    console.log("Attempting to delete course with courseId:", courseId);
+      try {
+        const response = await fetch(`http://localhost:3002/delete-course/${courseId}`, {
+          method: "DELETE",
+        });
+
+        const data = await response.json();
+        console.log("Response from server:", data);
+        if (response.ok) {
+          
+          toast.success('Course deleted successfully', {
+            position: 'top-right',
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            transition: Flip,
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1200); 
+          
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error while deleting course:", error);
+        alert("An error occurred while deleting the course.");
+      }
+    };
+
+
+
+
+
+
+
+
+
   const handleSearchInput = (e) => {
     setCourseId(e.target.value);
   };
@@ -84,6 +136,8 @@ function Search_results() {
 
   return (
     <div className="sr_body">
+            <ToastContainer />
+
       <div id="sr_items">
         <div>
           <Navbar />
@@ -133,12 +187,18 @@ function Search_results() {
                   <span className={`sr_result-text`}>
                     {`${index + 1} - ${result}`}
                   </span>
+
+                  <div id='sr_btns'> 
+                  {userName === 'admin' && (
+                  <button className="sr_Delete-button" onClick={() => handleDeleteClick(result)}>Delete course</button>
+                  )}
                   <button
                     className="sr_result-button"
                     onClick={() => handleViewDetails(result)}
                   >
                     View details
                   </button>
+                  </div>
                 </div>
               ))
             ) : null}

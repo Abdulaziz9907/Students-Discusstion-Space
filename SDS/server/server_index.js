@@ -696,6 +696,30 @@ app.delete('/delete-account/:userName', async (req, res) => {
   }
 });
 
+app.delete('/delete-course/:courseId', async (req, res) => {
+  const {  courseId  } = req.params;
+
+  try {
+    const deletedCourse= await Courses.findOneAndDelete({ courseId: courseId });
+
+    if (!deletedCourse) {
+      return res.status(404).json({ 
+        message: 'Course not found. Unable to delete course.' 
+      });
+    }
+
+    res.status(200).json({ 
+      message: 'Course successfully deleted'
+    });
+  } catch (error) {
+    console.error('Error deleting course:', error);
+    res.status(500).json({ 
+      message: 'An error occurred while deleting the course',
+      error: error.message 
+    });
+  }
+});
+
 
 app.get('/course-name', async (req, res) => {
   try {
