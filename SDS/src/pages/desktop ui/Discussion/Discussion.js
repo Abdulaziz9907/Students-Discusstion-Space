@@ -3,6 +3,9 @@ import axios from 'axios';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import './Discussion.css';
 
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../../context/userContext';
+
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
 import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
 import account_logo6 from '../../desktop ui/login/elements/Vector6.png';
@@ -14,7 +17,7 @@ const Discussion = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const discussionId = new URLSearchParams(window.location.search).get('id');
-  const username = new URLSearchParams(window.location.search).get('username');
+  const { username } = useContext(UserContext);
 
   useEffect(() => {
     if (discussionId) {
