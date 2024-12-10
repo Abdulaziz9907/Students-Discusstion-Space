@@ -800,7 +800,7 @@ app.put('/coursesVisits', async (req, res) => {
 
     if (!courseVisits) {
       return res.status(404).json("Course not found");
-    }
+    } 
 
     res.status(200).json(courseVisits);
   } catch (error) {

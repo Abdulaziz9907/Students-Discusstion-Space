@@ -6,13 +6,12 @@
     position: relative; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
-    padding: 1rem; 
+    padding: 20px; 
     z-index: 1000; 
     display: flex; 
     flex-direction: row;
     align-items: center;
-    min-width: 400px;
-    overflow-y: hidden;
+    overflow: hidden;
     
 }
 
@@ -38,7 +37,7 @@
 .navText {
     color: black;
     transition: color 0.3s ease-in-out;
-    margin-right: 6px; 
+    margin-right: 2px; 
 }
 
 .navButtons {
@@ -70,15 +69,31 @@
 }
 
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 810px) {
 
     .navbar {
         justify-content: center;
+        gap: 1px;
+        padding: 5px;
     }
     #site_name{
         display: none;
     }
 
+    .navButtons {
+        font-size: 17px;
+        margin-right: 0px;
+    }
+
+    .logImageNav {
+        width: 20px; 
+        height: 20px ;
+    }
+
+    .navText {
+
+        margin-right: 0px; 
+    }
 
 
 }

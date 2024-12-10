@@ -30,6 +30,7 @@
   padding: 6.5rem;
   transition: all 0.3s ease-in-out;
   z-index: 3;
+  overflow: hidden;
 }
 
 #LF_text1 {
@@ -50,36 +51,34 @@
 }
 
 #LF_text3 {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
-  top: 2px;
-  line-height: 32px;
-  left: 30px;
-  font-size: 32px;
+  top: 6vh;
+  line-height: 4vh;
+  left: 1vw;
+  font-size: 30px;
   font-weight: 100;
   visibility: hidden;
 }
 
 
 #lf_logo{
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: -3px;
+  position: fixed;
+  top: 7vh;
   line-height: 32px;
-  right:  30px;
+  right:  3vw;
   font-size: 32px;
   font-weight: 100;
   visibility: hidden;
-  width: auto;
-  height: 200px;
+  width: 200px;
+  height:auto;
   
 }
 
 
 #LF_text3 > strong{
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 900;
 
 }
@@ -145,6 +144,18 @@
   transform: scale(1.00);
 }
 
+
+#LF_login_btn.loading-active-login {
+  pointer-events: none; 
+  cursor: not-allowed; 
+}
+
+#LF_login_btn.loading-active-login:hover .spinner-color {
+  filter: invert(1); 
+}
+
+
+
 #LF_signup_btn {
   font-size: 23px;
   position: relative;
@@ -168,9 +179,6 @@
   left: 2px;
   box-shadow: 0 0 10px rgba(0, 166, 126, 0.2);
 }
-
-/* Media Queries for Responsiveness */
-
 
 
 
@@ -201,6 +209,17 @@
     font-size: 60px;
     
   }
+
+  #LF_text3{
+ 
+    visibility: visible;
+    
+
+  }
+  #lf_logo{
+     
+    visibility: visible;
+  }
   
   }
 
@@ -211,16 +230,16 @@
       display: none;
     }
     
-    #LF_text3{
+    #LF_text3,#LF_text3 strong{
  
       visibility: visible;
-      left: 90px;
-
+        font-size: 30px;
+        line-height: 30px;
     }
     #lf_logo{
        
       visibility: visible;
-      right: 90px;
+      width: 130px;
       
     }
 

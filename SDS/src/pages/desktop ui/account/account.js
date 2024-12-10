@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
 import './account.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import DeleteBtn from '../../../components/assests/DeleteBtn/DeleteBtn';
 import axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
+
+import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../../context/userContext';
+
+
 import account_logo3 from './elements/Vector3.png';
 import account_logo4 from './elements/Vector4.png';
 import account_logo5 from './elements/Vector5.png';
@@ -150,7 +153,6 @@ function Account() {
     <div className="account_body">
       <ToastContainer />
       <Navbar />
-        <p id="account_text">Account</p>
       {loading ? (
         <div className="loading-container">
           

@@ -10,8 +10,9 @@ const Login_form = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setUserName } = useContext(UserContext); // Access context setter
-  const [userName, setUserNameLocal] = useState();
-  const [password, setPassword] = useState();
+  const [userName, setUserNameLocal] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     if (location.state?.showSuccessToast) {
@@ -26,26 +27,24 @@ const Login_form = () => {
         theme: 'dark',
         transition: Flip,
       });
-    }
-
-    else if(location.state?.showDeletedToast){
+    } else if (location.state?.showDeletedToast) {
       toast.success('Account deleted successfully', {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-      transition: Flip,
-    });}
-
-
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+        transition: Flip,
+      });
+    }
   }, [location.state]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
     axios
       .post('https://students-discussion-space.onrender.com/login', { userName, password })
       .then((result) => {
@@ -68,13 +67,13 @@ const Login_form = () => {
           document.querySelectorAll('.LF_input-box input').forEach(input => input.style.border = '2px solid red');
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => setLoading(false)); // Stop loading
   };
 
   return (
     <div className="LF_box">
       <ToastContainer />
-
       <div id="LF_login_text">
         <p id="LF_text3">
           Welcome to <br />
@@ -103,9 +102,29 @@ const Login_form = () => {
           />
         </div>
 
-        <button type="submit" id="LF_login_btn">
-          Login
-        </button>
+        <button 
+  type="submit" 
+  id="LF_login_btn" 
+  disabled={loading} 
+  className={loading ? "loading-active-login" : ""}
+>
+  {loading ? (
+    <div className="loading-spinner">
+      <l-ring-2
+        size="20"
+        stroke="5"
+        stroke-length="0.25"
+        bg-opacity="0.1"
+        speed="0.8"
+        color="white" // Default color
+        class="spinner-color"
+      ></l-ring-2>
+    </div>
+  ) : (
+    'Login'
+  )}
+</button>
+
         <p id="LF_signup_btn">
           Don't have an account?{' '}
           <strong>

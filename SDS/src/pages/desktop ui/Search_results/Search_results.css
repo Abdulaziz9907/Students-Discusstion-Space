@@ -52,10 +52,9 @@ gap: 4rem;
   }
 
 #sr_text{
-    min-width: 400px;
-
+    min-width: 200px;
     position: relative;
-    font-size: 70px;
+    font-size: 30px;
     font-weight: 900;
     font-family: "Poppins";
     display: flex;
@@ -206,14 +205,7 @@ gap: 4rem;
           }
           
           /* Optional: Add simple bounce animation */
-          @keyframes bounce {
-            0%, 100% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-5px);
-            }
-          }
+
           
 
 /*Background shapes*/
@@ -315,7 +307,7 @@ gap: 4rem;
     @media (max-width: 720px) {
       
         #sr_text {
-            font-size: 38px;
+            font-size: 10px;
         }
         #sr_results_container{
         width: 100%;

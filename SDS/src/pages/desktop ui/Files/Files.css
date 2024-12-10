@@ -14,11 +14,7 @@
     font-size: 1.5em;
 }
 
-nav a {
-    color: #fff;
-    margin-left: 1em;
-    text-decoration: none;
-}
+
 
 #file-upload-main {
     margin: 2em auto;
@@ -219,19 +215,7 @@ nav a {
 }
 
 
-.navbar {
-    background-color: white;
-    width: 100vw; 
-    height: 80px; 
-    position: fixed; 
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    padding: 1rem; 
-    z-index: 1000; 
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-}
+
 
 #site_name {
     color: black;
@@ -241,48 +225,6 @@ nav a {
     font-family: 'Roboto';
     bottom: 2px;
     left: 16px;
-}
-
-.logImageNav {
-    width: 20px; 
-    height: 20px ;
-    margin-right: 6px; 
-    transition: filter 0.3s ease-in-out;
-    
-}
-
-
-.navText {
-    color: black;
-    transition: color 0.3s ease-in-out;
-    margin-right: 6px; 
-}
-
-.navButtons {
-    padding: 5px 5px 5px 6px; 
-    background-color: transparent;
-    border: none;
-    border-radius: 22px;
-    cursor: pointer;
-    margin-right: 11px;
-    display: flex;           
-    justify-content: center; 
-    align-items: center;     
-    
-    transition: all 0.3s ease-in-out;
-    position: relative;
-}
-
-.navButtons:hover {
-    background-color: black;
-}
-
-.navButtons:hover .navText {
-    color: white;
-}
-
-.navButtons:hover .logImageNav {
-    filter: invert(1);
 }
 .space{
     padding:32px;
@@ -378,18 +320,7 @@ nav a {
     #site_name {
         display: none;
     }
-    .navbar{
-        display: inline-block;
-        flex-direction: space-between;
-        align-items: center;
-        text-align: center;
-    }
-    .navButtons {
-        text-align: center;
-        display: inline-block;
-        margin: 0 1em;
-        font-size: 0.9em;
-    }
+
 }
 
 .download-btn:hover,

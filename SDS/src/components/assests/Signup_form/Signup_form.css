@@ -18,15 +18,24 @@
 .SF_box {
   background-color: black;
   width: 35vw; 
-  max-width: 1200px; /* Max width for large screens */
-  min-width: 800px; /* Min width for large screens */
-  height: 100%; /* Full viewport height */
+  max-width: 1200px; 
+  min-width: 800px; 
+  height: 100%; 
   position: relative;
   border-radius: 40px;
   padding: 6.5rem;
   box-sizing: border-box; /* Include padding in height calculation */
   transition: all 0.3s ease-in-out;
   z-index: 3;
+}
+
+#SF_create_account_btn.loading-active-sgn {
+  pointer-events: none; 
+  cursor: not-allowed;
+}
+
+#SF_create_account_btn.loading-active-sgn:hover .spinner-color {
+  filter: invert(1); 
 }
 
 
@@ -78,10 +87,9 @@
 }
 
 #SF_text1 {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1rem;
   font-size: 6vh;
   font-weight: bold;
   justify-content: center;
@@ -91,7 +99,6 @@
 #SF_text2 {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
   font-size: 2vh;
   font-weight: 400;
   justify-content: center;
@@ -194,33 +201,33 @@
   .SF_box {
     width: 100%;
     min-width: 0;
-    height: auto;
-    min-height: auto;
     padding: 2rem;
     border-radius: 0; /* Remove border radius for full-screen form */
   }
 
   #SF_text1 {
-    font-size: 4.7rem; /* Larger heading size */
+    top: 1px;
+    font-size: 12vw; /* Larger heading size */
     text-align: top;
     gap: 1.5rem;
     bottom: 90px;
   }
 
   #SF_text2 {
-    font-size: 1.5rem; /* Larger subheading size */
+    font-size: 4vw; /* Larger subheading size */
     text-align: center;
-    bottom: 70px;
+    bottom: 1px;
   }
 
   .SF_form {
-    gap: 1.5rem; /* Add spacing between elements */
-    margin-top: 1.5rem;
+    gap: 1.5vh; /* Add spacing between elements */
+    margin-top: 1.5vh;
   }
 
   .SF_input-box input {
     font-size: 1.2rem; /* Larger font for inputs */
-    height: 4rem; /* Increase height */
+    height: 9vw; /* Increase height */
+    min-height: 3vh;
     padding: 0.8rem;
     border-radius: 12px;
     width: 100%;
@@ -229,18 +236,19 @@
   #SF_create_account_btn {
     font-size: 1.2rem; /* Larger button text */
     padding: 1rem;
-    height: auto;
+    height: 4vh; /* Increase height */
+    min-height: 2vh;
     border-radius: 10px;
     width: 100%;
   }
 
   #SF_login_btn {
-    font-size: 1.7rem; /* Larger login button text */
+    font-size: 5vw; /* Larger login button text */
     margin-top: 1.5rem;
   }
 
   #SF_login_btn a {
-    font-size: 1.9rem;
+    font-size: 6vw;
     
     border-radius: 10px;
   }
@@ -324,3 +332,4 @@
       color: #008540;
   }
 }
+

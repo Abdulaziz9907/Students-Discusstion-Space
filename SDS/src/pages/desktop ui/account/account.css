@@ -241,6 +241,7 @@
 /* Media Queries */
 @media (max-height: 1090px) {
     #account_details {
+        top: 20px;
         position: relative;
         max-height: 80vh;
         overflow-y: auto;
@@ -307,6 +308,14 @@
         max-height: 86vh;
     }
 
+    #account_delete_btn {
+       min-width: 20vw;
+    }
+    .account_update-button {
+        min-width: 20vw;
+
+     }
+
     #account_details_list {
         position: relative;
         top: 10px;
@@ -326,16 +335,17 @@
 
     #account_details1 {
         height: 410px;
-        width: 800px;
+        width: 90vw;
     }
     
     #account_details2 {
         height: 340px;
-        width: 800px;
+        width: 90vw;
+
     }
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     #account_details1 {
         height: 410px;
         width: 700px;
@@ -346,25 +356,30 @@
         width: 700px;
     }
 }
-
-@media (max-width: 720px) {
-    #account_details {
-        padding: 10px;
-        max-height: 90vh;
+ */
+ @media (max-width: 600px) {
+    #account_details_list {
+        gap: 10px;
+        padding: 9px;
     }
 
-    #account_details1, #account_details2 {
+    #account_details_list > label {
         width: 100%;
-        height: auto;
+        margin-bottom: 5px;
+        font-size: 20px;
     }
 
-    #account_details1 {
-        height: 410px;
-        width: 500px;
+    #account_details_list > input {
+        width: 100%;
+        margin-left: 0;
+        padding: 5px;
+        box-sizing: border-box;
     }
-    
-    #account_details2 {
-        height: 340px;
-        width: 500px;
+
+    #account_details_list > button {
+        margin-left: 0;
+        align-self: flex-start;
     }
+
+ 
 }

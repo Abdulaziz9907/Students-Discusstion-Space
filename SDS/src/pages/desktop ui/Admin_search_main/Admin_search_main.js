@@ -36,19 +36,19 @@ function Admin_search_main() {
   };
 
   return (
-    <div className="main_webpage_body">
-      <div id="mw_items">
+    <div className="asm_body">
+      <div id="asm_items">
         <div>
           <Navbar />
         </div>
         <div>
-          <p id="mw_text">Search for a user</p>
+          <p id="asm_text">Search for a user</p>
         </div>
-        <div className="sr_search-container">
+        <div className="asm_search-container">
           <input
             type="text"
             placeholder="Search by username"
-            className="mw_search-bar"
+            className="asm_search-bar"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -65,10 +65,10 @@ function Admin_search_main() {
           </div>
         )}
       </div>
-      <img src={mw_logo3} alt="comp1" id="mw_Vec3" className="mw_LogImage" />
-      <img src={mw_logo4} alt="comp1" id="mw_Vec4" className="mw_LogImage" />
-      <img src={mw_logo5} alt="comp1" id="mw_Vec5" className="mw_LogImage" />
-      <img src={mw_logo6} alt="comp1" id="mw_Vec6" className="mw_LogImage" />
+      <img src={mw_logo3} alt="comp1" id="asm_Vec3" className="asm_LogImage" />
+      <img src={mw_logo4} alt="comp1" id="asm_Vec4" className="asm_LogImage" />
+      <img src={mw_logo5} alt="comp1" id="asm_Vec5" className="asm_LogImage" />
+      <img src={mw_logo6} alt="comp1" id="asm_Vec6" className="asm_LogImage" />
     </div>
   );
 }

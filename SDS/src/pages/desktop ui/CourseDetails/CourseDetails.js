@@ -4,15 +4,17 @@ import mw_logo3 from './elements/Vector3.png';
 import mw_logo4 from './elements/Vector4.png';
 import mw_logo5 from './elements/Vector5.png';
 import mw_logo6 from './elements/Vector6.png';
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from '../../../context/userContext';
 
 function CourseDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const { courseId = 'Unknown Course' } = location.state || {};
   const [courseName,setCourseName]=useState();
+  const { userName } = useContext(UserContext);
 
   useEffect(() => {
     const fetchCourseName = async () => {
@@ -76,7 +78,7 @@ function CourseDetails() {
           <div id="cd_details4">
             <span className="cd_details4-text">Files</span>
             <button className="cd_details-button"
-             onClick={() => navigate('/Files', { state: { courseName } })}>View files</button>
+             onClick={() => navigate(`/Files?id=${courseId}&username=${userName}`)}>View files</button>
           </div>
         </div>
       </div>
