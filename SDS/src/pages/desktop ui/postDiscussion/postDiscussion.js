@@ -1,11 +1,14 @@
 // postDiscussion.js
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import './postDiscussion.css';
+import { UserContext } from '../../../context/userContext';
 
 function PostDiscussion() {
+  const { userName } = useContext(UserContext);
+  
   const [discussionContent, setDiscussionContent] = useState('');
   const { state } = useLocation(); // Get state from navigation
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ function PostDiscussion() {
       await axios.post('https://students-discussion-space.onrender.com/add-discussion', {
         courseName,
         content: discussionContent,
-        user: 'CurrentUser', // Replace this with actual logged-in user's data
+        user: userName, // Replace this with actual logged-in user's data
       });
 
       // Navigate back to discussions page after posting

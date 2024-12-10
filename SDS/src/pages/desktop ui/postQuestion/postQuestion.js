@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import axios from 'axios'; // Import axios for making HTTP requests
 import { useNavigate, useLocation } from 'react-router-dom'; // Import for navigation
 import './postQuestion.css';
+import { UserContext } from '../../../context/userContext';
 
 function PostQuestion() {
+  const {userName} = useContext(UserContext);
   const [questionContent, setQuestionContent] = useState(''); // State to store question content
   const navigate = useNavigate(); // Initialize navigate
   const { state } = useLocation(); // Get state from navigation (the courseName)
@@ -23,7 +25,7 @@ function PostQuestion() {
       await axios.post('https://students-discussion-space.onrender.com/add-question', {
         courseName: courseName, // Send the courseName
         content: questionContent, // Send the question content
-        user: 'CurrentUser', // Replace with actual user data (e.g. from auth context or state)
+        user: userName, // Replace with actual user data (e.g. from auth context or state)
       });
 
       alert('Question posted successfully!');

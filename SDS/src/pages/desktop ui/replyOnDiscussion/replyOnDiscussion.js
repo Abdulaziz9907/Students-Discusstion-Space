@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext} from 'react';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom'; // UseLocation to get the discussion ID
 import axios from 'axios'; // Import axios
 import './replyOnDiscussion.css';
+import { UserContext } from '../../../context/userContext';
 
 function ReplyOnDiscussion() {
+  const { userName } = useContext(UserContext);
   const [replyContent, setReplyContent] = useState(''); // State to store the reply content
   const [discussionId, setDiscussionId] = useState(null); // Store the discussion ID from the previous page (passed in state)
   
@@ -34,7 +36,7 @@ function ReplyOnDiscussion() {
        
         discussionId: discussionId,  // Passing the discussionId
         content: replyContent,        // Passing the reply content
-        user: 'CurrentUser',          // Replace with actual user data (e.g. from auth context or state)
+        user: userName,          // Replace with actual user data (e.g. from auth context or state)
       });
 
 
