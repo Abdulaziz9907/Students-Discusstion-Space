@@ -50,7 +50,7 @@ function AddRating() {
 
     try {
       console.log("updating "+userName+" visits")
-      await axios.put("http://localhost:3002/ratingVisits", { 
+      await axios.put("https://students-discussion-space.onrender.com/ratingVisits", { 
         userName: userName 
       });
     
