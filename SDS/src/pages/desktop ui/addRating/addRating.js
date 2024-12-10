@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import "./addRating.css";
 import axios from 'axios';
+import  {  useEffect, useContext } from 'react';
+import { UserContext } from '../../../context/userContext';
 
 function AddRating() {
   const [rating, setRating] = useState(0);
@@ -11,7 +13,10 @@ function AddRating() {
   const location = useLocation();
   const navigate = useNavigate();
   const courseName = location.state?.courseName || "Unknown Course"; // Get courseName from navigation state
+  const courseId = location.state?.courseId || "null";
 
+  const { userName } = useContext(UserContext);
+  console.log(userName + " account");
   const handleRatingClick = (index) => {
     setRating(index + 1);
   };
@@ -42,9 +47,22 @@ function AddRating() {
       console.error("Error submitting rating:", err.message);
       setError("Failed to submit the rating. Please try again later.");
     }
+
+    try {
+      console.log("updating "+userName+" visits")
+      await axios.put("http://localhost:3002/ratingVisits", { 
+        userName: userName 
+      });
+    
+    } catch (error) {
+      console.error('Error incrementing user ratings: ', error.response?.data || error.message);
+      navigate('/CourseDetails', { state: { courseId } });
+    }
+
   };
 
   return (
+    
     <div className="add-rating-wrapper">
       <Navbar />
       <div className="container">

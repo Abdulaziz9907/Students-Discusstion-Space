@@ -56,7 +56,7 @@ function CourseDetails() {
         <div id="cd_details">
           <div id="cd_details1">
             <span className="cd_details1-text">Course Difficulty Rating:</span>
-            <button className="cd_details-button" onClick={() => navigate('/CourseRating', { state: { courseName } })}>View rating</button>
+            <button className="cd_details-button" onClick={() => navigate('/CourseRating', { state: { courseName, courseId } })}>View rating</button>
           </div>
 
           <div id="cd_details2">

@@ -14,9 +14,10 @@ function CourseRating() {
   const [loading, setLoading] = useState(true); // Loading state
   const navigate = useNavigate();
   const location = useLocation();
-
+  const courseId = location.state?.courseId || "Introduction to MongoDB";
   useEffect(() => {
     const course = location.state?.courseName || "Introduction to MongoDB";
+    
     setCourseName(course);
 
     // Fetch course details when the page loads
@@ -65,7 +66,7 @@ function CourseRating() {
               <StarRating rating={rating} /> {/* Static rating */}
               <button
                 className="add-rating-button"
-                onClick={() => navigate("/addrating", { state: { courseName } })}
+                onClick={() => navigate("/addrating", { state: { courseName, courseId } })}
               >
                 Add Rating
               </button>

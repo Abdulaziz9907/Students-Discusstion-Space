@@ -2,6 +2,8 @@ import Navbar from '../../../components/assests/Navbar/Navbar';
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import './Upload.css';
+import { UserContext } from '../../../context/userContext';
+import useContext from "react";
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
 import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
@@ -12,7 +14,7 @@ const UploadFilePage = () => {
   const [error, setError] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
-
+  const { userName } = useContext(UserContext);
   // Extract course ID from URL
   const courseId = new URLSearchParams(window.location.search).get('id');
   const username = new URLSearchParams(window.location.search).get('username');
@@ -69,6 +71,17 @@ const UploadFilePage = () => {
     } finally {
       setIsUploading(false);
     }
+
+    try {
+      console.log("updating "+userName+" uploads")
+      await axios.put("https://students-discussion-space.onrender.com/uploadVisits", { 
+        userName: userName 
+      });
+    
+    } catch (error) {
+      console.error('Error incrementing user uploads: ', error.response?.data || error.message);
+    }
+
   };
 
   const handleSelectFile = () => {

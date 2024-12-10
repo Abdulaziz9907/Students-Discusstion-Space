@@ -4,13 +4,14 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import { useNavigate, useLocation } from 'react-router-dom'; // Import for navigation
 import './postQuestion.css';
 import { UserContext } from '../../../context/userContext';
+import  { useEffect } from 'react';
 
 function PostQuestion() {
-  const {userName} = useContext(UserContext);
   const [questionContent, setQuestionContent] = useState(''); // State to store question content
   const navigate = useNavigate(); // Initialize navigate
   const { state } = useLocation(); // Get state from navigation (the courseName)
   const courseName = state?.courseName || 'testCourse'; // Get course name from state, or empty string if not provided
+  const { userName } = useContext(UserContext);
 
   // Handle the question submission
   const handlePostQuestion = async () => {
@@ -35,6 +36,16 @@ function PostQuestion() {
       console.error("Error posting question:", error);
       alert('Failed to post question');
     }
+    try {
+      console.log("updating "+userName+" questions")
+      await axios.put("https://students-discussion-space.onrender.com/ratingQuestions", { 
+        userName: userName 
+      });
+    
+    } catch (error) {
+      console.error('Error incrementing user Questions: ', error.response?.data || error.message);
+    }
+    
   };
 
   return (

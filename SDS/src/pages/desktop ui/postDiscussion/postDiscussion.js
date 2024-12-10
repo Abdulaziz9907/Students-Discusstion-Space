@@ -1,4 +1,3 @@
-// postDiscussion.js
 import React, { useState , useContext } from 'react';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -7,11 +6,13 @@ import './postDiscussion.css';
 import { UserContext } from '../../../context/userContext';
 
 function PostDiscussion() {
-  const { userName } = useContext(UserContext);
   
   const [discussionContent, setDiscussionContent] = useState('');
   const { state } = useLocation(); // Get state from navigation
   const navigate = useNavigate();
+
+  const { userName } = useContext(UserContext);
+  console.log(userName + " inside post page");
 
   const courseName = state?.courseName || 'All courses'; // Get course name from state
 
@@ -36,6 +37,17 @@ function PostDiscussion() {
       console.error("Error posting discussion:", error);
       alert('Failed to post discussion');
     }
+
+    try {
+      console.log("updating "+userName+"discusstionVisits")
+      await axios.put("https://students-discussion-space.onrender.com/discusstionVisits", { 
+        userName: userName 
+      });
+    
+    } catch (error) {
+      console.error('Error incrementing user Discusstions: ', error.response?.data || error.message);
+    }
+
   };
 
   return (

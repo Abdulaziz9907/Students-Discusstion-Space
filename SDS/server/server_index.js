@@ -846,6 +846,109 @@ app.get('/discussions/count', async (req, res) => {
   }
 }); */
 
+app.put('/ratingVisits', async (req, res) => {
+  const { userName } = req.body; 
+  console.log("server incrementing this course visits: "+ userName);
+
+  try {
+    const userNameVisits = await UsersModel.findOneAndUpdate(
+      { userName: userName }, // Make sure to match the exact field in your schema
+      { $inc: { ratings: 1 } },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!userNameVisits) {
+      return res.status(404).json("Course not found");
+    } 
+
+    res.status(200).json(userNameVisits);
+  } catch (error) {
+    console.error('Error updating visits:', error.message);
+    res.status(500).json("Server error");
+  }
+});
+
+app.put('discusstionVisits', async (req, res) => {
+  const { userName } = req.body; 
+  console.log("server incrementing this course visits: "+ userName);
+
+  try {
+    const userNameVisits = await UsersModel.findOneAndUpdate(
+      { userName: userName }, // Make sure to match the exact field in your schema
+      { $inc: { discussions: 1 } },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!userNameVisits) {
+      return res.status(404).json("Course not found");
+    } 
+
+    res.status(200).json(userNameVisits);
+  } catch (error) {
+    console.error('Error updating visits:', error.message);
+    res.status(500).json("Server error");
+  }
+});
+
+app.put('/ratingQuestions', async (req, res) => {
+  const { userName } = req.body; 
+  console.log("server incrementing this course visits: "+ userName);
+
+  try {
+    const userNameVisits = await UsersModel.findOneAndUpdate(
+      { userName: userName }, // Make sure to match the exact field in your schema
+      { $inc: { questions: 1 } },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!userNameVisits) {
+      return res.status(404).json("Course not found");
+    } 
+
+    res.status(200).json(userNameVisits);
+  } catch (error) {
+    console.error('Error updating visits:', error.message);
+    res.status(500).json("Server error");
+  }
+});
+
+app.put('/uploadVisits', async (req, res) => {
+  const { userName } = req.body; 
+  console.log("server incrementing this course visits: "+ userName);
+
+  try {
+    const userNameVisits = await UsersModel.findOneAndUpdate(
+      { userName: userName }, // Make sure to match the exact field in your schema
+      { $inc: { files: 1 } },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!userNameVisits) {
+      return res.status(404).json("Course not found");
+    } 
+
+    res.status(200).json(userNameVisits);
+  } catch (error) {
+    console.error('Error updating visits:', error.message);
+    res.status(500).json("Server error");
+  }
+});
+
+
+
+
 
 // Listen on port 3002
 app.listen(3002, () => {

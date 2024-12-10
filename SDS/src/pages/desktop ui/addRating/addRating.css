@@ -2,12 +2,10 @@
 .add-rating-wrapper {
   background-color: #008540; /* Green background */
   color: white; /* White text color */
-  min-height: 100vh; /* Ensure full viewport height */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Add some padding */
   
 }
 
@@ -15,15 +13,21 @@
 .container {
   margin-top: 80px;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
 }
 
 
 /* Title for the course name */
 .course-title {
+  display: flex;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Main rating box with a black background */
