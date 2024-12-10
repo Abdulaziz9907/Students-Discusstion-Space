@@ -2,8 +2,6 @@ import Navbar from '../../../components/assests/Navbar/Navbar';
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import './Upload.css';
-import { UserContext } from '../../../context/userContext';
-import useContext from "react";
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
 import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
@@ -14,7 +12,7 @@ const UploadFilePage = () => {
   const [error, setError] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
-  const { userName } = useContext(UserContext);
+
   // Extract course ID from URL
   const courseId = new URLSearchParams(window.location.search).get('id');
   const username = new URLSearchParams(window.location.search).get('username');
@@ -45,8 +43,8 @@ const UploadFilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
-      setError(true);
-      return;
+        setError(true);
+        return;
     }
 
     const formData = new FormData();
@@ -54,35 +52,35 @@ const UploadFilePage = () => {
     formData.append('courseId', courseId);
 
     try {
-      setIsUploading(true);
-      const response = await axios.post('https://students-discussion-space.onrender.com/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+        setIsUploading(true);
+        const response = await axios.post('https://students-discussion-space.onrender.com/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
 
-      if (response.status === 201) {
-        alert('File uploaded successfully!');
-        window.location.href = `/files?id=${courseId}&username=${username}`;
-      }
+        if (response.status === 201) {
+            alert('File uploaded successfully!');
+
+            // Integrate user questions update logic here
+            try {
+                console.log("Updating " + username + " questions");
+                await axios.put("https://students-discussion-space.onrender.com/uploadVisits", { 
+                    userName: username 
+                });
+            } catch (error) {
+                console.error('Error incrementing user Questions: ', error.response?.data || error.message);
+            }
+
+            window.location.href = `/files?id=${courseId}&username=${username}`;
+        }
     } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('File upload failed. Please try again.');
+        console.error('Error uploading file:', error);
+        alert('File upload failed. Please try again.');
     } finally {
-      setIsUploading(false);
+        setIsUploading(false);
     }
-
-    try {
-      console.log("updating "+userName+" uploads")
-      await axios.put("https://students-discussion-space.onrender.com/uploadVisits", { 
-        userName: userName 
-      });
-    
-    } catch (error) {
-      console.error('Error incrementing user uploads: ', error.response?.data || error.message);
-    }
-
-  };
+};
 
   const handleSelectFile = () => {
     fileInputRef.current.click();
@@ -154,4 +152,4 @@ const UploadFilePage = () => {
   );
 };
 
-export default UploadFilePage;
+export default UploadFilePage;

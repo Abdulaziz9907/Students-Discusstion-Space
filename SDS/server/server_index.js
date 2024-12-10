@@ -871,7 +871,7 @@ app.put('/ratingVisits', async (req, res) => {
   }
 });
 
-app.put('discusstionVisits', async (req, res) => {
+app.put('/discusstionVisits', async (req, res) => {
   const { userName } = req.body; 
   console.log("server incrementing this course visits: "+ userName);
 

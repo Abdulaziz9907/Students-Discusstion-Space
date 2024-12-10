@@ -39,7 +39,7 @@ function PostDiscussion() {
     }
 
     try {
-      console.log("updating "+userName+"discusstionVisits")
+      console.log("updating "+userName+" discusstionVisits")
       await axios.put("https://students-discussion-space.onrender.com/discusstionVisits", { 
         userName: userName 
       });
