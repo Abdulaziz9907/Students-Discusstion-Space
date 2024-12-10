@@ -393,7 +393,11 @@ app.post('/discussions/:id/reply', async (req, res) => {
 app.post('/discussions/:id/replies/:replyId/vote', async (req, res) => {
   try {
     const { id, replyId } = req.params;
-    const { userId, voteType } = req.body;
+    const { username, voteType } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ message: 'Username is required for voting' });
+    }
 
     const discussion = await DiscussionModel.findById(id);
     if (!discussion) return res.status(404).json({ message: 'Discussion not found' });
@@ -402,23 +406,20 @@ app.post('/discussions/:id/replies/:replyId/vote', async (req, res) => {
     if (!reply) return res.status(404).json({ message: 'Reply not found' });
 
     if (!reply.userVotes) {
-      reply.userVotes = new Map(); // Initialize userVotes as a Map if not present
+      reply.userVotes = new Map(); // Initialize userVotes if not present
     }
 
-    // Get previous vote from the user
-    const previousVote = reply.userVotes.get(userId);
+    const previousVote = reply.userVotes.get(username);
 
     if (previousVote === voteType) {
-      // If the user is undoing their vote, remove the vote
-      reply.userVotes.delete(userId);
+      reply.userVotes.delete(username);
       reply.votes += voteType === 'up' ? -1 : 1;
     } else {
-      // Update the vote
       if (previousVote) {
-        reply.votes += previousVote === 'up' ? -1 : 1; // Undo the previous vote
+        reply.votes += previousVote === 'up' ? -1 : 1;
       }
-      reply.votes += voteType === 'up' ? 1 : -1; // Apply the new vote
-      reply.userVotes.set(userId, voteType);
+      reply.votes += voteType === 'up' ? 1 : -1;
+      reply.userVotes.set(username, voteType);
     }
 
     await discussion.save();
