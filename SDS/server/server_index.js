@@ -672,6 +672,31 @@ app.get('/courses', async (req, res) => {
   }
 });
 
+
+app.get('/users', async (req, res) => {
+  try {
+    console.log("Searching for users in the server");
+    const { userName } = req.query; 
+    console.log("Server searching for: " + userName);
+
+    const users = await UsersModel.find({ userName: { $regex: userName, $options: 'i' } });
+
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const userNames = users.map(user => user.userName);
+
+    return res.json(userNames);
+  } catch (error) {
+    console.error("Error while searching for users:", error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+
 app.delete('/delete-account/:userName', async (req, res) => {
   const { userName } = req.params;
 

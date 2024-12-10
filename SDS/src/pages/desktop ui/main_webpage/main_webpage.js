@@ -104,7 +104,7 @@ function Main_webpage() {
   }
 
   const handleManageUsers= () =>{
-    navigate('/AddCourse');
+    navigate('/Admin_search_main');
   }
 
   return (

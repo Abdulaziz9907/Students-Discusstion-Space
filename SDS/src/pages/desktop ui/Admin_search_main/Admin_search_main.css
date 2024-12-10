@@ -29,15 +29,6 @@
     margin-right: 10px;
     height: auto;
 }
-.loading-container-mainpage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px; /* Matches the height of the mw_suggestions content */
-    width: 100%; /* Optional: Ensure it spans the container width */
-    position: relative; /* Keep the loader within the bounds of the container */
-    top: 130px;
-  }
 
 .add-course-btn,.dashboard-btn,.manage-users-btn {
     background-color: white;
@@ -116,25 +107,7 @@
  
 }
 
-/* Suggestions container */
-#mw_suggestions_container {
-    background-color: black;
-    min-height: 55vh;
-    width: 80vw;
-    margin: 0 auto;
-    border-top-right-radius: 60px;
-    border-top-left-radius: 60px;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins';
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    justify-content: center;
-    min-width: 400px;
-    overflow-x: hidden;
-}
+
 
 /* Suggestions section title */
 #mw_text2 {

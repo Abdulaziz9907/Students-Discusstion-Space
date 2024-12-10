@@ -29,7 +29,7 @@ function Search_results() {
   const totalPages = 6;
 
   const { userName } = useContext(UserContext);
-  console.log(userName + " account in mainpage ");
+  console.log(userName + " account in search result page ");
 
   // Fetch the courses when `searchTerm` changes
   useEffect(() => {
