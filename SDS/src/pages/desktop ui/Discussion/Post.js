@@ -13,7 +13,7 @@ const PostDiscussion = () => {
   const [error, setError] = useState(false);
 
   const courseId = new URLSearchParams(window.location.search).get('id');
-  const username = useContext(UserContext);
+  const username = useContext(UserContext).userName;
   const courseName = courseId;
 
   const handlePostSubmit = async () => {

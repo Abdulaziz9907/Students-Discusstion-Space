@@ -14,7 +14,7 @@ const ReplyDiscussion = () => {
   const [error, setError] = useState(false);
 
   const discussionId = new URLSearchParams(window.location.search).get('id');
-  const username = useContext(UserContext);
+  const username = useContext(UserContext).userName;
 
   const handleReplySubmit = async () => {
     if (replyText.trim() === '') {
