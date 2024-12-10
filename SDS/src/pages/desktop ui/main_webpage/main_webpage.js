@@ -88,9 +88,7 @@ function Main_webpage() {
 
 
   const handleSearch = () => {
-    if (courseId.trim()) {
       navigate('/Search Results', { state: { courseId } }); // Pass the search term to SearchResults
-    }
   };
 
   const handleKeyDown = (e) => {

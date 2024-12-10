@@ -168,7 +168,7 @@ function Account() {
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
         <>
-        <p id="account_text">Account</p>
+        <p id="account_text">Account details</p>
 
       <img src={account_logo3} alt="comp1" id="account_Vec3" className="account_LogImage" />
       <img src={account_logo4} alt="comp1" id="account_Vec4" className="account_LogImage" />

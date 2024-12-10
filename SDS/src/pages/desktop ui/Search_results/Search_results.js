@@ -31,10 +31,9 @@ function Search_results() {
   const { userName } = useContext(UserContext);
   console.log(userName + " account in search result page ");
 
-  // Fetch the courses when `searchTerm` changes
   useEffect(() => {
     const fetchCourses = async () => {
-      if (searchTerm) {
+      if (searchTerm || userName === 'admin') {
         setLoading(true);
         setNoResults(false);
         try {
@@ -43,7 +42,7 @@ function Search_results() {
           });
           setResults(response.data);
           console.log('courses: ', response.data);
-
+  
           // Only set noResults to true if the request succeeds but returns no results
           if (response.data.length === 0) {
             setNoResults(true);
@@ -57,9 +56,9 @@ function Search_results() {
         }
       }
     };
-
+  
     fetchCourses();
-  }, [searchTerm]);
+  }, [searchTerm, userName]);
 
 
 
@@ -143,7 +142,7 @@ function Search_results() {
           <Navbar />
         </div>
         <div>
-          <p id="sr_text">Search Results For: {searchTerm}</p>
+        <p id="sr_text">Search Results For: {searchTerm ? searchTerm : "all"}</p>
         </div>
 
         <div className="sr_search-container">

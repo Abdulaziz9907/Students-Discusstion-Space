@@ -656,8 +656,14 @@ app.get('/courses', async (req, res) => {
     const { courseId } = req.query;
     console.log("server searching for: " + courseId);
 
-    // Search for courses matching the regex pattern
-    const courses = await Courses.find({ courseId: { $regex: courseId, $options: 'i' } });
+    let courses;
+    if (!courseId) {
+      // If no courseId is provided, fetch all courses
+      courses = await Courses.find({});
+    } else {
+      // Search for courses matching the regex pattern
+      courses = await Courses.find({ courseId: { $regex: courseId, $options: 'i' } });
+    }
 
     if (!courses || courses.length === 0) {
       return res.status(404).json({ message: 'course not found' });
@@ -679,7 +685,14 @@ app.get('/users', async (req, res) => {
     const { userName } = req.query; 
     console.log("Server searching for: " + userName);
 
-    const users = await UsersModel.find({ userName: { $regex: userName, $options: 'i' } });
+    let users;
+    if (!userName) {
+      // If no userName is provided, fetch all users
+      users = await UsersModel.find({});
+    } else {
+      // If userName is provided, search using regex
+      users = await UsersModel.find({ userName: { $regex: userName, $options: 'i' } });
+    }
 
     if (!users || users.length === 0) {
       return res.status(404).json({ message: 'User not found' });

@@ -31,7 +31,8 @@ function Account_search_results() {
   // Fetch the users when `searchTerm` changes
   useEffect(() => {
     const fetchUsers = async () => {
-      if (searchTerm) {
+      // Allow fetching all users for admin when searchTerm is empty
+      if (searchTerm || currentUserName === 'admin') {
         setLoading(true);
         setNoResults(false);
         try {
@@ -40,7 +41,7 @@ function Account_search_results() {
           });
           setResults(response.data);
           console.log('users: ', response.data);
-
+  
           if (response.data.length === 0) {
             setNoResults(true);
           }
@@ -53,9 +54,12 @@ function Account_search_results() {
         }
       }
     };
-
+  
     fetchUsers();
-  }, [searchTerm]);
+  }, [searchTerm, currentUserName]);
+
+
+
 
   const handleDeleteClick = async (userName) => {
     if (userName === 'admin') {
@@ -117,7 +121,7 @@ function Account_search_results() {
   };
 
   const handleViewDetails = (userName) => {
-    navigate('/UserDetails', { state: { userName } });
+    navigate('/Account info', { state: { userName } });
   };
 
   return (
@@ -128,7 +132,7 @@ function Account_search_results() {
           <Navbar />
         </div>
         <div>
-          <p id="sr_text">Search Results For: {searchTerm}</p>
+        <p id="sr_text">Search Results For: {searchTerm ? searchTerm : "all"}</p>
         </div>
 
         <div className="sr_search-container">

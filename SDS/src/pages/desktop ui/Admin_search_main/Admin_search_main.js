@@ -18,9 +18,7 @@ function Admin_search_main() {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (searchTerm.trim()) {
       navigate('/Account search results', { state: { userName: searchTerm } }); // Pass the search term to SearchResults
-    }
   };
 
   const handleKeyDown = (e) => {
