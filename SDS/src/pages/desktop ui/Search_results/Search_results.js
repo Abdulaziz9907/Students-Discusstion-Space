@@ -33,7 +33,7 @@ function Search_results() {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      if (searchTerm || userName === 'admin') {
+      if (searchTerm || userName === 'admin' || (!searchTerm && userName !== 'admin')) {
         setLoading(true);
         setNoResults(false);
         try {
