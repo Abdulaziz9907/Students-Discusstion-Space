@@ -1,22 +1,26 @@
-Follow these steps to run and view the UI of the project:
-
--To start the project:
+-To start the frontend:
 
     For javaScript files:
+
     -Navigate to my-app/src/index.js and open it in terminal
     -Run this command in your terminal: npm start
 
-    For html files:
-    -Right click on the file and open it using live server
+-To start the Backend:
+
+    -Our code deals with the deployed link so change the links to localhost:3002. 
+    -Navigate to the Server/server_index.js in terminal.
+    -Run this command in your terminal: node server_index.js
+    -This will have all backend endpoints grouped by functionality.
 
 Page Details:
 
     -Linked Pages: Some pages are linked as shown in App.js.
-    -Backend-Dependent Pages: Some pages need backend code to work fully, so it can be opended by typing the page name located in App.js for now.
+    -You can either navigate through the links or via buttons.
+    -Signup and start going through the pages.
 
 Error Handling:
 
-    -Custom error pages aren't created for some pages, since it can be shown using simple CSS code during run time.
+    -All codes have try and catch blocks or gives modals to users when there's an issue.
 
 Work ditrbution:
 
