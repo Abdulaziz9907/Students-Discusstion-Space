@@ -22,6 +22,7 @@
 
 /* Header text */
 #cd_text {
+    bottom: 70px;
     position: relative;
     font-size: 70px;
     font-weight: 900;
@@ -76,18 +77,18 @@
 
 #cd_details1, #cd_details2, #cd_details3, #cd_details4 {
     position: relative;
-    bottom: 40px;
+    bottom: 20px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 10vh;
+    min-height: 40px;
     width: 70vw;
     margin: 0 auto;
-    
+    height: 12vh;
     padding: 0;
     font-family: "Poppins";
-    min-width: 400px;
+    min-width: 300px;
     overflow-x: hidden;
 }
 #cd_details1{
@@ -124,8 +125,7 @@
     cursor: pointer;
     font-size: 20px;
     height: 3rem;
-    width: 10vw;
-    min-width: 140px;
+    width: 14vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -179,38 +179,77 @@
 
 
 
-@media (max-width: 1400px) {
-    #cd_text {
-        margin-top: 20px;
-        font-size: 50px;
-    }
-}
-@media (max-width: 1024px) {
-    #cd_text {
-        margin-top: 40px;
-        font-size: 41px;
-    }
-    #cd_details {  
-         min-height: 60vh;
-    }
-    
-
-      
-
-}
-
-
-@media (max-width: 720px) {
   
-    #cd_text {
-        font-size: 38px;
+
+    @media (max-width: 1400px) {
+        #cd_text {
+            margin-top: 20px;
+            font-size: 50px;
+        }
     }
-    #cd_results_container{
-    width: 100%;
+    @media (max-width: 1024px) {
+        #cd_text {
+            margin-top: 40px;
+            font-size: 41px;
+        }
+
+
     
     }
+    
+    
 
-}
+
+
+    @media (max-width: 700px) {
+      
+        #cd_text {
+            font-size: 23px;
+           bottom: 90px;
+        }
+        #cd_results_container{
+        width: 100%;
+        
+        }
+   
+
+        .cd_result-text{
+            font-size: 15px;
+
+        }
+
+        .cd_details-button {
+            font-size: 15px;
+            width: 90px;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+      
+        #cd_text {
+            font-size: 23px;
+           bottom: 90px;
+        }
+        #cd_results_container{
+        width: 100%;
+        
+        }
+   
+
+        .cd_result-text{
+            font-size: 15px;
+
+        }
+
+        .cd_details-button {
+            font-size: 14px;
+        }
+        .cd_details1-text, .cd_details2-text, .cd_details3-text, .cd_details4-text {
+            font-size: 15px;
+        }
+
+    }
 
 
 

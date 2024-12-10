@@ -17,6 +17,17 @@
     margin-bottom: 20px; /* Add space below the course name */
     z-index: 1; /* Ensure content is above background images */
   }
+  .loading-container-rating {
+    position: fixed; /* Ensures the container covers the whole screen */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   
   .course-header {
     text-align: center; /* Center text within the course header */
