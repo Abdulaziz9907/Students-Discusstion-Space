@@ -1,6 +1,8 @@
 import Navbar from '../../../components/assests/Navbar/Navbar';
-import React, { useState } from 'react';
 import './Post.css';
+
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../../../context/userContext';
 
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
 import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
@@ -11,7 +13,7 @@ const PostDiscussion = () => {
   const [error, setError] = useState(false);
 
   const courseId = new URLSearchParams(window.location.search).get('id');
-  const username = new URLSearchParams(window.location.search).get('username');
+  const username = useContext(UserContext);
   const courseName = courseId;
 
   const handlePostSubmit = async () => {

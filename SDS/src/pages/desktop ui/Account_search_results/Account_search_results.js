@@ -1,10 +1,10 @@
 import './Account_search_results.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import FooterNav from '../../../components/assests/FooterNav/FooterNav';
-import sr_logo3 from './elements/Vector3.png';
-import sr_logo4 from './elements/Vector4.png';
-import sr_logo5 from './elements/Vector5.png';
-import sr_logo6 from './elements/Vector6.png';
+import asr_logo3 from './elements/Vector3.png';
+import asr_logo4 from './elements/Vector4.png';
+import asr_logo5 from './elements/Vector5.png';
+import asr_logo6 from './elements/Vector6.png';
 import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../context/userContext';
@@ -125,21 +125,21 @@ function Account_search_results() {
   };
 
   return (
-    <div className="sr_body">
+    <div className="asr_body">
       <ToastContainer />
-      <div id="sr_items">
+      <div id="asr_items">
         <div>
           <Navbar />
         </div>
         <div>
-        <p id="sr_text">Search Results For: {searchTerm ? searchTerm : "all"}</p>
+        <p id="asr_text">Search Results For: {searchTerm ? searchTerm : "all"}</p>
         </div>
 
-        <div className="sr_search-container">
+        <div className="asr_search-container">
           <input
             type="text"
             placeholder="Type to search by username..."
-            className="sr_search-bar"
+            className="asr_search-bar"
             value={userName}
             onChange={handleSearchInput}
             onKeyDown={handleSearchSubmit}
@@ -147,14 +147,14 @@ function Account_search_results() {
         </div>
       </div>
 
-      <img src={sr_logo3} alt="comp1" id="sr_Vec3" className="sr_LogImage" />
-      <img src={sr_logo4} alt="comp1" id="sr_Vec4" className="sr_LogImage" />
-      <img src={sr_logo5} alt="comp1" id="sr_Vec5" className="sr_LogImage" />
-      <img src={sr_logo6} alt="comp1" id="sr_Vec6" className="sr_LogImage" />
+      <img src={asr_logo3} alt="comp1" id="asr_Vec3" className="asr_LogImage" />
+      <img src={asr_logo4} alt="comp1" id="asr_Vec4" className="asr_LogImage" />
+      <img src={asr_logo5} alt="comp1" id="asr_Vec5" className="asr_LogImage" />
+      <img src={asr_logo6} alt="comp1" id="asr_Vec6" className="asr_LogImage" />
 
-      <div id="sr_results_full">
-        <div id="sr_results_container">
-          <div id="sr_results">
+      <div id="asr_results_full">
+        <div id="asr_results_container">
+          <div id="asr_results">
             {loading ? (
               <div className="loading-container">
                 <l-ring-2
@@ -167,23 +167,23 @@ function Account_search_results() {
                 ></l-ring-2>
               </div>
             ) : noResults ? (
-              <p id="sr_text" className="sr_notfound_text">
+              <p id="asr_text" className="asr_notfound_text">
                 Sorry, we couldn't find anything for: "{searchTerm}"
               </p>
             ) : results.length > 0 ? (
               results.map((result, index) => (
-                <div key={index} id={`sr_result`}>
-                  <span className={`sr_result-text`}>
+                <div key={index} id={`asr_result`}>
+                  <span className={`asr_result-text`}>
                     {`${index + 1} - ${result}`}
                   </span>
-                  <div id="sr_btns">
+                  <div id="asr_btns">
                     {currentUserName === 'admin' && (
-                      <button className="sr_Delete-button" onClick={() => handleDeleteClick(result)}>
+                      <button className="asr_Delete-button" onClick={() => handleDeleteClick(result)}>
                         Delete User
                       </button>
                     )}
                     <button
-                      className="sr_result-button"
+                      className="asr_result-button"
                       onClick={() => handleViewDetails(result)}
                     >
                       View details

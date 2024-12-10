@@ -1,9 +1,9 @@
 import './Admin_search_main.css';
 import Navbar from '../../../components/assests/Navbar/Navbar';
-import mw_logo3 from './elements/Vector3.png';
-import mw_logo4 from './elements/Vector4.png';
-import mw_logo5 from './elements/Vector5.png';
-import mw_logo6 from './elements/Vector6.png';
+import asm_logo3 from './elements/Vector3.png';
+import asm_logo4 from './elements/Vector4.png';
+import asm_logo5 from './elements/Vector5.png';
+import asm_logo6 from './elements/Vector6.png';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -65,10 +65,10 @@ function Admin_search_main() {
           </div>
         )}
       </div>
-      <img src={mw_logo3} alt="comp1" id="asm_Vec3" className="asm_LogImage" />
-      <img src={mw_logo4} alt="comp1" id="asm_Vec4" className="asm_LogImage" />
-      <img src={mw_logo5} alt="comp1" id="asm_Vec5" className="asm_LogImage" />
-      <img src={mw_logo6} alt="comp1" id="asm_Vec6" className="asm_LogImage" />
+      <img src={asm_logo3} alt="comp1" id="asm_Vec3" className="asm_LogImage" />
+      <img src={asm_logo4} alt="comp1" id="asm_Vec4" className="asm_LogImage" />
+      <img src={asm_logo5} alt="comp1" id="asm_Vec5" className="asm_LogImage" />
+      <img src={asm_logo6} alt="comp1" id="asm_Vec6" className="asm_LogImage" />
     </div>
   );
 }
