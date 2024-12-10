@@ -25,7 +25,7 @@ const Discussion = () => {
 
   const fetchDiscussion = async () => {
     try {
-      const response = await axios.get(`http://localhost:3002/discussions/${discussionId}`);
+      const response = await axios.get(`https://students-discussion-space.onrender.com/discussions/${discussionId}`);
       setDiscussion(response.data);
     } catch (error) {
       console.error('Error fetching discussion:', error);
@@ -35,8 +35,8 @@ const Discussion = () => {
   const fetchReplies = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/discussions/${discussionId}`
-        ///http://localhost:3002/discussions/${discussionId}/replies?page=${currentPage}
+        `https://students-discussion-space.onrender.com/discussions/${discussionId}`
+        ///https://students-discussion-space.onrender.com/discussions/${discussionId}/replies?page=${currentPage}
       );
       setReplies(response.data.replies || []);
       setTotalPages(response.data.totalPages || 1);
@@ -49,7 +49,7 @@ const Discussion = () => {
   const handleVote = async (replyId, voteType) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/discussions/${discussionId}/replies/${replyId}/vote`,
+        `https://students-discussion-space.onrender.com/discussions/${discussionId}/replies/${replyId}/vote`,
         {
           username,
           voteType,

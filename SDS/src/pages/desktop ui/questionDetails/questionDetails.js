@@ -14,7 +14,7 @@ function QuestionDetails() {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/questions/${questionId}`);
+        const response = await fetch(`https://students-discussion-space.onrender.com/questions/${questionId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch question details');
         }
@@ -34,7 +34,7 @@ function QuestionDetails() {
   const handleVote = async (replyId, voteType) => {
     try {
     
-      const response = await fetch(`http://localhost:3002/questions/${questionId}/replies/${replyId}/vote`, {
+      const response = await fetch(`https://students-discussion-space.onrender.com/questions/${questionId}/replies/${replyId}/vote`, {
         
         method: 'POST',
         headers: {

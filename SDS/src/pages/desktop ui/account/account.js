@@ -45,7 +45,7 @@ function Account() {
       console.log('Fetching user details with username:', userName);
 
       try {
-        const response = await axios.get('http://localhost:3002/user', {
+        const response = await axios.get('https://students-discussion-space.onrender.com/user', {
           params: { userName },
         });
         console.log('Response from server:', response.data);
@@ -114,7 +114,7 @@ function Account() {
     };
 
     axios
-      .put('http://localhost:3002/update', updatedData)
+      .put('https://students-discussion-space.onrender.com/update', updatedData)
       .then((result) => {
         console.log(result);
         if (result.data === 'Error') {

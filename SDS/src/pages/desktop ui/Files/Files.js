@@ -18,7 +18,7 @@ const FileUploadPage = () => {
 
   const fetchFiles = async () => {
     try {
-      const response = await axios.get(`http://localhost:3002/files?courseId=${courseId}`);
+      const response = await axios.get(`https://students-discussion-space.onrender.com/files?courseId=${courseId}`);
       setFiles(response.data || []);
     } catch (error) {
       console.error('Error fetching files:', error);
@@ -28,7 +28,7 @@ const FileUploadPage = () => {
   const handleCopyLink = async (fileId) => {
     try {
       // Fetch the file URL from the backend
-      const response = await axios.get(`http://localhost:3002/files/${fileId}/link`);
+      const response = await axios.get(`https://students-discussion-space.onrender.com/files/${fileId}/link`);
       const { url } = response.data;
   
       // Copy the URL to clipboard
@@ -53,7 +53,7 @@ const FileUploadPage = () => {
       popup.style.display = 'block';
   
       // Fetch the download URL from the backend
-      const response = await axios.get(`http://localhost:3002/files/${fileId}/download`);
+      const response = await axios.get(`https://students-discussion-space.onrender.com/files/${fileId}/download`);
       const { url } = response.data;
   
       // Trigger download

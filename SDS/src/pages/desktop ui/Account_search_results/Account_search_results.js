@@ -36,7 +36,7 @@ function Account_search_results() {
         setLoading(true);
         setNoResults(false);
         try {
-          const response = await axios.get('http://localhost:3002/users', {
+          const response = await axios.get('https://students-discussion-space.onrender.com/users', {
             params: { userName: searchTerm },
           });
           setResults(response.data);
@@ -79,7 +79,7 @@ function Account_search_results() {
   
     console.log("Attempting to delete user with userName:", userName);
     try {
-      const response = await fetch(`http://localhost:3002/delete-account/${userName}`, {
+      const response = await fetch(`https://students-discussion-space.onrender.com/delete-account/${userName}`, {
         method: "DELETE",
       });
   

@@ -43,7 +43,7 @@ function Account_info() {
   const handleDeleteClick = async (userName) => {
     console.log("Attempting to delete user with admin account: ", userName);
       try {
-        const response = await fetch(`http://localhost:3002/delete-account/${userName}`, {
+        const response = await fetch(`https://students-discussion-space.onrender.com/delete-account/${userName}`, {
           method: "DELETE",
         });
 
@@ -88,7 +88,7 @@ function Account_info() {
       console.log('Fetching user details with username:', userName);
 
       try {
-        const response = await axios.get('http://localhost:3002/user', {
+        const response = await axios.get('https://students-discussion-space.onrender.com/user', {
           params: { userName },
         });
         console.log('Response from server:', response.data);

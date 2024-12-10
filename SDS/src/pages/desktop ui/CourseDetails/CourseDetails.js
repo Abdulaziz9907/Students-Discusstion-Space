@@ -17,7 +17,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchCourseName = async () => {
         try {
-          const response = await axios.get('http://localhost:3002/course-name', {
+          const response = await axios.get('https://students-discussion-space.onrender.com/course-name', {
             params: { courseId },
           });
           setCourseName(response.data.courseName);

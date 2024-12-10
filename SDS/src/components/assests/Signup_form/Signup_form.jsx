@@ -40,7 +40,7 @@ const Signup_form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:3002/signup', { userName, fName, lName, major, year, password, ratings, questions, answers, files, discussions })
+      .post('https://students-discussion-space.onrender.com/signup', { userName, fName, lName, major, year, password, ratings, questions, answers, files, discussions })
       .then((result) => {
         console.log(result);
         if(result.data === "Username already exists"){

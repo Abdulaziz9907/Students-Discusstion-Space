@@ -14,7 +14,7 @@ function DeleteBtn() {
       setExpanded(true);
     } else {
       try {
-        const response = await fetch(`http://localhost:3002/delete-account/${userName}`, {
+        const response = await fetch(`https://students-discussion-space.onrender.com/delete-account/${userName}`, {
           method: "DELETE",
         });
 

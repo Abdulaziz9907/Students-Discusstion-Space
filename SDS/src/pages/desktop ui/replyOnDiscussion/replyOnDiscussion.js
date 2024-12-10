@@ -30,7 +30,7 @@ function ReplyOnDiscussion() {
 
     try {
       // Send the reply content to the backend
-      await axios.post('http://localhost:3002/reply-to-discussion', {
+      await axios.post('https://students-discussion-space.onrender.com/reply-to-discussion', {
        
         discussionId: discussionId,  // Passing the discussionId
         content: replyContent,        // Passing the reply content

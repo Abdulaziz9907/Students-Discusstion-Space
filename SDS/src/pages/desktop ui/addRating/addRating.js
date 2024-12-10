@@ -29,7 +29,7 @@ function AddRating() {
 
     try {
       // Send the rating to the backend
-      const response = await axios.post(`http://localhost:3002/courses/${courseName}/rating`, {
+      const response = await axios.post(`https://students-discussion-space.onrender.com/courses/${courseName}/rating`, {
         user: "Anonymous User", // Replace with an actual user identifier in a real-world application
         comment: summary,
         value: rating,

@@ -22,7 +22,7 @@ const PostDiscussion = () => {
 
     try {
       setError(false);
-      await fetch('http://localhost:3002/add-discussion', {
+      await fetch('https://students-discussion-space.onrender.com/add-discussion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

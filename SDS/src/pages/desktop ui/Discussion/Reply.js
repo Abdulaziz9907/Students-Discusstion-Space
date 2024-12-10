@@ -23,7 +23,7 @@ const ReplyDiscussion = () => {
     setError(false);
 
     try {
-      await axios.post(`http://localhost:3002/discussions/${discussionId}/reply`, {
+      await axios.post(`https://students-discussion-space.onrender.com/discussions/${discussionId}/reply`, {
         user: username,
         content: replyText,
       });

@@ -19,7 +19,7 @@ function CourseRating() {
     // Fetch course details when the page loads
     const fetchCourseData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3002/courses/${course}`);
+        const response = await axios.get(`https://students-discussion-space.onrender.com/courses/${course}`);
         const courseData = response.data;
         
         // Set the rating and reviews based on the course data

@@ -20,7 +20,7 @@ function PostQuestion() {
     try {
       // Send the question to the backend
       
-      await axios.post('http://localhost:3002/add-question', {
+      await axios.post('https://students-discussion-space.onrender.com/add-question', {
         courseName: courseName, // Send the courseName
         content: questionContent, // Send the question content
         user: 'CurrentUser', // Replace with actual user data (e.g. from auth context or state)

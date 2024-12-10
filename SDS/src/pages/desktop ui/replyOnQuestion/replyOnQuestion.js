@@ -31,7 +31,7 @@ function ReplyOnQuestion() {
 
     try {
       // Send the reply content to the backend
-      await axios.post('http://localhost:3002/reply-to-question', {
+      await axios.post('https://students-discussion-space.onrender.com/reply-to-question', {
         questionId: questionId,  // Passing the questionId
         content: replyContent,        // Passing the reply content
         user: 'CurrentUser',          // Replace with actual user data (e.g. from auth context or state)

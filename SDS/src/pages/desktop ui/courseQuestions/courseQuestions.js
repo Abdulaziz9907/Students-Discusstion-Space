@@ -16,7 +16,7 @@ function CourseQuestions() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/questions', {
+        const response = await axios.get('https://students-discussion-space.onrender.com/questions', {
           params: { courseName } // Pass courseName as query parameter, empty string will fetch all
         });
         setQuestions(response.data); // Update the state with fetched questions

@@ -16,7 +16,7 @@ function CourseDiscussions() {
   useEffect(() => {
     const fetchDiscussions = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/discussions', {
+        const response = await axios.get('https://students-discussion-space.onrender.com/discussions', {
           params: { courseName } // Pass courseName as query parameter, empty string will fetch all
         });
         setDiscussions(response.data); // Update the state with fetched discussions

@@ -37,7 +37,7 @@ function Search_results() {
         setLoading(true);
         setNoResults(false);
         try {
-          const response = await axios.get('http://localhost:3002/courses', {
+          const response = await axios.get('https://students-discussion-space.onrender.com/courses', {
             params: { courseId: searchTerm },
           });
           setResults(response.data);
@@ -68,7 +68,7 @@ function Search_results() {
   const handleDeleteClick = async (courseId) => {
     console.log("Attempting to delete course with courseId:", courseId);
       try {
-        const response = await fetch(`http://localhost:3002/delete-course/${courseId}`, {
+        const response = await fetch(`https://students-discussion-space.onrender.com/delete-course/${courseId}`, {
           method: "DELETE",
         });
 
@@ -121,7 +121,7 @@ function Search_results() {
   const handleViewDetails = async (courseId) => {
     try {
       console.log("getting "+courseId+" visits")
-      await axios.put(`http://localhost:3002/coursesVisits`, { 
+      await axios.put(`https://students-discussion-space.onrender.com/coursesVisits`, { 
         courseId: courseId 
       });
     

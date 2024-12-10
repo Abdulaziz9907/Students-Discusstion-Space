@@ -33,7 +33,7 @@ function Main_webpage() {
   useEffect(() => {
     const fetchTopCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/visits');
+        const response = await axios.get('https://students-discussion-space.onrender.com/visits');
         const sortedCourses = response.data
           .sort((a, b) => b.visits - a.visits)
           .slice(0, 4);
@@ -52,7 +52,7 @@ function Main_webpage() {
   const handleDeleteClick = async (courseId) => {
     console.log("Attempting to delete course with courseId:", courseId);
       try {
-        const response = await fetch(`http://localhost:3002/delete-course/${courseId}`, {
+        const response = await fetch(`https://students-discussion-space.onrender.com/delete-course/${courseId}`, {
           method: "DELETE",
         });
 

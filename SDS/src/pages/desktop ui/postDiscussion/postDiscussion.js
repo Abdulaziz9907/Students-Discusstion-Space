@@ -21,7 +21,7 @@ function PostDiscussion() {
 
     try {
       // Send POST request to backend to create new discussion
-      await axios.post('http://localhost:3002/add-discussion', {
+      await axios.post('https://students-discussion-space.onrender.com/add-discussion', {
         courseName,
         content: discussionContent,
         user: 'CurrentUser', // Replace this with actual logged-in user's data
