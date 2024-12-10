@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import './Discussion.css';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../../context/userContext';
 
@@ -14,6 +14,7 @@ const Discussion = () => {
   const [replies, setReplies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const navigate = useNavigate();
 
   const discussionId = new URLSearchParams(window.location.search).get('id');
   const { username } = useContext(UserContext);
@@ -69,7 +70,7 @@ const Discussion = () => {
   };
 
   const handleReplyRedirect = () => {
-    window.location.href = `/reply?id=${discussionId}&username=${username}`;
+    navigate('/replyondiscussion', { state: { discussionId } });
   };
 
   return (
@@ -96,7 +97,7 @@ const Discussion = () => {
                   </p>
                   <p id="discussion-content">{discussion.content}</p>
                 </div>
-                <button id="discussion-reply-btn" onClick={handleReplyRedirect}>
+                <button id="discussion-reply-btn" onClick={() => handleReplyRedirect(discussion._id)}>
                   Reply
                 </button>
               </div>
