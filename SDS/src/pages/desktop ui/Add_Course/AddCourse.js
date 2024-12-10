@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../../components/assests/Navbar/Navbar';
 import account_logo3 from '../../desktop ui/login/elements/Vector3.png';
 import account_logo4 from '../../desktop ui/login/elements/Vector4.png';
@@ -10,7 +10,7 @@ const AddCourse = () => {
   const [form, setForm] = useState({ courseName: '', courseNumber: '' });
   const [errors, setErrors] = useState({});
   const [isModalVisible, setModalVisible] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -21,7 +21,6 @@ const AddCourse = () => {
     e.preventDefault();
     let validationErrors = {};
 
-    // Validate input fields
     if (!form.courseName.trim()) {
       validationErrors.courseName = 'Course name is required.';
     }
@@ -32,34 +31,25 @@ const AddCourse = () => {
 
     setErrors(validationErrors);
 
-    // If no validation errors, proceed with the API request
     if (Object.keys(validationErrors).length === 0) {
       try {
-        // Send POST request to add the course
         const response = await fetch('http://localhost:3002/add-course', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             courseName: form.courseName,
-            courseId: form.courseNumber, // course number is the courseId in the backend
+            courseId: form.courseNumber,
           }),
         });
 
         if (response.ok) {
-          const data = await response.json();
-          console.log('Course added successfully:', data);
-
-          // Show success modal and then navigate after delay
           setModalVisible(true);
           setTimeout(() => {
             setModalVisible(false);
-            navigate('/Main Webpage'); // Navigate to /Main Webpage
+            navigate('/Main Webpage');
           }, 2000);
         } else {
-          const errorData = await response.json();
-          console.error('Error adding course:', errorData.error);
+          console.error('Error adding course');
         }
       } catch (error) {
         console.error('Error:', error);
@@ -69,56 +59,59 @@ const AddCourse = () => {
 
   return (
     <>
-      <header>
+      <header className="add-course-header">
         <Navbar />
-        <img src={account_logo3} alt="comp1" id="Dis_Vec3" className="DisImage" />
-        <img src={account_logo4} alt="comp1" id="Dis_Vec4" className="DisImage" />
-        <img src={account_logo6} alt="comp1" id="Dis_Vec6" className="DisImage" />
+        <div className="add-course-header-container">
+          <img src={account_logo3} alt="vector3" className="DisImage" />
+          <img src={account_logo4} alt="vector4" className="DisImage" />
+          <img src={account_logo6} alt="vector6" className="DisImage" />
+        </div>
       </header>
 
       <main>
-        <div className="space"></div>
         <section className="add-course-section">
-          <h2>Add new course</h2>
-          <div className="space"></div>
-          <form id="courseForm" onSubmit={handleSubmit}>
-            <label htmlFor="course-name">Course name*</label>
+          <h2>Add New Course</h2>
+          <form className="add-course-form" onSubmit={handleSubmit}>
+            <label htmlFor="courseName">Course Name*</label>
             <input
               type="text"
               id="courseName"
               value={form.courseName}
               onChange={handleChange}
               placeholder="Enter course name"
-              style={{
-                borderColor: errors.courseName ? 'red' : '',
-              }}
+              style={{ borderColor: errors.courseName ? 'red' : '' }}
             />
-            {errors.courseName && <small className="error-message">{errors.courseName}</small>}
+            {errors.courseName && (
+              <small className="add-course-error-message">{errors.courseName}</small>
+            )}
 
-            <label htmlFor="course-number">Course number*</label>
+            <label htmlFor="courseNumber">Course Number*</label>
             <input
               type="text"
               id="courseNumber"
               value={form.courseNumber}
               onChange={handleChange}
               placeholder="Enter course number"
-              style={{
-                borderColor: errors.courseNumber ? 'red' : '',
-              }}
+              style={{ borderColor: errors.courseNumber ? 'red' : '' }}
             />
-            {errors.courseNumber && <small className="error-message">{errors.courseNumber}</small>}
+            {errors.courseNumber && (
+              <small className="add-course-error-message">{errors.courseNumber}</small>
+            )}
 
-            <button type="submit" className="submit-btn">
-              Create course
+            <button type="submit" className="add-course-submit-btn">
+              Create Course
             </button>
           </form>
         </section>
       </main>
 
       {isModalVisible && (
-        <div className="modal" onClick={() => setModalVisible(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-btn" onClick={() => setModalVisible(false)}>
+        <div className="add-course-modal">
+          <div className="add-course-modal-content">
+            <span
+              className="add-course-close-btn"
+              onClick={() => setModalVisible(false)}
+            >
               &times;
             </span>
             <p>Course successfully added!</p>

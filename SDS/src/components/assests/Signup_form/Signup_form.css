@@ -14,21 +14,21 @@
   font-family: 'Poppins';
   position: relative;
 }
-
+  
 .SF_box {
   background-color: black;
   width: 35vw; 
   max-width: 1200px; /* Max width for large screens */
-  min-width: 800px; /* min width for large screens */
-  min-height: 678px;
-  height: 100vh;
-  margin: 0 auto;
+  min-width: 800px; /* Min width for large screens */
+  height: 100%; /* Full viewport height */
   position: relative;
   border-radius: 40px;
   padding: 6.5rem;
+  box-sizing: border-box; /* Include padding in height calculation */
   transition: all 0.3s ease-in-out;
   z-index: 3;
 }
+
 
 .SF_names {
   display: flex;
@@ -82,7 +82,7 @@
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 1rem;
-  font-size: 80px;
+  font-size: 6vh;
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -92,7 +92,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  font-size: 22px;
+  font-size: 2vh;
   font-weight: 400;
   justify-content: center;
   align-items: center;
@@ -111,7 +111,7 @@
 #SF_year_label,
 #SF_major_label,
 #SF_password {
-  font-size: 20px;
+  font-size: 1.7vh;
 }
 
 .SF_input-box {
@@ -131,8 +131,8 @@
   border-radius: 10px;
   background: transparent;
   color: white;
-  font-size: 18px;
-  height: 60px;
+  font-size: 2vh;
+  height: 5vh;
   transition: all 0.3s ease-in-out;
 }
 
@@ -144,7 +144,7 @@
   border-radius: 12px;
   cursor: pointer;
   margin-top: 20px;
-  height: 60px;
+  height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;

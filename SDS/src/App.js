@@ -25,6 +25,7 @@ import Post from './pages/desktop ui/Discussion/Post';
 import Reply from './pages/desktop ui/Discussion/Reply';
 import Files from './pages/desktop ui/Files/Files';
 import Upload from './pages/desktop ui/Files/Upload';
+import Admin_search_main from './pages/desktop ui/Admin_search_main/Admin_search_main';
 import { UserProvider } from '../src/context/userContext';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -39,6 +40,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/SignUp" element={<Signup />} />
             <Route path="/Main Webpage" element={<Main_Webpage />} />
+             <Route path="/Admin_search_main" element={<Admin_search_main />} />
             <Route path="/Account" element={<Account />} />
             <Route path="/Search Results" element={<Search_results />} />
             <Route path="/CourseDetails" element={<CourseDetails />} />

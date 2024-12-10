@@ -656,8 +656,14 @@ app.get('/courses', async (req, res) => {
     const { courseId } = req.query;
     console.log("server searching for: " + courseId);
 
-    // Search for courses matching the regex pattern
-    const courses = await Courses.find({ courseId: { $regex: courseId, $options: 'i' } });
+    let courses;
+    if (!courseId) {
+      // If no courseId is provided, fetch all courses
+      courses = await Courses.find({});
+    } else {
+      // Search for courses matching the regex pattern
+      courses = await Courses.find({ courseId: { $regex: courseId, $options: 'i' } });
+    }
 
     if (!courses || courses.length === 0) {
       return res.status(404).json({ message: 'course not found' });
@@ -671,6 +677,38 @@ app.get('/courses', async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 });
+
+
+app.get('/users', async (req, res) => {
+  try {
+    console.log("Searching for users in the server");
+    const { userName } = req.query; 
+    console.log("Server searching for: " + userName);
+
+    let users;
+    if (!userName) {
+      // If no userName is provided, fetch all users
+      users = await UsersModel.find({});
+    } else {
+      // If userName is provided, search using regex
+      users = await UsersModel.find({ userName: { $regex: userName, $options: 'i' } });
+    }
+
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const userNames = users.map(user => user.userName);
+
+    return res.json(userNames);
+  } catch (error) {
+    console.error("Error while searching for users:", error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 
 app.delete('/delete-account/:userName', async (req, res) => {
   const { userName } = req.params;
@@ -691,6 +729,30 @@ app.delete('/delete-account/:userName', async (req, res) => {
     console.error('Error deleting account:', error);
     res.status(500).json({ 
       message: 'An error occurred while deleting the account',
+      error: error.message 
+    });
+  }
+});
+
+app.delete('/delete-course/:courseId', async (req, res) => {
+  const {  courseId  } = req.params;
+
+  try {
+    const deletedCourse= await Courses.findOneAndDelete({ courseId: courseId });
+
+    if (!deletedCourse) {
+      return res.status(404).json({ 
+        message: 'Course not found. Unable to delete course.' 
+      });
+    }
+
+    res.status(200).json({ 
+      message: 'Course successfully deleted'
+    });
+  } catch (error) {
+    console.error('Error deleting course:', error);
+    res.status(500).json({ 
+      message: 'An error occurred while deleting the course',
       error: error.message 
     });
   }

@@ -14,6 +14,7 @@ import managelogo from './elements/manage.png';
 import dashboardlogo from './elements/dashboard.png';
 import { UserContext } from '../../../context/userContext';
 import { ring2 } from 'ldrs';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 
 ring2.register();
 
@@ -46,10 +47,48 @@ function Main_webpage() {
     fetchTopCourses();
   }, []);
 
+
+
+  const handleDeleteClick = async (courseId) => {
+    console.log("Attempting to delete course with courseId:", courseId);
+      try {
+        const response = await fetch(`http://localhost:3002/delete-course/${courseId}`, {
+          method: "DELETE",
+        });
+
+        const data = await response.json();
+        console.log("Response from server:", data);
+        if (response.ok) {
+          
+          toast.success('Course deleted successfully', {
+            position: 'top-right',
+            autoClose: 1200,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+            transition: Flip,
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1200); 
+          
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Error while deleting course:", error);
+        alert("An error occurred while deleting the course.");
+      }
+    };
+  
+
+
+
   const handleSearch = () => {
-    if (courseId.trim()) {
       navigate('/Search Results', { state: { courseId } }); // Pass the search term to SearchResults
-    }
   };
 
   const handleKeyDown = (e) => {
@@ -58,8 +97,17 @@ function Main_webpage() {
     }
   };
 
+  const handleAddCourse= () =>{
+    navigate('/AddCourse');
+  }
+
+  const handleManageUsers= () =>{
+    navigate('/Admin_search_main');
+  }
+
   return (
     <div className="main_webpage_body">
+      <ToastContainer />
       <div id="mw_items">
         <div>
           <Navbar />
@@ -79,10 +127,10 @@ function Main_webpage() {
         </div>
         {userName === 'admin' && (
           <div className="action-buttons">
-            <button className="add-course-btn">
+            <button className="add-course-btn" onClick={() => handleAddCourse()}>
               <img src={addlogo} alt="add" id="add" className="ControlImage" /> Add new course
             </button>
-            <button className="manage-users-btn">
+            <button className="manage-users-btn" onClick={() => handleManageUsers()}>
               <img src={managelogo} alt="manage" id="manage" className="ControlImage" /> Manage Users
             </button>
           </div>
@@ -111,12 +159,22 @@ function Main_webpage() {
             topCourses.map((course, index) => (
               <div key={index} id={`mw_sgst${index + 1}`}>
                 <span className={`mw_sgst${index + 1}-text`}>{course.courseId}</span>
+
+                <div id='sr_btns'> 
+
+                {userName === 'admin' && (
+                  <button className="sr_Delete-button" onClick={() => handleDeleteClick(course.courseId)}>Delete course</button>
+                  )}
+
                 <button
                   className="mw_sgst-button"
                   onClick={() => handleViewDetails(course.courseId)}
                 >
                   View details
                 </button>
+
+                  </div>
+
               </div>
             ))
           )}
