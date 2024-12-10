@@ -35,12 +35,14 @@ const Discussion = () => {
   const fetchReplies = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/discussions/${discussionId}/replies?page=${currentPage}`
+        `http://localhost:3002/discussions/${discussionId}`
+        ///http://localhost:3002/discussions/${discussionId}/replies?page=${currentPage}
       );
       setReplies(response.data.replies || []);
       setTotalPages(response.data.totalPages || 1);
     } catch (error) {
       console.error('Error fetching replies:', error);
+      alert("error")
     }
   };
 
